@@ -28,7 +28,23 @@ set (GAMBIT_SRC
     ${GAMBIT_DIR}/src/core/tinyxmlerror.cc
     ${GAMBIT_DIR}/src/core/tinyxmlparser.cc
     ${GAMBIT_DIR}/src/core/vector.cc
-
+    ${GAMBIT_DIR}/src/games/behavmixed.cc
+    ${GAMBIT_DIR}/src/games/behavpure.cc
+    ${GAMBIT_DIR}/src/games/behavspt.cc
+    ${GAMBIT_DIR}/src/games/file.cc
+    ${GAMBIT_DIR}/src/games/game.cc
+    ${GAMBIT_DIR}/src/games/gameagg.cc
+    ${GAMBIT_DIR}/src/games/gamebagg.cc
+    ${GAMBIT_DIR}/src/games/gameexpl.cc
+    ${GAMBIT_DIR}/src/games/gametable.cc
+    ${GAMBIT_DIR}/src/games/gametree.cc
+    ${GAMBIT_DIR}/src/games/nash.cc
+    ${GAMBIT_DIR}/src/games/stratpure.cc
+    ${GAMBIT_DIR}/src/games/stratspt.cc
+    ${GAMBIT_DIR}/src/games/writer.cc
+    ${GAMBIT_DIR}/src/games/agg/agg.cc
+    ${GAMBIT_DIR}/src/games/agg/bagg.cc
+    ${GAMBIT_DIR}/src/games/agg/trie_map.cc
 )
 add_library(gambit SHARED ${GAMBIT_SRC})
 

@@ -14,7 +14,7 @@ project ("gambit" VERSION "0.1.0" LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-SET (GAMBIT_DIR ../ext/gambit)
+SET (GAMBIT_DIR ext/gambit)
 
 set (GAMBIT_SRC 
     ${GAMBIT_DIR}/src/core/dvector.cc

@@ -11,8 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog", "..\ext\NLog\src\NLo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gambit", "gambit", "{D24822BD-14B3-4F99-ADE1-E27AEB69D098}"
 	ProjectSection(SolutionItems) = preProject
-		CMakeLists.txt = CMakeLists.txt
-		CMakePresets.json = CMakePresets.json
+		..\CMakeLists.txt = ..\CMakeLists.txt
+		..\CMakePresets.json = ..\CMakePresets.json
 	EndProjectSection
 EndProject
 Global

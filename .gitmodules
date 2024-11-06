@@ -1,0 +1,3 @@
+[submodule "ext/gambit"]
+	path = ext/gambit
+	url = https://github.com/gambitproject/gambit.git

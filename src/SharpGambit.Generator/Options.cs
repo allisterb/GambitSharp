@@ -2,6 +2,7 @@ namespace SharpGambit;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 
 using CommandLine;
@@ -45,6 +46,6 @@ public class Options
 [Verb("gen", HelpText = "Generate bindings to the gambit C++ library")]
 public class GenerateOptions : Options
 {
-    [Option("libpath", Required = false, HelpText = "Path to the gambit library.")]
+    [Option("libpath", Required = false, Default = "", HelpText = "Path to the gambit library.")]
     public string LibPath { get; set; } = "";
 }

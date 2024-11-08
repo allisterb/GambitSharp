@@ -7,6 +7,7 @@ using System.Linq;
 
 using CommandLine;
 using CommandLine.Text;
+using CppSharp;
 using Spectre.Console;
 
 using Con = Spectre.Console.AnsiConsole;
@@ -14,6 +15,7 @@ using Con = Spectre.Console.AnsiConsole;
 public class Program : Runtime
 {
     #region Methods
+
     #region Entry point
     static void Main(string[] args)
     {
@@ -92,9 +94,14 @@ public class Program : Runtime
         }
     }
 
-    static void Generate(GenerateOptions options)
+    static void Generate(GenerateOptions go)
     {
-
+        Dictionary<string, object> options = new Dictionary<string, object>()
+        {
+            {"RootDirectory", go.LibPath},
+        };
+        Library lib = new Library(options); 
+        ConsoleDriver.Run(lib);
     }
 
     static HelpText GetAutoBuiltHelpText(ParserResult<object> result)
@@ -110,7 +117,7 @@ public class Program : Runtime
 
     static void PrintLogo()
     {
-        Con.Write(new FigletText(font, "SharpGambit").Color(Color.Orange1));
+        Con.Write(new FigletText(font, "SharpGambit").Color(Color.Pink1));
         Con.Write(new Text($"v{AssemblyVersion.ToString(3)}\n"));
     }
     public static void Exit(ExitResult result)

@@ -2,7 +2,7 @@
   "profiles": {
     "SharpGambit.Generator": {
       "commandName": "Project",
-      "commandLineArgs": "gen --libpath C:\\Projects\\gambit\\src"
+      "commandLineArgs": "gen --libpath C:\\Projects\\SharpGambit\\ext\\gambit"
     }
   }
 }

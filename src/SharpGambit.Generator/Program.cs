@@ -98,7 +98,7 @@ public class Program : Runtime
     {
         Dictionary<string, object> options = new Dictionary<string, object>()
         {
-            {"RootDirectory", go.LibPath},
+            {"RootDirectory", new DirectoryInfo(go.LibPath)},
         };
         Library lib = new Library(options); 
         ConsoleDriver.Run(lib);

@@ -71,7 +71,7 @@ public class Library : Runtime, ILibrary
 
     #region Implemented members
     /// Setup the driver options here.
-    public virtual void Setup(Driver driver)
+    public void Setup(Driver driver)
     {
         DriverOptions options = driver.Options;
         options.GeneratorKind = GeneratorKind.CSharp;
@@ -81,6 +81,11 @@ public class Library : Runtime, ILibrary
         Module.OutputNamespace = Namespace;
         options.OutputDir = OutputDirName;
         options.GenerationOutputMode = GenerationOutputMode.FilePerModule;
+        Module.IncludeDirs.Add(Path.Combine(R, "src"));
+        Module.LibraryDirs.Add(Path.Combine(R, "build", "Debug"));
+        Module.Headers.Add("gambit.h");
+        driver.ParserOptions.AddArguments("-fcxx-exceptions");
+
     }
 
     /// Setup your passes here.
@@ -104,14 +109,14 @@ public class Library : Runtime, ILibrary
 
     #region Properties
     public LibraryKind Kind { get; }
-    public string Name => Kind.ToString();
+    public string Name = "gambit";
     public Dictionary<string, object> BindOptions { get; internal set; }
     public DirectoryInfo RootDirectory { get; internal set; } = new DirectoryInfo(AssemblyLocation);
     public string R => RootDirectory.FullName;
     public string F { get; protected set; }
     public string OutputDirName { get; internal set; } = "";
-    public string OutputFileName { get; internal set; } = "";
-    public string ModuleName { get; internal set; } = "";
+    public string OutputFileName { get; internal set; } = "gambit.cs";
+    public string ModuleName { get; internal set; } = "gambit";
     public Module Module { get; internal set; } = new Module("gambit");
     public string Class { get; internal set; } = "";
     public string Namespace { get; internal set; } = "";

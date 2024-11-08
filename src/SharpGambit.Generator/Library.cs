@@ -75,8 +75,8 @@ public class Library : Runtime, ILibrary
     {
         DriverOptions options = driver.Options;
         options.GeneratorKind = GeneratorKind.CSharp;
-        options.Verbose = this.Verbose;
-        options.MarshalCharAsManagedChar = false;
+        options.Verbose = true;
+        options.MarshalCharAsManagedChar = true;
         Module = options.AddModule(ModuleName);
         Module.OutputNamespace = Namespace;
         options.OutputDir = OutputDirName;
@@ -85,7 +85,11 @@ public class Library : Runtime, ILibrary
         Module.LibraryDirs.Add(Path.Combine(R, "build", "Debug"));
         Module.Headers.Add("gambit.h");
         driver.ParserOptions.AddArguments("-fcxx-exceptions");
-
+        Module.SharedLibraryName = "gambit";
+        //options.GenerateDefaultValuesForArguments = true;
+        options.GenerateClassTemplates = true;
+        options.MarshalCharAsManagedChar = true;
+        options.CheckSymbols = true;
     }
 
     /// Setup your passes here.

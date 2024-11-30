@@ -4198,7 +4198,7 @@ namespace gambit
                     }
                     if (__T.IsAssignableFrom(typeof(bool)))
                     {
-                        var __value0 = (bool) (object) (byte) (value ? 1 : 0);
+                        var __value0 = System.Convert.ToBoolean(value);
                         ((global::gambit.Gambit.Array.__Internal*)__Instance)->data = (__IntPtr) (object) __value0;
                         return;
                     }
@@ -12147,7 +12147,8 @@ namespace gambit
 
             public override global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameActionRep> InsertAction()
             {
-                return InsertAction(nullptr);
+                //return InsertAction(GameObjectPtr<GameActionRep>.);
+                throw new NotImplementedException();
             }
 
             public override global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> Game
@@ -15146,13 +15147,13 @@ namespace gambit
                     ___GetPayoffDelegate(__Instance, new IntPtr(&___ret), pl);
                     var _____ret = global::gambit.Gambit.Rational.__CreateInstance(___ret);
                     global::gambit.Gambit.Rational.__Internal.dtor(new __IntPtr(&___ret));
-                    return _____ret;
+                    return (T) System.Convert.ChangeType(_____ret, __T);
                 }
                 if (__T.IsAssignableFrom(typeof(double)))
                 {
                     var ___GetPayoffDelegate = __VTables.GetMethodDelegate<global::gambit.Delegates.Func_double___IntPtr_int>(0, 2);
                     var ___ret = ___GetPayoffDelegate(__Instance, pl);
-                    return ___ret;
+                    return (T) System.Convert.ChangeType(___ret, __T);
                 }
                 throw new ArgumentOutOfRangeException("T", string.Join(", ", new[] { typeof(T).FullName }), "global::gambit.Gambit.MixedStrategyProfileRepInternal<T> maps a C++ template class and therefore it only supports a limited set of types and their subclasses: <global::gambit.Gambit.Rational>, <double>.");
             }
@@ -15170,7 +15171,7 @@ namespace gambit
                     ___GetPayoffDerivDelegate(__Instance, new IntPtr(&___ret), pl, __arg1);
                     var _____ret = global::gambit.Gambit.Rational.__CreateInstance(___ret);
                     global::gambit.Gambit.Rational.__Internal.dtor(new __IntPtr(&___ret));
-                    return _____ret;
+                    return (T) System.Convert.ChangeType(_____ret, __T);
                 }
                 if (__T.IsAssignableFrom(typeof(double)))
                 {
@@ -15179,7 +15180,7 @@ namespace gambit
                         throw new global::System.ArgumentNullException("_0", "Cannot be null because it is a C++ reference (&).");
                     var __arg1 = _0.__Instance;
                     var ___ret = ___GetPayoffDerivDelegate(__Instance, pl, __arg1);
-                    return ___ret;
+                    return (T) System.Convert.ChangeType(___ret, __T);
                 }
                 throw new ArgumentOutOfRangeException("T", string.Join(", ", new[] { typeof(T).FullName }), "global::gambit.Gambit.MixedStrategyProfileRepInternal<T> maps a C++ template class and therefore it only supports a limited set of types and their subclasses: <global::gambit.Gambit.Rational>, <double>.");
             }
@@ -15200,7 +15201,7 @@ namespace gambit
                     ___GetPayoffDeriv_1Delegate(__Instance, new IntPtr(&___ret), pl, __arg1, __arg2);
                     var _____ret = global::gambit.Gambit.Rational.__CreateInstance(___ret);
                     global::gambit.Gambit.Rational.__Internal.dtor(new __IntPtr(&___ret));
-                    return _____ret;
+                    return (T) System.Convert.ChangeType(_____ret, __T);
                 }
                 if (__T.IsAssignableFrom(typeof(double)))
                 {
@@ -15212,7 +15213,7 @@ namespace gambit
                         throw new global::System.ArgumentNullException("_1", "Cannot be null because it is a C++ reference (&).");
                     var __arg2 = _1.__Instance;
                     var ___ret = ___GetPayoffDeriv_1Delegate(__Instance, pl, __arg1, __arg2);
-                    return ___ret;
+                    return (T) System.Convert.ChangeType(___ret, __T);
                 }
                 throw new ArgumentOutOfRangeException("T", string.Join(", ", new[] { typeof(T).FullName }), "global::gambit.Gambit.MixedStrategyProfileRepInternal<T> maps a C++ template class and therefore it only supports a limited set of types and their subclasses: <global::gambit.Gambit.Rational>, <double>.");
             }

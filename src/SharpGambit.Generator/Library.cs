@@ -87,6 +87,7 @@ public class Library : Runtime, ILibrary
         driver.ParserOptions.AddArguments("-fcxx-exceptions");
         driver.ParserOptions.LanguageVersion = CppSharp.Parser.LanguageVersion.CPP17;
         driver.ParserOptions.SkipPrivateDeclarations = false;
+        
         Module.SharedLibraryName = "gambit";
         //options.GenerateDefaultValuesForArguments = true;
         //options.GenerateClassTemplates = true;

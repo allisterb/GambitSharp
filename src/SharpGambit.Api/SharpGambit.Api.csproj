@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharpGambit.Bindings2\SharpGambit.Bindings2.csproj" />
+    <ProjectReference Include="..\SharpGambit.Bindings\SharpGambit.Bindings.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Sdk Name="SharpGenTools.Sdk"  Version="2.1.0-beta"/>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <CastXmlPath>C:\Cpp\castxml\bin\castxml.exe</CastXmlPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SharpGenMapping Include="Mapping.xml" />
+    <SharpGenConsumerMapping Remove="Mapping.xml" />
+    <CastXmlArg Include="-std=c++17"  />
+    <CastXmlArg Remove="-std=c++14" />
+  </ItemGroup>
+
+
+
+</Project>

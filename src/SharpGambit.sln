@@ -15,7 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gambit", "gambit", "{D24822
 		..\CMakePresets.json = ..\CMakePresets.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpGambit.Bindings", "SharpGambit.Bindings\SharpGambit.Bindings.csproj", "{F1CB7C66-AE6D-467A-ABDB-D5D1156FB481}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpGambit.Bindings", "SharpGambit.Bindings\SharpGambit.Bindings.csproj", "{F1CB7C66-AE6D-467A-ABDB-D5D1156FB481}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpGambit.Bindings2", "SharpGambit.Bindings2\SharpGambit.Bindings2.csproj", "{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpGambit.Api", "SharpGambit.Api\SharpGambit.Api.csproj", "{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,30 @@ Global
 		{F1CB7C66-AE6D-467A-ABDB-D5D1156FB481}.Release|x64.Build.0 = Release|Any CPU
 		{F1CB7C66-AE6D-467A-ABDB-D5D1156FB481}.Release|x86.ActiveCfg = Release|Any CPU
 		{F1CB7C66-AE6D-467A-ABDB-D5D1156FB481}.Release|x86.Build.0 = Release|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Debug|x64.Build.0 = Debug|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Debug|x86.Build.0 = Debug|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Release|x64.ActiveCfg = Release|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Release|x64.Build.0 = Release|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Release|x86.ActiveCfg = Release|Any CPU
+		{676B2AEC-93D9-4AFD-AED6-23AD648D85C8}.Release|x86.Build.0 = Release|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Debug|x64.Build.0 = Debug|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Debug|x86.Build.0 = Debug|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Release|x64.ActiveCfg = Release|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Release|x64.Build.0 = Release|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Release|x86.ActiveCfg = Release|Any CPU
+		{1DB0997E-ABEA-4194-AA2F-433FDE9B3AA5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

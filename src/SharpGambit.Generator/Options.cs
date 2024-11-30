@@ -43,7 +43,7 @@ public class Options
 }
 #endregion
 
-[Verb("gen", HelpText = "Generate bindings to the gambit C++ library")]
+[Verb("bind", HelpText = "Generate bindings to the gambit C++ library")]
 public class GenerateOptions : Options
 {
     [Option("libpath", Required = false, Default = "", HelpText = "Path to the gambit library.")]

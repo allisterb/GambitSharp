@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config id="SharpGambit" xmlns="urn:SharpGen.Config">
+  <assembly>SharpGambit</assembly>
+  <namespace>Gambit</namespace>
+  <depends>SharpGen.Runtime</depends>
+  <sdk name="WindowsSdk" version="10.0.22621.0" />
+  <sdk name="StdLib" />
+  <include-dir override="true">$(THIS_CONFIG_PATH)/../../ext/gambit/src</include-dir>
+  <include file="gambit.h" namespace="Gambit" attach="true" />
+  <include file="core/integer.h" namespace="Gambit" attach="true" />
+  <extension>
+    <create class="Gambit.Functions" visibility="public static" />
+    <create class="Gambit.Strings" visibility="public static" />
+  </extension>
+  <mapping>
+    <map function="lexical_cast" group="Gambit.Functions" />
+    <remove function="*lexical_cast*" />
+
+    <map function="*lalloc*" group="Gambit.Functions" />
+    <remove function="*lalloc*" />
+  </mapping>
+  
+</config>

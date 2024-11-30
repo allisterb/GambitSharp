@@ -96,6 +96,11 @@ public class Program : Runtime
 
     static void Generate(GenerateOptions go)
     {
+        if (go.LibPath == "")
+        {
+            go.LibPath = Path.Combine(Directory.GetCurrentDirectory(), "ext", "gambit");
+        }
+        Info("Using {l} as gambit library path.", go.LibPath);
         Dictionary<string, object> options = new Dictionary<string, object>()
         {
             {"RootDirectory", new DirectoryInfo(go.LibPath)},

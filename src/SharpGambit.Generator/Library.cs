@@ -82,14 +82,21 @@ public class Library : Runtime, ILibrary
         options.OutputDir = OutputDirName;
         options.GenerationOutputMode = GenerationOutputMode.FilePerModule;
         Module.IncludeDirs.Add(Path.Combine(R, "src"));
-        Module.LibraryDirs.Add(Path.Combine(R, "build", "Debug"));
+        Module.LibraryDirs.Add(Path.Combine(R, "build", "Release"));
         Module.Headers.Add("gambit.h");
         driver.ParserOptions.AddArguments("-fcxx-exceptions");
+        driver.ParserOptions.LanguageVersion = CppSharp.Parser.LanguageVersion.CPP17;
+        driver.ParserOptions.SkipPrivateDeclarations = false;
         Module.SharedLibraryName = "gambit";
         //options.GenerateDefaultValuesForArguments = true;
-        options.GenerateClassTemplates = true;
+        //options.GenerateClassTemplates = true;
+        options.GenerateDefaultValuesForArguments = true;
+        options.GenerateExternalDataFields = true;  
+        options.GenerateClassTemplates = true;  
+        options.GenerateObjectOverrides = true;
         options.MarshalCharAsManagedChar = true;
         options.CheckSymbols = true;
+        options.CompileCode = true; 
     }
 
     /// Setup your passes here.
@@ -100,14 +107,32 @@ public class Library : Runtime, ILibrary
     }
 
     /// Do transformations that should happen before passes are processed.
-    public virtual void Preprocess(Driver driver, ASTContext ctx)
+    public void Preprocess(Driver driver, ASTContext ctx)
     {
-            
+        var arrptr = ctx.FindClass("Array").Single();
+        foreach (var f in arrptr.Fields)
+        {
+            if (f.Name == "data")
+            {
+                f.Access = AccessSpecifier.Public;
+            }
+        }
+
+        var goptr = ctx.FindClass("GameObjectPtr").Single();
+        foreach (var f in goptr.Fields)
+        {
+            if (f.Name == "rep")
+            {
+                f.Access = AccessSpecifier.Public;
+            }
+        }
+
     }
 
     /// Do transformations that should happen after passes are processed.
-    public virtual void Postprocess(Driver driver, ASTContext ctx)
+    public void Postprocess(Driver driver, ASTContext ctx)
     {
+       
     }
     #endregion
 
@@ -129,44 +154,7 @@ public class Library : Runtime, ILibrary
     #endregion
 
     #region Methods
-    public virtual bool CleanAndFixup()
-    {
-        if (File.Exists(Path.Combine(OutputDirName, Module.OutputNamespace + "-symbols.cpp")))
-        {
-            File.Delete(Path.Combine(OutputDirName, Module.OutputNamespace + "-symbols.cpp"));
-            Info($"Removing unneeded file {Path.Combine(OutputDirName, Module.OutputNamespace + "-symbols.cpp")}");
-        }
-        if (File.Exists(Path.Combine(OutputDirName, "Std.cs")))
-        {
-            File.Delete(Path.Combine(OutputDirName, "Std.cs"));
-            Info($"Removing unneeded file {Path.Combine(OutputDirName, "Std.cs")}");
-        }
-        if (!string.IsNullOrEmpty(OutputFileName))
-        {
-            string f = Path.Combine(Path.GetFullPath(OutputDirName), OutputFileName);
-            if (!string.IsNullOrEmpty(OutputFileName) && F != f)
-            {
-                if (Environment.OSVersion.Platform == PlatformID.Win32NT && F.ToLowerInvariant() == f.ToLowerInvariant())
-                {
-
-                }
-                else if (File.Exists(f))
-                {
-                    Warn($"Overwriting file {f}.");
-                    File.Delete(f);
-                }
-                File.Move(F, f);
-                F = f;
-            }
-        }
-        if (!string.IsNullOrEmpty(Class))
-        {
-            string s = File.ReadAllText(F);
-            s = Regex.Replace(s, $"public unsafe partial class {ModuleName}\\r?$", "public unsafe partial class " + Class, RegexOptions.Multiline);
-            File.WriteAllText(F, s);
-        }
-        return true;
-    }
+   
     #endregion
 
     #region Fields

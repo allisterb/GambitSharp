@@ -2259,7 +2259,7 @@ namespace gambit
                 return ___ret;
             }
 
-            public static string Itoa(global::gambit.Gambit.IntegerRep x, int @base, int width)
+            public static string Itoa(global::gambit.Gambit.IntegerRep x, int @base = 10, int width = 0)
             {
                 var __arg0 = x is null ? __IntPtr.Zero : x.__Instance;
                 var ___ret = new global::Std.BasicString.__Internalc__N_std_S_basic_string__C___N_std_S_char_traits__C___N_std_S_allocator__C();
@@ -2291,7 +2291,7 @@ namespace gambit
                 }
             }
 
-            public static global::gambit.Gambit.IntegerRep AtoIntegerRep(string s, int @base)
+            public static global::gambit.Gambit.IntegerRep AtoIntegerRep(string s, int @base = 10)
             {
                 var ___ret = __Internal.AtoIntegerRep(s, @base);
                 var __result0 = global::gambit.Gambit.IntegerRep.__GetOrCreateInstance(___ret, false);
@@ -3184,7 +3184,7 @@ namespace gambit
             }
 
             /// <summary>Constructs an array of length 'len', starting at '1'</summary>
-            public Array(uint len)
+            public Array(uint len = 0)
             {
                 var __T = typeof(T);
                 if (__T.IsAssignableFrom(typeof(int)))
@@ -4081,7 +4081,7 @@ namespace gambit
                 }
             }
 
-            protected T Data
+            public T Data
             {
                 get
                 {
@@ -6011,7 +6011,7 @@ namespace gambit
             }
 
             /// <summary>Create a vector of length len, starting at 1</summary>
-            public Vector(uint len)
+            public Vector(uint len = 0)
                 : this((void*) null)
             {
                 var __T = typeof(T);
@@ -7653,6 +7653,91 @@ namespace gambit
                     throw new MissingMethodException("Method operator_ ignored in specialization global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameOutcomeRep>.");
                 }
                 throw new ArgumentOutOfRangeException("T", string.Join(", ", new[] { typeof(T).FullName }), "global::gambit.Gambit.GameObjectPtr<T> maps a C++ template class and therefore it only supports a limited set of types and their subclasses: <global::gambit.Gambit.GameRep>, <global::gambit.Gambit.GameInfosetRep>, <global::gambit.Gambit.GamePlayerRep>, <global::gambit.Gambit.GameStrategyRep>, <global::gambit.Gambit.GameActionRep>, <global::gambit.Gambit.GameNodeRep>, <global::gambit.Gambit.GameOutcomeRep>.");
+            }
+
+            public T Rep
+            {
+                get
+                {
+                    var __T = typeof(T);
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameRep)))
+                    {
+                        var __result0 = global::gambit.Gambit.GameRep.__GetOrCreateInstance(((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep, true);
+                        return (T) (object) (T) (object) __result0;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameInfosetRep)))
+                    {
+                        var __result0 = global::gambit.Gambit.GameInfosetRep.__GetOrCreateInstance(((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep, true);
+                        return (T) (object) (T) (object) __result0;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GamePlayerRep)))
+                    {
+                        var __result0 = global::gambit.Gambit.GamePlayerRep.__GetOrCreateInstance(((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep, true);
+                        return (T) (object) (T) (object) __result0;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameStrategyRep)))
+                    {
+                        var __result0 = global::gambit.Gambit.GameStrategyRep.__GetOrCreateInstance(((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep, true);
+                        return (T) (object) (T) (object) __result0;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameActionRep)))
+                    {
+                        var __result0 = global::gambit.Gambit.GameActionRep.__GetOrCreateInstance(((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep, true);
+                        return (T) (object) (T) (object) __result0;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameNodeRep)))
+                    {
+                        var __result0 = global::gambit.Gambit.GameNodeRep.__GetOrCreateInstance(((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep, true);
+                        return (T) (object) (T) (object) __result0;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameOutcomeRep)))
+                    {
+                        var __result0 = global::gambit.Gambit.GameOutcomeRep.__GetOrCreateInstance(((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep, true);
+                        return (T) (object) (T) (object) __result0;
+                    }
+                    throw new ArgumentOutOfRangeException("T", string.Join(", ", new[] { typeof(T).FullName }), "global::gambit.Gambit.GameObjectPtr<T> maps a C++ template class and therefore it only supports a limited set of types and their subclasses: <global::gambit.Gambit.GameRep>, <global::gambit.Gambit.GameInfosetRep>, <global::gambit.Gambit.GamePlayerRep>, <global::gambit.Gambit.GameStrategyRep>, <global::gambit.Gambit.GameActionRep>, <global::gambit.Gambit.GameNodeRep>, <global::gambit.Gambit.GameOutcomeRep>.");
+                }
+
+                set
+                {
+                    var __T = typeof(T);
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameRep)))
+                    {
+                        ((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep = ((global::gambit.Gambit.GameRep) (object) value) is null ? __IntPtr.Zero : ((global::gambit.Gambit.GameRep) (object) value).__Instance;
+                        return;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameInfosetRep)))
+                    {
+                        ((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep = ((global::gambit.Gambit.GameInfosetRep) (object) value) is null ? __IntPtr.Zero : ((global::gambit.Gambit.GameInfosetRep) (object) value).__Instance;
+                        return;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GamePlayerRep)))
+                    {
+                        ((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep = ((global::gambit.Gambit.GamePlayerRep) (object) value) is null ? __IntPtr.Zero : ((global::gambit.Gambit.GamePlayerRep) (object) value).__Instance;
+                        return;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameStrategyRep)))
+                    {
+                        ((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep = ((global::gambit.Gambit.GameStrategyRep) (object) value) is null ? __IntPtr.Zero : ((global::gambit.Gambit.GameStrategyRep) (object) value).__Instance;
+                        return;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameActionRep)))
+                    {
+                        ((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep = ((global::gambit.Gambit.GameActionRep) (object) value) is null ? __IntPtr.Zero : ((global::gambit.Gambit.GameActionRep) (object) value).__Instance;
+                        return;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameNodeRep)))
+                    {
+                        ((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep = ((global::gambit.Gambit.GameNodeRep) (object) value) is null ? __IntPtr.Zero : ((global::gambit.Gambit.GameNodeRep) (object) value).__Instance;
+                        return;
+                    }
+                    if (__T.IsAssignableFrom(typeof(global::gambit.Gambit.GameOutcomeRep)))
+                    {
+                        ((global::gambit.Gambit.GameObjectPtr.__Internal*)__Instance)->rep = ((global::gambit.Gambit.GameOutcomeRep) (object) value) is null ? __IntPtr.Zero : ((global::gambit.Gambit.GameOutcomeRep) (object) value).__Instance;
+                        return;
+                    }
+                    throw new ArgumentOutOfRangeException("T", string.Join(", ", new[] { typeof(T).FullName }), "global::gambit.Gambit.GameObjectPtr<T> maps a C++ template class and therefore it only supports a limited set of types and their subclasses: <global::gambit.Gambit.GameRep>, <global::gambit.Gambit.GameInfosetRep>, <global::gambit.Gambit.GamePlayerRep>, <global::gambit.Gambit.GameStrategyRep>, <global::gambit.Gambit.GameActionRep>, <global::gambit.Gambit.GameNodeRep>, <global::gambit.Gambit.GameOutcomeRep>.");
+                }
             }
         }
 
@@ -9456,6 +9541,8 @@ namespace gambit
 
             public abstract void Reveal(global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep> _0);
 
+            public abstract global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameActionRep> InsertAction();
+
             public abstract global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> Game
             {
                 get;
@@ -10967,10 +11054,10 @@ namespace gambit
             }
 
             /// <summary>Returns the smallest payoff in any outcome of the game</summary>
-            public abstract global::gambit.Gambit.Rational GetMinPayoff(int pl);
+            public abstract global::gambit.Gambit.Rational GetMinPayoff(int pl = 0);
 
             /// <summary>Returns the largest payoff in any outcome of the game</summary>
-            public abstract global::gambit.Gambit.Rational GetMaxPayoff(int pl);
+            public abstract global::gambit.Gambit.Rational GetMaxPayoff(int pl = 0);
 
             /// <summary>
             /// <para>Returns true if the game is perfect recall.  If not,</para>
@@ -12058,6 +12145,11 @@ namespace gambit
                 ___RevealDelegate(__Instance, __arg0);
             }
 
+            public override global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameActionRep> InsertAction()
+            {
+                return InsertAction(nullptr);
+            }
+
             public override global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> Game
             {
                 get
@@ -12581,7 +12673,7 @@ namespace gambit
             }
 
             /// <summary>Returns the smallest payoff in any outcome of the game</summary>
-            public override global::gambit.Gambit.Rational GetMinPayoff(int pl)
+            public override global::gambit.Gambit.Rational GetMinPayoff(int pl = 0)
             {
                 var ___GetMinPayoffDelegate = __VTables.GetMethodDelegate<global::gambit.Delegates.Action___IntPtr___IntPtr_int>(0, 10);
                 var ___ret = new global::gambit.Gambit.Rational.__Internal();
@@ -12592,7 +12684,7 @@ namespace gambit
             }
 
             /// <summary>Returns the largest payoff in any outcome of the game</summary>
-            public override global::gambit.Gambit.Rational GetMaxPayoff(int pl)
+            public override global::gambit.Gambit.Rational GetMaxPayoff(int pl = 0)
             {
                 var ___GetMaxPayoffDelegate = __VTables.GetMethodDelegate<global::gambit.Delegates.Action___IntPtr___IntPtr_int>(0, 11);
                 var ___ret = new global::gambit.Gambit.Rational.__Internal();
@@ -13026,7 +13118,7 @@ namespace gambit
             }
 
             /// <summary>Factory function to create new game table</summary>
-            public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> NewTable(global::gambit.Gambit.Array<int> p_dim, bool p_sparseOutcomes)
+            public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> NewTable(global::gambit.Gambit.Array<int> p_dim, bool p_sparseOutcomes = false)
             {
                 if (ReferenceEquals(p_dim, null))
                     throw new global::System.ArgumentNullException("p_dim", "Cannot be null because it is a C++ reference (&).");
@@ -19375,7 +19467,7 @@ namespace gambit
             }
 
             /// <summary>Returns the smallest payoff in any outcome of the game</summary>
-            public override global::gambit.Gambit.Rational GetMinPayoff(int _0)
+            public override global::gambit.Gambit.Rational GetMinPayoff(int _0 = 0)
             {
                 var ___GetMinPayoffDelegate = __VTables.GetMethodDelegate<global::gambit.Delegates.Action___IntPtr___IntPtr_int>(0, 10);
                 var ___ret = new global::gambit.Gambit.Rational.__Internal();
@@ -19386,7 +19478,7 @@ namespace gambit
             }
 
             /// <summary>Returns the largest payoff in any outcome of the game</summary>
-            public override global::gambit.Gambit.Rational GetMaxPayoff(int _0)
+            public override global::gambit.Gambit.Rational GetMaxPayoff(int _0 = 0)
             {
                 var ___GetMaxPayoffDelegate = __VTables.GetMethodDelegate<global::gambit.Delegates.Action___IntPtr___IntPtr_int>(0, 11);
                 var ___ret = new global::gambit.Gambit.Rational.__Internal();
@@ -20723,7 +20815,7 @@ namespace gambit
             }
 
             /// <summary>Returns the smallest payoff in any outcome of the game</summary>
-            public override global::gambit.Gambit.Rational GetMinPayoff(int _0)
+            public override global::gambit.Gambit.Rational GetMinPayoff(int _0 = 0)
             {
                 var ___GetMinPayoffDelegate = __VTables.GetMethodDelegate<global::gambit.Delegates.Action___IntPtr___IntPtr_int>(0, 10);
                 var ___ret = new global::gambit.Gambit.Rational.__Internal();
@@ -20734,7 +20826,7 @@ namespace gambit
             }
 
             /// <summary>Returns the largest payoff in any outcome of the game</summary>
-            public override global::gambit.Gambit.Rational GetMaxPayoff(int _0)
+            public override global::gambit.Gambit.Rational GetMaxPayoff(int _0 = 0)
             {
                 var ___GetMaxPayoffDelegate = __VTables.GetMethodDelegate<global::gambit.Delegates.Action___IntPtr___IntPtr_int>(0, 11);
                 var ___ret = new global::gambit.Gambit.Rational.__Internal();

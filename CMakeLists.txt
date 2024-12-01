@@ -46,8 +46,19 @@ set (GAMBIT_SRC
     ${GAMBIT_DIR}/src/games/agg/bagg.cc
     ${GAMBIT_DIR}/src/games/agg/trie_map.cc
 )
-add_library(gambit SHARED ${GAMBIT_SRC})
 
-target_include_directories (gambit PUBLIC 
+# this is the "object library" target: compiles the sources only once
+add_library(objlib OBJECT ${GAMBIT_SRC})
+
+# shared libraries need PIC
+set_property(TARGET objlib PROPERTY POSITION_INDEPENDENT_CODE 1)
+
+target_include_directories (objlib PUBLIC 
     ${GAMBIT_DIR}/src
 )
+
+add_library(gambit SHARED $<TARGET_OBJECTS:objlib>)
+add_library(gambit_static STATIC $<TARGET_OBJECTS:objlib>)
+#add_library(gambit SHARED ${GAMBIT_SRC})
+
+

@@ -1322,7 +1322,8 @@ namespace gambit
                     }
                     if (__T.IsAssignableFrom(typeof(bool)))
                     {
-                        var __value0 = (bool) (object) (byte) (value ? 1 : 0);
+                        //var __value0 = (bool) (object) (byte) (value ? 1 : 0);
+                        var __value0 = Convert.ToBoolean(value);
                         ((global::gambit.Gambit.Array.__Internal*)__Instance)->data = (__IntPtr) (object) __value0;
                         return;
                     }

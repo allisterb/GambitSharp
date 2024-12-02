@@ -3811,7 +3811,8 @@ namespace gambit
 
             public override global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameActionRep> InsertAction()
             {
-                return InsertAction(nullptr);
+                throw new NotImplementedException();
+                //return InsertAction(nullptr,);
             }
 
             public override global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> Game

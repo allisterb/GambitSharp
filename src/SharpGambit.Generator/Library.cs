@@ -83,13 +83,12 @@ public class Library : Runtime, ILibrary
         Module.Headers.Add("sharpgambit.h");
         Module.LibraryDirs.Add(Path.Combine(R, "..", "..", "src", "SharpGambit.Native.Api", "bin", "x64", "Debug"));
         driver.ParserOptions.AddArguments("-fcxx-exceptions");
-        driver.ParserOptions.LanguageVersion = CppSharp.Parser.LanguageVersion.CPP17;
+        driver.ParserOptions.LanguageVersion = LanguageVersion.CPP17;
         Module.SharedLibraryName = "sharpgambit";
-        options.GenerateDefaultValuesForArguments = true;
-        options.GenerateExternalDataFields = true;  
         options.GenerateClassTemplates = true;  
         options.GenerateObjectOverrides = true;
-        options.MarshalCharAsManagedChar = true;
+        options.GenerateExternalDataFields = true;
+        driver.ParserOptions.SkipPrivateDeclarations = true;
         options.CheckSymbols = true;
         options.CompileCode = true; 
     }
@@ -105,12 +104,12 @@ public class Library : Runtime, ILibrary
     public void Preprocess(Driver driver, ASTContext ctx)
     {
         var arrptr = ctx.FindClass("Array").Single();
-        foreach (var f in arrptr.p)
+        foreach (var f in arrptr.Fields)
         {
             if (f.Name == "data")
             {
                 f.Access = AccessSpecifier.Public;
-                f.QualifiedType = new QualifiedType(new PointerType(new QualifiedType(f.Type, new TypeQualifiers())));
+                //f.QualifiedType = new QualifiedType(new PointerType(new QualifiedType(f.Type, new TypeQualifiers())));
             }
         }
 

@@ -12,16 +12,10 @@ using System.Threading.Tasks;
 using CppSharp;
 using CppSharp.AST;
 using CppSharp.Generators;
+using CppSharp.Parser;
 
 public class Library : Runtime, ILibrary
-{
-    public enum LibraryKind
-    {
-        MKL,
-        ACML,
-        CUDA
-    }
-        
+{    
     #region Constructors
     public Library(Dictionary<string, object> options)
     {
@@ -76,21 +70,21 @@ public class Library : Runtime, ILibrary
         DriverOptions options = driver.Options;
         options.GeneratorKind = GeneratorKind.CSharp;
         options.Verbose = true;
+        driver.ParserOptions.TargetTriple = "x86_64-pc-win32-msvc";
         options.MarshalCharAsManagedChar = true;
         Module = options.AddModule(ModuleName);
         Module.OutputNamespace = Namespace;
         options.OutputDir = OutputDirName;
-        options.GenerationOutputMode = GenerationOutputMode.FilePerModule;
+        options.GenerationOutputMode = GenerationOutputMode.FilePerUnit;
         Module.IncludeDirs.Add(Path.Combine(R, "src"));
         Module.LibraryDirs.Add(Path.Combine(R, "build", "Release"));
-        Module.Headers.Add("gambit.h");
+        //Module.Headers.Add("gambit.h");
+        Module.IncludeDirs.Add(Path.Combine(R, "..", "..", "src", "SharpGambit.Native.Api"));
+        Module.Headers.Add("sharpgambit.h");
+        Module.LibraryDirs.Add(Path.Combine(R, "..", "..", "src", "SharpGambit.Native.Api", "bin", "x64", "Debug"));
         driver.ParserOptions.AddArguments("-fcxx-exceptions");
         driver.ParserOptions.LanguageVersion = CppSharp.Parser.LanguageVersion.CPP17;
-        driver.ParserOptions.SkipPrivateDeclarations = false;
-        
-        Module.SharedLibraryName = "gambit";
-        //options.GenerateDefaultValuesForArguments = true;
-        //options.GenerateClassTemplates = true;
+        Module.SharedLibraryName = "sharpgambit";
         options.GenerateDefaultValuesForArguments = true;
         options.GenerateExternalDataFields = true;  
         options.GenerateClassTemplates = true;  
@@ -111,11 +105,12 @@ public class Library : Runtime, ILibrary
     public void Preprocess(Driver driver, ASTContext ctx)
     {
         var arrptr = ctx.FindClass("Array").Single();
-        foreach (var f in arrptr.Fields)
+        foreach (var f in arrptr.p)
         {
             if (f.Name == "data")
             {
                 f.Access = AccessSpecifier.Public;
+                f.QualifiedType = new QualifiedType(new PointerType(new QualifiedType(f.Type, new TypeQualifiers())));
             }
         }
 
@@ -138,7 +133,6 @@ public class Library : Runtime, ILibrary
     #endregion
 
     #region Properties
-    public LibraryKind Kind { get; }
     public string Name = "gambit";
     public Dictionary<string, object> BindOptions { get; internal set; }
     public DirectoryInfo RootDirectory { get; internal set; } = new DirectoryInfo(AssemblyLocation);

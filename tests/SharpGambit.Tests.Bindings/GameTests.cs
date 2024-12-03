@@ -18,5 +18,12 @@ public class GameTests
         
         Assert.Equal("foo", sharpgambit.GetPlayerTitle(p)); 
 
+        g = sharpgambit.NewGame("my title", 2, ["A", "B"]);
+        Assert.NotNull(g);
+        p = sharpgambit.GetPlayer(g, 1);
+        Assert.Equal("A", sharpgambit.GetPlayerTitle(p));
+        p = sharpgambit.GetPlayer(g, 2);
+        Assert.Equal("B", sharpgambit.GetPlayerTitle(p));
+     
     }
 }

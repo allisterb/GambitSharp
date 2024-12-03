@@ -21,11 +21,17 @@ namespace gambit
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?NewGame@@YA?AV?$GameObjectPtr@VGameRep@Gambit@@@Gambit@@XZ", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern void NewGame(__IntPtr @return);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?NewGame@@YA?AV?$GameObjectPtr@VGameRep@Gambit@@@Gambit@@QEAH@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void NewGame(__IntPtr @return, int[] s);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?NewGame@@YA?AV?$GameObjectPtr@VGameRep@Gambit@@@Gambit@@HQEBH@Z", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern void NewGame(__IntPtr @return, int sc, int[] s);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?NewGame@@YA?AV?$GameObjectPtr@VGameRep@Gambit@@@Gambit@@PEBDHQEAPEBD@Z", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern void NewGame(__IntPtr @return, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string title, int pc, [MarshalAs(UnmanagedType.LPArray)] string[] players);
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?AddPlayerToGame@@YA?AV?$GameObjectPtr@VGamePlayerRep@Gambit@@@Gambit@@AEAV?$GameObjectPtr@VGameRep@Gambit@@@2@@Z", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern void AddPlayerToGame(__IntPtr @return, __IntPtr game);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?GetPlayer@@YA?AV?$GameObjectPtr@VGamePlayerRep@Gambit@@@Gambit@@AEAV?$GameObjectPtr@VGameRep@Gambit@@@2@H@Z", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern void GetPlayer(__IntPtr @return, __IntPtr game, int pi);
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?GetPlayerTitle@@YAPEBDAEAV?$GameObjectPtr@VGamePlayerRep@Gambit@@@Gambit@@@Z", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetPlayerTitle(__IntPtr player);
@@ -39,16 +45,25 @@ namespace gambit
             var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
             __Internal.NewGame(new IntPtr(&___ret));
             var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep>.__CreateInstance(___ret);
-            //global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(new __IntPtr(&___ret));
+            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(new __IntPtr(&___ret));
             return _____ret;
         }
 
-        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> NewGame(int[] s)
+        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> NewGame(int sc, int[] s)
         {
             var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
-            __Internal.NewGame(new IntPtr(&___ret), s);
+            __Internal.NewGame(new IntPtr(&___ret), sc, s);
             var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep>.__CreateInstance(___ret);
-            //global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(new __IntPtr(&___ret));
+            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(new __IntPtr(&___ret));
+            return _____ret;
+        }
+
+        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> NewGame(string title, int pc, string[] players)
+        {
+            var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
+            __Internal.NewGame(new IntPtr(&___ret), title, pc, players);
+            var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep>.__CreateInstance(___ret);
+            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(new __IntPtr(&___ret));
             return _____ret;
         }
 
@@ -60,7 +75,19 @@ namespace gambit
             var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
             __Internal.AddPlayerToGame(new IntPtr(&___ret), __arg0);
             var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep>.__CreateInstance(___ret);
-            //global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(new __IntPtr(&___ret));
+            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(new __IntPtr(&___ret));
+            return _____ret;
+        }
+
+        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep> GetPlayer(global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> game, int pi)
+        {
+            if (ReferenceEquals(game, null))
+                throw new global::System.ArgumentNullException("game", "Cannot be null because it is a C++ reference (&).");
+            var __arg0 = game.__Instance;
+            var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
+            __Internal.GetPlayer(new IntPtr(&___ret), __arg0, pi);
+            var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep>.__CreateInstance(___ret);
+            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(new __IntPtr(&___ret));
             return _____ret;
         }
 
@@ -81,7 +108,7 @@ namespace gambit
             var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
             __Internal.SetPlayerTitle(new IntPtr(&___ret), __arg0, label);
             var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep>.__CreateInstance(___ret);
-            //global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(new __IntPtr(&___ret));
+            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(new __IntPtr(&___ret));
             return _____ret;
         }
     }

@@ -88,7 +88,7 @@ public class Library : Runtime, ILibrary
         options.GenerateClassTemplates = true;  
         options.GenerateObjectOverrides = true;
         options.GenerateExternalDataFields = true;
-        driver.ParserOptions.SkipPrivateDeclarations = true;
+        driver.ParserOptions.SkipPrivateDeclarations = false;
         options.CheckSymbols = true;
         options.CompileCode = true; 
     }

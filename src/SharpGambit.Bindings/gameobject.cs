@@ -23,14 +23,12 @@ namespace gambit
             {
                 internal __IntPtr rep;
 
-                [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "c__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep_F__GameObjectPtr", CallingConvention = __CallingConvention.Cdecl)]
-                internal static extern void dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(__IntPtr __instance);
+                internal static void dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(__IntPtr __instance){}
 
                 [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "c__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep_F__GameObjectPtr", CallingConvention = __CallingConvention.Cdecl)]
                 internal static extern void dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep(__IntPtr __instance);
 
-                [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "c__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep_F__GameObjectPtr", CallingConvention = __CallingConvention.Cdecl)]
-                internal static extern void dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(__IntPtr __instance);
+                internal static void dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(__IntPtr __instance) {}
 
                 [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "c__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep_F__GameObjectPtr", CallingConvention = __CallingConvention.Cdecl)]
                 internal static extern void dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep(__IntPtr __instance);

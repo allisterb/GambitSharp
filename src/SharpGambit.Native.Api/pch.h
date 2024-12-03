@@ -9,6 +9,7 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
+#include <string>
 #include "gambit.h"
 
 #define	API __declspec(dllexport)

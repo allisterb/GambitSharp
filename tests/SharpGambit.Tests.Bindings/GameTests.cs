@@ -15,7 +15,7 @@ public class GameTests
         var p = sharpgambit.AddPlayerToGame(g);
         Assert.NotNull(p);
         sharpgambit.SetPlayerTitle(p, "foo");
-        var t = sharpgambit.GetPlayerTitle(p);
+        
         Assert.Equal("foo", sharpgambit.GetPlayerTitle(p)); 
 
     }

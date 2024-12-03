@@ -73,6 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)\bin\$(Platform)\$(Configuration)\</OutDir>
     <TargetName>sharpgambit</TargetName>
+    <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -126,6 +127,13 @@
       <AdditionalLibraryDirectories>C:\Projects\SharpGambit\build\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>gambit_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CustomBuildStep>
+      <Command>copy $(OutputPath)\sharpgambit.dll $(SolutionDir)..\tests\SharpGambit.Tests.Bindings\bin\\$(Configuration)\net8.0</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>Copying sharpgambit.dll to project output directories...</Message>
+      <Outputs>foo</Outputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

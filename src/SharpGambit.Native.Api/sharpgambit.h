@@ -3,10 +3,15 @@
 #include "pch.h"
 
 #include "Collections.h"
+#include "Game.h"
 
-API Gambit::Game NewGame() { return Gambit::NewTree();}
-API Gambit::Game NewGame(int sc, const int s[]) { return Gambit::NewTable(ArrayFromCArray<int>(sc, s)); }
-API Gambit::Game NewGame(const char* title, int pc, const char* players[])
+using namespace Gambit;
+
+static Game grep(void * game) { return reinterpret_cast<GameRep*>(game); }
+static GamePlayer gprep(void* player) { return reinterpret_cast<GamePlayerRep*>(player); }
+
+API void* NewEmptyGame() { auto a = NewTree(); a->IncRef();  return (GameRep*) a; }
+API void* NewGame(const char* title, int pc = 0, const char* players[] = nullptr)
 {
 	auto g = Gambit::NewTree();
 	g->SetTitle(title);
@@ -18,8 +23,8 @@ API Gambit::Game NewGame(const char* title, int pc, const char* players[])
 	return g;
 }
 
-API Gambit::GamePlayer AddPlayerToGame(Gambit::Game& game) { return game->NewPlayer(); }
-API Gambit::GamePlayer GetPlayer(Gambit::Game& game, int pi) { return game->GetPlayer(pi); }
-API const char* GetPlayerTitle(Gambit::GamePlayer& player) { return player->GetLabel().c_str(); }
-API Gambit::GamePlayer SetPlayerTitle(Gambit::GamePlayer& player, const char* label) { player->SetLabel(label); return player; }
+API void* AddPlayerToGame(void* game) { return (GamePlayerRep*) (grep(game)->NewPlayer()); }
+API void* GetPlayer(void* game, int pi) { return (grep(game))->GetPlayer(pi); }
+API const char* GetPlayerTitle(void* player) { return gprep(player)->GetLabel().c_str(); }
+API void* SetPlayerTitle(void* player, const char* label) { gprep(player)->SetLabel(label); return player; }
 

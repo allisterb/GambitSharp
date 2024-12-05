@@ -12,6 +12,6 @@
 #include <string>
 #include "gambit.h"
 
-#define	API __declspec(dllexport)
+#define	API extern "C" __declspec(dllexport) 
 
 #endif //PCH_H

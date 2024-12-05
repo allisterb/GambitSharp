@@ -85,10 +85,10 @@ public class Library : Runtime, ILibrary
         driver.ParserOptions.AddArguments("-fcxx-exceptions");
         driver.ParserOptions.LanguageVersion = LanguageVersion.CPP17;
         Module.SharedLibraryName = "sharpgambit";
-        options.GenerateClassTemplates = true;  
-        options.GenerateObjectOverrides = true;
-        options.GenerateExternalDataFields = true;
-        driver.ParserOptions.SkipPrivateDeclarations = false;
+        //options.GenerateClassTemplates = true;  
+        //options.GenerateObjectOverrides = true;
+        //options.GenerateExternalDataFields = true;
+        //driver.ParserOptions.SkipPrivateDeclarations = false;
         options.CheckSymbols = true;
         options.CompileCode = true; 
     }
@@ -103,25 +103,11 @@ public class Library : Runtime, ILibrary
     /// Do transformations that should happen before passes are processed.
     public void Preprocess(Driver driver, ASTContext ctx)
     {
-        var arrptr = ctx.FindClass("Array").Single();
-        foreach (var f in arrptr.Fields)
+        foreach (var tu in ctx.TranslationUnits.Where(c => !c.FilePath.ToLower().Contains("sharpgambit.native.api")))
         {
-            if (f.Name == "data")
-            {
-                f.Access = AccessSpecifier.Public;
-                //f.QualifiedType = new QualifiedType(new PointerType(new QualifiedType(f.Type, new TypeQualifiers())));
-            }
+            tu.ExplicitlyIgnore();
         }
-
-        var goptr = ctx.FindClass("GameObjectPtr").Single();
-        foreach (var f in goptr.Fields)
-        {
-            if (f.Name == "rep")
-            {
-                f.Access = AccessSpecifier.Public;
-            }
-        }
-
+     
     }
 
     /// Do transformations that should happen after passes are processed.
@@ -149,10 +135,6 @@ public class Library : Runtime, ILibrary
 
     #region Methods
    
-    #endregion
-
-    #region Fields
-    public List<string> ClassDecls = new List<string>();
     #endregion
 }
 

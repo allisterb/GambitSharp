@@ -18,428 +18,59 @@ namespace gambit
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?NewGame@@YA?AV?$GameObjectPtr@VGameRep@Gambit@@@Gambit@@XZ", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void NewGame(__IntPtr @return);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewEmptyGame", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr NewEmptyGame();
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?NewGame@@YA?AV?$GameObjectPtr@VGameRep@Gambit@@@Gambit@@HQEBH@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void NewGame(__IntPtr @return, int sc, int[] s);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewGame", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr NewGame([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string title, int pc, [MarshalAs(UnmanagedType.LPArray)] string[] players);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?NewGame@@YA?AV?$GameObjectPtr@VGameRep@Gambit@@@Gambit@@PEBDHQEAPEBD@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void NewGame(__IntPtr @return, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string title, int pc, [MarshalAs(UnmanagedType.LPArray)] string[] players);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "AddPlayerToGame", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr AddPlayerToGame(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?AddPlayerToGame@@YA?AV?$GameObjectPtr@VGamePlayerRep@Gambit@@@Gambit@@AEAV?$GameObjectPtr@VGameRep@Gambit@@@2@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void AddPlayerToGame(__IntPtr @return, __IntPtr game);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPlayer", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr GetPlayer(__IntPtr game, int pi);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?GetPlayer@@YA?AV?$GameObjectPtr@VGamePlayerRep@Gambit@@@Gambit@@AEAV?$GameObjectPtr@VGameRep@Gambit@@@2@H@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void GetPlayer(__IntPtr @return, __IntPtr game, int pi);
-
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?GetPlayerTitle@@YAPEBDAEAV?$GameObjectPtr@VGamePlayerRep@Gambit@@@Gambit@@@Z", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPlayerTitle", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetPlayerTitle(__IntPtr player);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "?SetPlayerTitle@@YA?AV?$GameObjectPtr@VGamePlayerRep@Gambit@@@Gambit@@AEAV12@PEBD@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SetPlayerTitle(__IntPtr @return, __IntPtr player, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string label);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetPlayerTitle", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr SetPlayerTitle(__IntPtr player, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string label);
         }
 
-        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> NewGame()
+        public static __IntPtr NewEmptyGame()
         {
-            var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
-            __Internal.NewGame(new IntPtr(&___ret));
-            var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep>.__CreateInstance(___ret);
-            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(new __IntPtr(&___ret));
-            return _____ret;
+            var ___ret = __Internal.NewEmptyGame();
+            return ___ret;
         }
 
-        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> NewGame(int sc, int[] s)
+        public static __IntPtr NewGame(string title, int pc, string[] players)
         {
-            var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
-            __Internal.NewGame(new IntPtr(&___ret), sc, s);
-            var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep>.__CreateInstance(___ret);
-            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(new __IntPtr(&___ret));
-            return _____ret;
+            var ___ret = __Internal.NewGame(title, pc, players);
+            return ___ret;
         }
 
-        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> NewGame(string title, int pc, string[] players)
+        public static __IntPtr AddPlayerToGame(__IntPtr game)
         {
-            var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
-            __Internal.NewGame(new IntPtr(&___ret), title, pc, players);
-            var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep>.__CreateInstance(___ret);
-            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameRep(new __IntPtr(&___ret));
-            return _____ret;
+            var ___ret = __Internal.AddPlayerToGame(game);
+            return ___ret;
         }
 
-        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep> AddPlayerToGame(global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> game)
+        public static __IntPtr GetPlayer(__IntPtr game, int pi)
         {
-            if (ReferenceEquals(game, null))
-                throw new global::System.ArgumentNullException("game", "Cannot be null because it is a C++ reference (&).");
-            var __arg0 = game.__Instance;
-            var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
-            __Internal.AddPlayerToGame(new IntPtr(&___ret), __arg0);
-            var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep>.__CreateInstance(___ret);
-            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(new __IntPtr(&___ret));
-            return _____ret;
+            var ___ret = __Internal.GetPlayer(game, pi);
+            return ___ret;
         }
 
-        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep> GetPlayer(global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GameRep> game, int pi)
+        public static string GetPlayerTitle(__IntPtr player)
         {
-            if (ReferenceEquals(game, null))
-                throw new global::System.ArgumentNullException("game", "Cannot be null because it is a C++ reference (&).");
-            var __arg0 = game.__Instance;
-            var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
-            __Internal.GetPlayer(new IntPtr(&___ret), __arg0, pi);
-            var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep>.__CreateInstance(___ret);
-            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(new __IntPtr(&___ret));
-            return _____ret;
-        }
-
-        public static string GetPlayerTitle(global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep> player)
-        {
-            if (ReferenceEquals(player, null))
-                throw new global::System.ArgumentNullException("player", "Cannot be null because it is a C++ reference (&).");
-            var __arg0 = player.__Instance;
-            var ___ret = __Internal.GetPlayerTitle(__arg0);
+            var ___ret = __Internal.GetPlayerTitle(player);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep> SetPlayerTitle(global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep> player, string label)
+        public static __IntPtr SetPlayerTitle(__IntPtr player, string label)
         {
-            if (ReferenceEquals(player, null))
-                throw new global::System.ArgumentNullException("player", "Cannot be null because it is a C++ reference (&).");
-            var __arg0 = player.__Instance;
-            var ___ret = new global::gambit.Gambit.GameObjectPtr.__Internal();
-            __Internal.SetPlayerTitle(new IntPtr(&___ret), __arg0, label);
-            var _____ret = global::gambit.Gambit.GameObjectPtr<global::gambit.Gambit.GamePlayerRep>.__CreateInstance(___ret);
-            global::gambit.Gambit.GameObjectPtr.__Internal.dtorc__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep(new __IntPtr(&___ret));
-            return _____ret;
-        }
-    }
-}
-
-namespace Std
-{
-    namespace CompressedPair
-    {
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S_vector____N_std_S_shared_ptr____N_Gambit_N_agg_S_proj_func___N_std_S_allocator__S2____N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1
-        {
-            internal global::Std.VectorVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S_vector____N_Gambit_N_agg_S_trie_map__d___N_std_S_allocator__S2____N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1
-        {
-            internal global::Std.VectorVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_Gambit_N_agg_S_trie_map__d___N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1
-        {
-            internal global::Std.VectorVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator_____N_Gambit_N_agg_S_TrieNode__d___N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1
-        {
-            internal global::Std.VectorVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S_shared_ptr____N_Gambit_N_agg_S_proj_func___N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1
-        {
-            internal global::Std.VectorVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep_d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep_d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep_d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep_d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep_d___N_std_S_less__S6____N_std_S_allocator____N_std_S_pair__1S6__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep_d___N_std_S_less__S8____N_std_S_allocator____N_std_S_pair__1S8__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep_d___N_std_S_less__S6____N_std_S_allocator____N_std_S_pair__1S6__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep_d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep_d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep_d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep_d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep_d___N_std_S_less__S6____N_std_S_allocator____N_std_S_pair__1S6__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep_d___N_std_S_less__S8____N_std_S_allocator____N_std_S_pair__1S8__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep_d___N_std_S_less__S6____N_std_S_allocator____N_std_S_pair__1S6__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep___N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep___N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep___N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep___N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_Gambit_S_Rational___N_std_S_less__S6____N_std_S_allocator____N_std_S_pair__1S6__S8___v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_Gambit_S_Rational___N_std_S_less__S8____N_std_S_allocator____N_std_S_pair__1S8__S10___v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_Gambit_S_Rational___N_std_S_less__S6____N_std_S_allocator____N_std_S_pair__1S6__S8___v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep___N_Gambit_S_Rational___N_std_S_less__S6____N_std_S_allocator____N_std_S_pair__1S6__S8___v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep___N_Gambit_S_Rational___N_std_S_less__S8____N_std_S_allocator____N_std_S_pair__1S8__S10___v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep___N_Gambit_S_Rational___N_std_S_less__S6____N_std_S_allocator____N_std_S_pair__1S6__S8___v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep_b__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__b__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep_b__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep_b__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1
-        {
-            internal global::Std.TreeVal.__Internal _Myval2;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__b__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1__N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep_b__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S2__Vb1 _Myval2;
-        }
-    }
-
-}
-namespace Std
-{
-    namespace Map
-    {
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep_d___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__d
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep_d___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__d
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep_d___N_std_S_less__S3____N_std_S_allocator____N_std_S_pair__1S3__d___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__S2_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep_d___N_std_S_less__S8____N_std_S_allocator____N_std_S_pair__1S8__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep_d___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__d
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep_d___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__d
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep_d___N_std_S_less__S3____N_std_S_allocator____N_std_S_pair__1S3__d___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__S2_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep_d___N_std_S_less__S8____N_std_S_allocator____N_std_S_pair__1S8__d__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep___N_Gambit_S_Rational___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__S2_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameActionRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep___N_Gambit_S_Rational___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__S2_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_Gambit_S_Rational___N_std_S_less__S3____N_std_S_allocator____N_std_S_pair__1S3__S5____N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__S2_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_Gambit_S_Rational___N_std_S_less__S8____N_std_S_allocator____N_std_S_pair__1S8__S10___v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_Gambit_S_Rational___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__S2_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_Gambit_S_Rational___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__S2_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_Gambit_S_Rational__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep___N_Gambit_S_Rational___N_std_S_less__S3____N_std_S_allocator____N_std_S_pair__1S3__S5____N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__S2_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GamePlayerRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1____N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameStrategyRep___N_Gambit_S_Rational___N_std_S_less__S8____N_std_S_allocator____N_std_S_pair__1S8__S10___v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep_b___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__b
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameNodeRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__b__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_map____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep_b___N_std_S_less__S0____N_std_S_allocator____N_std_S_pair__1S0__b
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_less____N_Gambit_S_GameObjectPtr____N_Gambit_S_GameInfosetRep___N_std_S__Compressed_pair____N_std_S_allocator____N_std_S__Tree_node____N_std_S_pair__1S1__b__v___N_std_S__Tree_val____N_std_S__Tree_simple_types__S6__Vb1_Vb1 _Mypair;
-        }
-    }
-
-}
-namespace Std
-{
-    namespace Vector
-    {
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_vector____N_std_S_vector____N_std_S_shared_ptr____N_Gambit_N_agg_S_proj_func___N_std_S_allocator__S1____N_std_S_allocator__S0_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S_vector____N_std_S_shared_ptr____N_Gambit_N_agg_S_proj_func___N_std_S_allocator__S2____N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_vector____N_std_S_vector____N_Gambit_N_agg_S_trie_map__d___N_std_S_allocator__S1____N_std_S_allocator__S0_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S_vector____N_Gambit_N_agg_S_trie_map__d___N_std_S_allocator__S2____N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_vector____N_Gambit_N_agg_S_trie_map__d___N_std_S_allocator__S0_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_Gambit_N_agg_S_trie_map__d___N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_vector_____N_Gambit_N_agg_S_TrieNode__d___N_std_S_allocator__S0_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator_____N_Gambit_N_agg_S_TrieNode__d___N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1 _Mypair;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 24, Pack = 8)]
-        public unsafe partial struct __Internalc__N_std_S_vector____N_std_S_shared_ptr____N_Gambit_N_agg_S_proj_func___N_std_S_allocator__S0_
-        {
-            internal global::Std.CompressedPair.__Internalc__N_std_S__Compressed_pair____N_std_S_allocator____N_std_S_shared_ptr____N_Gambit_N_agg_S_proj_func___N_std_S__Vector_val____N_std_S__Simple_types__S1__Vb1 _Mypair;
+            var ___ret = __Internal.SetPlayerTitle(player, label);
+            return ___ret;
         }
     }
 }

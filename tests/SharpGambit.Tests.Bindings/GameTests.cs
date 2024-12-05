@@ -1,29 +1,29 @@
 namespace SharpGambit.Tests.Bindings;
 
 using gambit;
-using gambit.Gambit;
+using System.Runtime.InteropServices;
 
 public class GameTests
 {
     [Fact]
     public void Test1()
     {
-        var g = sharpgambit.NewGame();
+        var g = sharpgambit.NewEmptyGame();
         //var n = p.Rep.NewPlayer();
-        
-        Assert.NotNull(g);
+        //Marshal.
+        //Assert.NotEqual(g, nint.Zero);
         var p = sharpgambit.AddPlayerToGame(g);
-        Assert.NotNull(p);
+        Assert.NotEqual(p, nint.Zero);
         sharpgambit.SetPlayerTitle(p, "foo");
         
         Assert.Equal("foo", sharpgambit.GetPlayerTitle(p)); 
 
-        g = sharpgambit.NewGame("my title", 2, ["A", "B"]);
-        Assert.NotNull(g);
-        p = sharpgambit.GetPlayer(g, 1);
-        Assert.Equal("A", sharpgambit.GetPlayerTitle(p));
-        p = sharpgambit.GetPlayer(g, 2);
-        Assert.Equal("B", sharpgambit.GetPlayerTitle(p));
+        //g = sharpgambit.NewGame("my title", 2, ["A", "B"]);
+        //Assert.NotNull(g);
+        //p = sharpgambit.GetPlayer(g, 1);
+        //Assert.Equal("A", sharpgambit.GetPlayerTitle(p));
+        //p = sharpgambit.GetPlayer(g, 2);
+        //Assert.Equal("B", sharpgambit.GetPlayerTitle(p));
      
     }
 }

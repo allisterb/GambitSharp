@@ -69,7 +69,7 @@ public class Library : Runtime, ILibrary
     {
         DriverOptions options = driver.Options;
         options.GeneratorKind = GeneratorKind.CSharp;
-        options.Verbose = true;
+        //options.Verbose = true;
         driver.ParserOptions.TargetTriple = "x86_64-pc-win32-msvc";
         options.MarshalCharAsManagedChar = true;
         Module = options.AddModule(ModuleName);

@@ -7,16 +7,17 @@
 
 using namespace Gambit;
 
-static void* gptr(Game game) { game->IncRef(); return (GameRep*)game; }
+static void* gptr(Game game) { return (GameRep*)game; }
 static Game grep(void * game) { return reinterpret_cast<GameRep*>(game); }
 
-static void* gpptr(GamePlayer player) { player->IncRef();  return (GamePlayerRep*) (player); }
+static void* gpptr(GamePlayer player) { return (GamePlayerRep*) (player); }
 static GamePlayer gprep(void* player) { return reinterpret_cast<GamePlayerRep*>(player); }
 
-API void* NewEmptyGame() { return gptr(NewTree()); }
+API void* NewEmptyGame() { auto g = NewTree(); g->IncRef();  return gptr(g); }
 API void* NewGame(const char* title, int pc = 0, const char* players[] = nullptr)
 {
 	auto g = Gambit::NewTree();
+	g->IncRef();
 	g->SetTitle(title);
 	for (int i = 0; i < pc; i++)
 	{
@@ -26,8 +27,9 @@ API void* NewGame(const char* title, int pc = 0, const char* players[] = nullptr
 	return gptr(g);
 }
 
-API void* AddPlayerToGame(void* game) { return (GamePlayerRep*) (grep(game)->NewPlayer()); }
-API void* GetPlayer(void* game, int pi) { return (grep(game))->GetPlayer(pi); }
-API const char* GetPlayerTitle(void* player) { return gprep(player)->GetLabel().c_str(); }
-API void* SetPlayerTitle(void* player, const char* label) { gprep(player)->SetLabel(label); return player; }
+API void* AddPlayerToGame(void* game) { return gpptr(grep(game)->NewPlayer()); }
+API void* GetPlayer(void* game, int pi) { return gpptr(grep(game)->GetPlayer(pi)); }
+API const char* GetPlayerLabel(void* player) { return gprep(player)->GetLabel().c_str(); }
+API void* SetPlayerLabel(void* player, const char* label) { gprep(player)->SetLabel(label); return player; }
 
+API int GetPlayerNumber(void* player) { return gprep(player)->GetNumber(); }

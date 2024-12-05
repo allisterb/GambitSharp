@@ -8,4 +8,8 @@
     <RootNamespace>SharpGambit</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SharpGambit.Bindings\SharpGambit.Bindings.csproj" />
+  </ItemGroup>
+
 </Project>

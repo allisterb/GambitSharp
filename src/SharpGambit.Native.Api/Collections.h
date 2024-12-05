@@ -12,4 +12,14 @@ Gambit::Array<T> ArrayFromCArray(int arrc, const T arr[])
 	return a;
 }
 
+template <class T>
+void ** ArrayToCArray(const Gambit::Array<GameObjectPtr<T>>& arr, const T a[])
+{
+	void *a[arr->Length];
+	for (int i = 0; i < arr->Length; i++)
+	{
+		a[i] = (T*) arr[i];
+	}
+	return a;
+}
 

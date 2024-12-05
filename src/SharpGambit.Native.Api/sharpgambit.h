@@ -13,6 +13,9 @@ static Game grep(void * game) { return reinterpret_cast<GameRep*>(game); }
 static void* gpptr(GamePlayer player) { return (GamePlayerRep*) (player); }
 static GamePlayer gprep(void* player) { return reinterpret_cast<GamePlayerRep*>(player); }
 
+static void* gsptr(GameStrategy strategy) { return (GameStrategyRep*) (strategy); }
+static GameStrategy gsrep(void* strategy) { return reinterpret_cast<GameStrategyRep*>(strategy); }
+
 API void* NewEmptyGame() { auto g = NewTree(); g->IncRef();  return gptr(g); }
 API void* NewGame(const char* title, int pc = 0, const char* players[] = nullptr)
 {
@@ -33,3 +36,7 @@ API const char* GetPlayerLabel(void* player) { return gprep(player)->GetLabel().
 API void* SetPlayerLabel(void* player, const char* label) { gprep(player)->SetLabel(label); return player; }
 
 API int GetPlayerNumber(void* player) { return gprep(player)->GetNumber(); }
+
+API void* NewPlayerStrategy(void* player) { return gsptr(gprep(player)->NewStrategy()); }
+API void* GetStrategy(void* player, int st) { return gsptr(gprep(player)->GetStrategy(st)); }
+API void* GetStrategy(void* player, int st) { return gsptr(gprep(player)->Get); }

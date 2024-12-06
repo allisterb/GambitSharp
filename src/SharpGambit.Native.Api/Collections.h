@@ -1,8 +1,10 @@
 #pragma once
 #include "pch.h"
 
+using namespace Gambit;
+
 template <class T>
-Gambit::Array<T> ArrayFromCArray(int arrc, const T arr[])
+Gambit::Array<T> FromCArray(int arrc, const T arr[])
 {
 	Gambit::Array<T> a = Gambit::Array<T>(arrc);
 	for (int i = 0; i < arrc; i++)
@@ -13,13 +15,8 @@ Gambit::Array<T> ArrayFromCArray(int arrc, const T arr[])
 }
 
 template <class T>
-void ** ArrayToCArray(const Gambit::Array<GameObjectPtr<T>>& arr, const T a[])
+void * ToCArray(const Array<GameObjectPtr<T>> arr)
 {
-	void *a[arr->Length];
-	for (int i = 0; i < arr->Length; i++)
-	{
-		a[i] = (T*) arr[i];
-	}
-	return a;
+	return (T*) arr[0];
 }
 

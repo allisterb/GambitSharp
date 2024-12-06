@@ -16,15 +16,16 @@ static GamePlayer gprep(void* player) { return reinterpret_cast<GamePlayerRep*>(
 static void* gsptr(GameStrategy strategy) { return (GameStrategyRep*) (strategy); }
 static GameStrategy gsrep(void* strategy) { return reinterpret_cast<GameStrategyRep*>(strategy); }
 
-API void* NewEmptyGame() { auto g = NewTree(); g->IncRef();  return gptr(g); }
-API void* NewGame(const char* title, int pc = 0, const char* players[] = nullptr)
+API void* NewTree() { auto g = Gambit::NewTree(); g->IncRef();  return gptr(g); }
+
+API void* NewStrategicGame(const char* title, int pc, const char* players[], int strategies[])
 {
-	auto g = Gambit::NewTree();
+	auto g = Gambit::NewTable(FromCArray(pc, strategies));
 	g->IncRef();
 	g->SetTitle(title);
 	for (int i = 0; i < pc; i++)
 	{
-		auto p = g->NewPlayer();
+		auto p = g->GetPlayer(i + 1);
 		p->SetLabel(players[i]);
 	}
 	return gptr(g);
@@ -38,5 +39,6 @@ API void* SetPlayerLabel(void* player, const char* label) { gprep(player)->SetLa
 API int GetPlayerNumber(void* player) { return gprep(player)->GetNumber(); }
 
 API void* NewPlayerStrategy(void* player) { return gsptr(gprep(player)->NewStrategy()); }
-API void* GetStrategy(void* player, int st) { return gsptr(gprep(player)->GetStrategy(st)); }
-API void* GetStrategy(void* player, int st) { return gsptr(gprep(player)->Get); }
+API int GetPlayerNumStrategies(void* player) { return gprep(player)->NumStrategies(); }
+API void* GetPlayerStrategy(void* player, int st) { return gsptr(gprep(player)->GetStrategy(st)); }
+API void* GetPlayerStrategies(void* player) { return ToCArray(gprep(player)->GetStrategies()); }

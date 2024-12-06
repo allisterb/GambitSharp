@@ -8,13 +8,14 @@ public class GameTests
     [Fact]
     public void Test1()
     {
-        var g = sharpgambit.NewStrategicGame("foo", 0, [], []);
+        var g = sharpgambit.NewStrategicGame("foo", 1, ["A"], [1]);
         var p = sharpgambit.AddPlayerToGame(g);
         Assert.NotEqual(p, nint.Zero);
         sharpgambit.SetPlayerLabel(p, "foo");
-        var n = sharpgambit.GetPlayerStrategies(p);
         Assert.Equal("foo", sharpgambit.GetPlayerLabel(p));
         var s = sharpgambit.NewPlayerStrategy(p);
+        var n = sharpgambit.GetPlayerStrategies(p);
+
         Assert.Equal(2, sharpgambit.GetPlayerStrategies(p));
         //var n = p.Rep.NewPlayer();
         //Marshal.

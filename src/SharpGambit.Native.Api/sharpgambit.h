@@ -25,8 +25,8 @@ API void* NewStrategicGame(const char* title, int pc, const char* players[], int
 	g->SetTitle(title);
 	for (int i = 0; i < pc; i++)
 	{
-		auto p = g->GetPlayer(i + 1);
-		p->SetLabel(players[i]);
+		auto p = g->NewPlayer();
+		//p->SetLabel(players[i]);
 	}
 	return gptr(g);
 }

@@ -1,15 +1,16 @@
 #pragma once
-#include "pch.h"
+
+#include "api.h"
 
 using namespace Gambit;
 
 template <class T>
-Gambit::Array<T> FromCArray(int arrc, const T arr[])
+Array<T> FromCArray(int arrc, const T arr[])
 {
-	Gambit::Array<T> a = Gambit::Array<T>(arrc);
-	for (int i = 1; i <= arrc; i++)
+    Array<T> a = Gambit::Array<T>(arrc);
+	for (int i = 0; i < arrc; i++)
 	{
-		a[i] = arr[i - 1];
+		a[i + 1] = arr[i ];
 	}
 	return a;
 }

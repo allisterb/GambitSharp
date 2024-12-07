@@ -14,8 +14,8 @@ public class Player : GameObject
     //public
     public string Label
     {
-        get => sharpgambit.GetPlayerTitle(ptr);
-        set => sharpgambit.SetPlayerTitle(ptr, value);
+        get => sharpgambit.GetPlayerLabel(ptr);
+        set => sharpgambit.SetPlayerLabel(ptr, value);
     }
 
 

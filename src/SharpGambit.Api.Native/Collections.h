@@ -7,9 +7,9 @@ template <class T>
 Gambit::Array<T> FromCArray(int arrc, const T arr[])
 {
 	Gambit::Array<T> a = Gambit::Array<T>(arrc);
-	for (int i = 0; i < arrc; i++)
+	for (int i = 1; i <= arrc; i++)
 	{
-		a[i] = arr[i];
+		a[i] = arr[i - 1];
 	}
 	return a;
 }
@@ -17,6 +17,6 @@ Gambit::Array<T> FromCArray(int arrc, const T arr[])
 template <class T>
 void * ToCArray(const Array<GameObjectPtr<T>> arr)
 {
-	return (T*) arr[0];
+	return (T*) arr[1];
 }
 

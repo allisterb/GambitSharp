@@ -23,10 +23,10 @@ API void* NewStrategicGame(const char* title, int pc, const char* players[], int
 	auto g = Gambit::NewTable(FromCArray(pc, strategies));
 	g->IncRef();
 	g->SetTitle(title);
-	for (int i = 0; i < pc; i++)
+	for (int i = 1; i <= pc; i++)
 	{
-		auto p = g->NewPlayer();
-		//p->SetLabel(players[i]);
+		auto p = g->GetPlayer(i);
+		p->SetLabel(players[i - 1]);
 	}
 	return gptr(g);
 }

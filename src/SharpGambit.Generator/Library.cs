@@ -75,13 +75,13 @@ public class Library : Runtime, ILibrary
         Module = options.AddModule(ModuleName);
         Module.OutputNamespace = Namespace;
         options.OutputDir = OutputDirName;
-        options.GenerationOutputMode = GenerationOutputMode.FilePerUnit;
+        options.GenerationOutputMode = GenerationOutputMode.FilePerModule;
         Module.IncludeDirs.Add(Path.Combine(R, "src"));
         Module.LibraryDirs.Add(Path.Combine(R, "build", "Release"));
         //Module.Headers.Add("gambit.h");
-        Module.IncludeDirs.Add(Path.Combine(R, "..", "..", "src", "SharpGambit.Native.Api"));
+        Module.IncludeDirs.Add(Path.Combine(R, "..", "..", "src", "SharpGambit.Api.Native"));
         Module.Headers.Add("sharpgambit.h");
-        Module.LibraryDirs.Add(Path.Combine(R, "..", "..", "src", "SharpGambit.Native.Api", "bin", "x64", "Debug"));
+        Module.LibraryDirs.Add(Path.Combine(R, "..", "..", "src", "SharpGambit.Api.Native", "bin", "x64", "Debug"));
         driver.ParserOptions.AddArguments("-fcxx-exceptions");
         driver.ParserOptions.LanguageVersion = LanguageVersion.CPP17;
         Module.SharedLibraryName = "sharpgambit";
@@ -103,7 +103,7 @@ public class Library : Runtime, ILibrary
     /// Do transformations that should happen before passes are processed.
     public void Preprocess(Driver driver, ASTContext ctx)
     {
-        foreach (var tu in ctx.TranslationUnits.Where(c => !c.FilePath.ToLower().Contains("sharpgambit.native.api")))
+        foreach (var tu in ctx.TranslationUnits.Where(c => !c.FilePath.ToLower().Contains("sharpgambit.api.native")))
         {
             tu.ExplicitlyIgnore();
         }

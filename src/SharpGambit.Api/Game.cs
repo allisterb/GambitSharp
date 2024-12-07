@@ -9,17 +9,18 @@ public class Game : GameObject
     public Player NewPlayer() => new Player(this);
 }
 
-public class StrategicGame : Game
+public class StrategicFormGame : Game
 {
-    public StrategicGame(string title, string[] players, string[][] strategies) : 
-        base(sharpgambit.NewStrategicGame(title, players.Length, players, strategies.Select(s => s.Length).ToArray()))
+    public StrategicFormGame(string title, string[] players, string[][] strategies) : 
+        base(game.NewStrategicFormGame(title, players.Length, players, strategies.Select(s => s.Length).ToArray()))
     {
         for (int i = 0; i < players.Length; i++)
         {
-            var p = sharpgambit.GetPlayer(ptr, i + 1);
+            var p = game.GetPlayer(ptr, i + 1);
             for (int j = 0; j < strategies[i].Length; i++)
             {
-                var s = sharpgambit.GetPlayerStrategy(p, j + 1);
+                var s = player.GetPlayerStrategy(p, j + 1);
+                strategy.SetPlayerStrategyLabel(s, strategies[i][j]);
             }
             
         }

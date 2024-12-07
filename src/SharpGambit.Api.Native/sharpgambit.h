@@ -1,8 +1,7 @@
 #pragma once
 
 #include "pch.h"
-
-
-#include "Game.h"
-
+#include "game.h"
+#include "player.h"
+#include "strategy.h"
 

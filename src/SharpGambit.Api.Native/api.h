@@ -16,7 +16,7 @@ static void* gsptr(GameStrategy strategy) { return (GameStrategyRep*)(strategy);
 static GameStrategy gsrep(void* strategy) { return reinterpret_cast<GameStrategyRep*>(strategy); }
 
 template <class T>
-Array<T> FromCArray(int arrc, const T arr[])
+static Array<T> FromCArray(int arrc, const T arr[])
 {
 	Array<T> a = Gambit::Array<T>(arrc);
 	for (int i = 0; i < arrc; i++)
@@ -27,7 +27,7 @@ Array<T> FromCArray(int arrc, const T arr[])
 }
 
 template <class T>
-void* ToCArray(const Array<GameObjectPtr<T>> arr)
+static T* ToCArray(const Array<GameObjectPtr<T>> arr)
 {
 	return (T*)arr[1];
 }

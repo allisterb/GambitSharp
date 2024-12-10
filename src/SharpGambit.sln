@@ -23,6 +23,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SharpGambit.Api.Native", "S
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SharpGambit.Tests.Native", "..\tests\SharpGambit.Tests.Native\SharpGambit.Tests.Native.vcxproj", "{80B7B973-F00D-4811-98C7-D361BFE5E38A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{AAEF717F-76E7-4F17-9063-D3656E913ABB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9FE5A84F-6FFA-4725-B6C6-3BD8A096BB9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +124,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{40D05725-C7C1-4579-96F9-1CA588DCBBCD} = {AAEF717F-76E7-4F17-9063-D3656E913ABB}
+		{D24822BD-14B3-4F99-ADE1-E27AEB69D098} = {AAEF717F-76E7-4F17-9063-D3656E913ABB}
+		{F1CB7C66-AE6D-467A-ABDB-D5D1156FB481} = {AAEF717F-76E7-4F17-9063-D3656E913ABB}
+		{12C2AE74-0760-4379-8989-EB3BE3A49EE8} = {9FE5A84F-6FFA-4725-B6C6-3BD8A096BB9B}
+		{A9AC10B8-43C8-4881-8703-881189731CD2} = {AAEF717F-76E7-4F17-9063-D3656E913ABB}
+		{56AA276E-94F4-4C70-A13B-06DDEE06BF86} = {AAEF717F-76E7-4F17-9063-D3656E913ABB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B2B8D8C-847D-48FE-A8A4-C507BC97F846}

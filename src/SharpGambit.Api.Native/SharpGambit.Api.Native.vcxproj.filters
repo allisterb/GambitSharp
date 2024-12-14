@@ -27,7 +27,7 @@
     <ClInclude Include="game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
+    <ClInclude Include="xplayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="api.h">

@@ -27,13 +27,13 @@
     <ClInclude Include="game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="xplayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="api.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="strategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

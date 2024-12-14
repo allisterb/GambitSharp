@@ -25,4 +25,7 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <Target Name="CopyDefs" AfterTargets="Build">
+    <Copy SourceFiles="$(SolutionDir)\SharpGambit.Api.Native\bin\x64\Debug\sharpgambit.dll" DestinationFolder="$(OutDir)" />
+  </Target>
 </Project>

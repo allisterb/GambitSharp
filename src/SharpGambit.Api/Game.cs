@@ -20,7 +20,7 @@ public class StrategicFormGame : Game
             for (int j = 0; j < strategies[i].Length; i++)
             {
                 var s = player.GetPlayerStrategy(p, j + 1);
-                strategy.SetPlayerStrategyLabel(s, strategies[i][j]);
+                strategy.SetStrategyLabel(s, strategies[i][j]);
             }
             
         }

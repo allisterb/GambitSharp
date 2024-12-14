@@ -162,10 +162,12 @@
     <ClInclude Include="api.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="outcome.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="sharpgambit.h" />
     <ClInclude Include="strategy.h" />
+    <ClInclude Include="strategyprofile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

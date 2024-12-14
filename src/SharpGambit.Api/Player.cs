@@ -9,15 +9,15 @@ public class Player : GameObject
         this.game = game;
     }
 
-    public Player(Game game) :this(game, sharpgambit.AddPlayerToGame(game.ptr)) {}
+    public Player(Game game) :this(game, gambit.game.AddPlayer(game.ptr)) {}
 
-    //public
     public string Label
     {
-        get => sharpgambit.GetPlayerLabel(ptr);
-        set => sharpgambit.SetPlayerLabel(ptr, value);
+        get => player.GetPlayerLabel(ptr);
+        set => player.SetPlayerLabel(ptr, value);
     }
 
+    public Strategy AddStrategy() => new Strategy(this);
 
     public Game game;
 }

@@ -29,6 +29,9 @@ namespace gambit
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPlayer", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetPlayer(__IntPtr game, int pi);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewStrategyProfile", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr NewStrategyProfile(__IntPtr game);
         }
 
         public static __IntPtr NewStrategicFormGame(string title, int pc, string[] players, int[] strategies)
@@ -52,6 +55,12 @@ namespace gambit
         public static __IntPtr GetPlayer(__IntPtr game, int pi)
         {
             var ___ret = __Internal.GetPlayer(game, pi);
+            return ___ret;
+        }
+
+        public static __IntPtr NewStrategyProfile(__IntPtr game)
+        {
+            var ___ret = __Internal.NewStrategyProfile(game);
             return ___ret;
         }
     }
@@ -129,22 +138,22 @@ namespace gambit
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPlayerStrategyLabel", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr GetPlayerStrategyLabel(__IntPtr strategy);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetStrategyLabel", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr GetStrategyLabel(__IntPtr strategy);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetPlayerStrategyLabel", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SetPlayerStrategyLabel(__IntPtr strategy, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string label);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetStrategyLabel", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr SetStrategyLabel(__IntPtr strategy, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string label);
         }
 
-        public static string GetPlayerStrategyLabel(__IntPtr strategy)
+        public static string GetStrategyLabel(__IntPtr strategy)
         {
-            var ___ret = __Internal.GetPlayerStrategyLabel(strategy);
+            var ___ret = __Internal.GetStrategyLabel(strategy);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static __IntPtr SetPlayerStrategyLabel(__IntPtr strategy, string label)
+        public static __IntPtr SetStrategyLabel(__IntPtr strategy, string label)
         {
-            var ___ret = __Internal.SetPlayerStrategyLabel(strategy, label);
+            var ___ret = __Internal.SetStrategyLabel(strategy, label);
             return ___ret;
         }
     }

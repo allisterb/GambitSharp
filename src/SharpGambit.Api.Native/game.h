@@ -22,6 +22,8 @@ API void* NewExtensiveFormGame() { auto g = Gambit::NewTree(); g->IncRef();  ret
 API void* AddPlayer(void* game) { return gpptr(grep(game)->NewPlayer()); }
 API void* GetPlayer(void* game, int pi) { return gpptr(grep(game)->GetPlayer(pi)); }
 
+API void* NewStrategyProfile(void* game) { return gspptr(gtrep(game)->NewPureStrategyProfile()); }
+
 	
 
 

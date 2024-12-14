@@ -9,13 +9,12 @@ public class Strategy : GameObject
         this.player = player;
     }
 
-    //public Player(Game game) : this(game, sharpgambit.AddPlayerToGame(game.ptr)) { }
+    public Strategy(Player player) : this(player, gambit.player.NewPlayerStrategy(player.ptr)) { }
 
-    //public
     public string Label
     {
-        get => sharpgambit.GetPlayerTitle(ptr);
-        set => sharpgambit.SetPlayerTitle(ptr, value);
+        get => strategy.GetStrategyLabel(ptr);
+        set => strategy.SetStrategyLabel(ptr, value);
     }
 
 

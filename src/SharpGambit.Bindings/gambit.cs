@@ -18,25 +18,31 @@ namespace gambit
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewStrategicFormGame", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr NewStrategicFormGame([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string title, int pc, [MarshalAs(UnmanagedType.LPArray)] string[] players, int[] strategies);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewNormalFormGame", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr NewNormalFormGame([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string title, int pc, [MarshalAs(UnmanagedType.LPArray)] string[] players, int[] strategies);
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewExtensiveFormGame", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewExtensiveFormGame();
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "AddPlayer", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr AddPlayer(__IntPtr game);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewPlayer", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr NewPlayer(__IntPtr game);
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPlayer", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetPlayer(__IntPtr game, int pi);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewStrategyProfile", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr NewStrategyProfile(__IntPtr game);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewOutcome", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr NewOutcome(__IntPtr game);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetOutcome", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr GetOutcome(__IntPtr game, int index);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewPureStrategyProfile", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr NewPureStrategyProfile(__IntPtr game);
         }
 
-        public static __IntPtr NewStrategicFormGame(string title, int pc, string[] players, int[] strategies)
+        public static __IntPtr NewNormalFormGame(string title, int pc, string[] players, int[] strategies)
         {
-            var ___ret = __Internal.NewStrategicFormGame(title, pc, players, strategies);
+            var ___ret = __Internal.NewNormalFormGame(title, pc, players, strategies);
             return ___ret;
         }
 
@@ -46,9 +52,9 @@ namespace gambit
             return ___ret;
         }
 
-        public static __IntPtr AddPlayer(__IntPtr game)
+        public static __IntPtr NewPlayer(__IntPtr game)
         {
-            var ___ret = __Internal.AddPlayer(game);
+            var ___ret = __Internal.NewPlayer(game);
             return ___ret;
         }
 
@@ -58,9 +64,21 @@ namespace gambit
             return ___ret;
         }
 
-        public static __IntPtr NewStrategyProfile(__IntPtr game)
+        public static __IntPtr NewOutcome(__IntPtr game)
         {
-            var ___ret = __Internal.NewStrategyProfile(game);
+            var ___ret = __Internal.NewOutcome(game);
+            return ___ret;
+        }
+
+        public static __IntPtr GetOutcome(__IntPtr game, int index)
+        {
+            var ___ret = __Internal.GetOutcome(game, index);
+            return ___ret;
+        }
+
+        public static __IntPtr NewPureStrategyProfile(__IntPtr game)
+        {
+            var ___ret = __Internal.NewPureStrategyProfile(game);
             return ___ret;
         }
     }
@@ -155,6 +173,46 @@ namespace gambit
         {
             var ___ret = __Internal.SetStrategyLabel(strategy, label);
             return ___ret;
+        }
+    }
+
+    public unsafe partial class outcome
+    {
+        public partial struct __Internal
+        {
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetIntegerPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr SetIntegerPayoff(__IntPtr outcome, int pl, int payoff);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetRationalPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr SetRationalPayoff(__IntPtr outcome, int pl, int num, int den);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern void GetPayoff(__IntPtr outcome, int pl, int* num, int* den);
+        }
+
+        public static __IntPtr SetIntegerPayoff(__IntPtr outcome, int pl, int payoff)
+        {
+            var ___ret = __Internal.SetIntegerPayoff(outcome, pl, payoff);
+            return ___ret;
+        }
+
+        public static __IntPtr SetRationalPayoff(__IntPtr outcome, int pl, int num, int den)
+        {
+            var ___ret = __Internal.SetRationalPayoff(outcome, pl, num, den);
+            return ___ret;
+        }
+
+        public static void GetPayoff(__IntPtr outcome, int pl, out int num, out int den)
+        {
+            fixed (int* __num2 = &num)
+            {
+                var __arg2 = __num2;
+                fixed (int* __den3 = &den)
+                {
+                    var __arg3 = __den3;
+                    __Internal.GetPayoff(outcome, pl, __arg2, __arg3);
+                }
+            }
         }
     }
 }

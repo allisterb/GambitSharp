@@ -9,7 +9,7 @@ public class Player : GameObject
         this.game = game;
     }
 
-    public Player(Game game) :this(game, gambit.game.AddPlayer(game.ptr)) {}
+    public Player(Game game) :this(game, gambit.game.NewPlayer(game.ptr)) {}
 
     public string Label
     {

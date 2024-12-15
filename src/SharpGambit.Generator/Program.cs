@@ -105,8 +105,14 @@ public class Program : Runtime
         {
             {"RootDirectory", new DirectoryInfo(go.LibPath)},
         };
-        Library lib = new Library(options); 
+        Library lib = new Library(options);
         ConsoleDriver.Run(lib);
+        var bindingspath = Path.Combine(go.LibPath, "..", "..", "src", "SharpGambit.Bindings");
+        if (Directory.Exists(bindingspath))
+        {
+            File.Copy(Path.Combine(AssemblyLocation, "gambit.cs"), Path.Combine(bindingspath, "gambit.cs"), true);
+            Info("Copied gambit.cs to {0}.", bindingspath); 
+        }
     }
 
     static HelpText GetAutoBuiltHelpText(ParserResult<object> result)

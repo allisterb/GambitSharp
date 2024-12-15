@@ -1,7 +1,9 @@
 ﻿namespace SharpGambit;
 
 using gambit;
+using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 public class Game : GameObject
 {
@@ -9,10 +11,10 @@ public class Game : GameObject
     public Player NewPlayer() => new Player(this);
 }
 
-public class StrategicFormGame : Game
+public class NormalFormGame : Game
 {
-    public StrategicFormGame(string title, string[] players, string[][] strategies) : 
-        base(game.NewStrategicFormGame(title, players.Length, players, strategies.Select(s => s.Length).ToArray()))
+    public NormalFormGame(string title, string[] players, string[][] strategies) :
+        base(game.NewNormalFormGame(title, players.Length, players, strategies.Select(s => s.Length).ToArray()))
     {
         for (int i = 0; i < players.Length; i++)
         {
@@ -22,7 +24,6 @@ public class StrategicFormGame : Game
                 var s = player.GetPlayerStrategy(p, j + 1);
                 strategy.SetStrategyLabel(s, strategies[i][j]);
             }
-            
         }
     }
 }

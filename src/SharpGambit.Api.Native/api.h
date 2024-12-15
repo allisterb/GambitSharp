@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include "games/gametable.h"
+#include "games/gametree.h"
 #define	API extern "C" __declspec(dllexport) 
 
 #define CS_OUT 
@@ -11,7 +12,9 @@ using namespace Gambit;
 static void* gptr(Game game) { return (GameRep*)game; }
 static GameRep* grep(void* game) { return reinterpret_cast<GameRep*>(game); }
 
-static GameTableRep* gtrep(void* game) { return reinterpret_cast<GameTableRep*>(game); }
+static GameExplicitRep* gerep(void* game) { return reinterpret_cast<GameExplicitRep*>(game); }
+static GameTableRep* gtablerep(void* game) { return reinterpret_cast<GameTableRep*>(game); }
+static GameTreeRep* gtreerep(void* game) { return reinterpret_cast<GameTreeRep*>(game); }
 
 static void* gpptr(GamePlayer player) { return (GamePlayerRep*)(player); }
 static GamePlayerRep* gprep(void* player) { return reinterpret_cast<GamePlayerRep*>(player); }
@@ -22,8 +25,12 @@ static GameStrategyRep* gsrep(void* strategy) { return reinterpret_cast<GameStra
 static void* gspptr(PureStrategyProfile profile) { return (PureStrategyProfileRep*)(profile); }
 static PureStrategyProfileRep* gsprep(void* profile) { return reinterpret_cast<PureStrategyProfileRep*>(profile); }
 
-static void* optr(GameOutcome outcome) { return (GameOutcomeRep*)(outcome); }
-static GameOutcomeRep* orep(void* outcome) { return reinterpret_cast<GameOutcomeRep*>(outcome); }
+static void* goptr(GameOutcome outcome) { return (GameOutcomeRep*)(outcome); }
+static GameOutcomeRep* gorep(void* outcome) { return reinterpret_cast<GameOutcomeRep*>(outcome); }
+
+
+//static void* gspptr(TablePureStrategyProfileRep profile) { return (TablePureStrategyProfileRep*)(profile); }
+//static PureStrategyProfileRep* gsprep(void* profile) { return reinterpret_cast<PureStrategyProfileRep*>(profile); }
 
 template <class T>
 static Array<T> FromCArray(int arrc, const T arr[])

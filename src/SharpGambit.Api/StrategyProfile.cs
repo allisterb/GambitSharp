@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 using gambit;
 
-public class StrategyProfile : GameObject
+public class PureStrategyProfile : GameObject
 {
-    public StrategyProfile(Game game, nint ptr) : base(ptr)
+    public PureStrategyProfile(Game game, nint ptr) : base(ptr)
     {
         this.game = game;
     }
 
-    public StrategyProfile(Game game) : this(game, gambit.game.NewStrategyProfile(game.ptr)) {}
+    public PureStrategyProfile(Game game) : this(game, gambit.game.NewPureStrategyProfile(game.ptr)) {}
    
 
     internal Game game;

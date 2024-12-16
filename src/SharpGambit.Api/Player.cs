@@ -2,11 +2,12 @@
 
 using gambit;
 
-public class Player : GameObject
+public struct Player 
 {
-    internal Player(Game game, nint ptr) : base(ptr) 
+    internal Player(Game game, nint ptr) 
     {
         this.game = game;
+        this.ptr = ptr;
     }
 
     public Player(Game game) :this(game, gambit.game.NewPlayer(game.ptr)) {}
@@ -17,8 +18,12 @@ public class Player : GameObject
         set => player.SetPlayerLabel(ptr, value);
     }
 
+    public int StrategyCount => player.GetPlayerNumStrategies(ptr); 
+
     public Strategy AddStrategy() => new Strategy(this);
 
     public Game game;
+
+    internal nint ptr;  
 }
 

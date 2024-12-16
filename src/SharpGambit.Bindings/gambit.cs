@@ -30,6 +30,12 @@ namespace gambit
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPlayer", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetPlayer(__IntPtr game, int pi);
 
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPlayers", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern long* GetPlayers(__IntPtr game, int* size);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NumPlayers", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern int NumPlayers(__IntPtr game);
+
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewOutcome", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewOutcome(__IntPtr game);
 
@@ -61,6 +67,22 @@ namespace gambit
         public static __IntPtr GetPlayer(__IntPtr game, int pi)
         {
             var ___ret = __Internal.GetPlayer(game, pi);
+            return ___ret;
+        }
+
+        public static long* GetPlayers(__IntPtr game, out int size)
+        {
+            fixed (int* __size1 = &size)
+            {
+                var __arg1 = __size1;
+                var ___ret = __Internal.GetPlayers(game, __arg1);
+                return ___ret;
+            }
+        }
+
+        public static int NumPlayers(__IntPtr game)
+        {
+            var ___ret = __Internal.NumPlayers(game);
             return ___ret;
         }
 

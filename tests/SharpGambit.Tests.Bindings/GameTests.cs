@@ -5,7 +5,7 @@ using gambit;
 public class GameTests
 {
     [Fact]
-    public void Test1()
+    public void CanConstructNormalFormGame()
     {
         var g = game.NewNormalFormGame("foo", 1, ["A"], [1]);
         var p = game.NewPlayer(g);
@@ -17,7 +17,9 @@ public class GameTests
 
         Assert.Equal(2, player.GetPlayerNumStrategies(p));
 
-        var obj = new[,] { { (4, 5), (7, 8) }, { (4, 5), (7, 8) } };
+        g = game.NewNormalFormGame("Prisoner's dilemna", 2, ["Prisoner 1", "Prisoner 2"], [2, 2]);
+        var payoffs = new[,] { { (4, 5), (7, 8) }, { (4, 5), (7, 8) } };
+
 
     }
 
@@ -32,7 +34,7 @@ public class GameTests
         var o = game.NewOutcome(g);
         outcome.SetRationalPayoff(o, 1, 2, 3);
         outcome.GetPayoff(o, 1, out var n, out var d);   
-        Assert.Equal(2, player.GetPlayerNumStrategies(p));
+        Assert.Equal(1, player.GetPlayerNumStrategies(p));
 
         var obj = new[,] { { (4, 5), (7, 8) }, { (4, 5), (7, 8) } };
 

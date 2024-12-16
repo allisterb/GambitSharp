@@ -20,9 +20,19 @@ API void* NewNormalFormGame(const char* title, int pc, const char* players[], co
 API void* NewExtensiveFormGame() { auto g = Gambit::NewTree(); g->IncRef();  return gptr(g); }
 
 API void* NewPlayer(void* game) { return gpptr(grep(game)->NewPlayer()); }
+
 API void* GetPlayer(void* game, int pi) { return gpptr(grep(game)->GetPlayer(pi)); }
 
+API const intptr_t* GetPlayers(void* game, CS_OUT int& size) 
+{ 
+	auto players = grep(game)->GetPlayers();
+	return ToCPtrArray(players, size);
+}
+
+API int NumPlayers(void* game) { return grep(game)->NumPlayers(); }
+
 API void* NewOutcome(void* game) { return goptr(gerep(game)->NewOutcome()); }
+
 API void* GetOutcome(void* game, int index) { return goptr(gerep(game)->GetOutcome(index)); }
 
 API void* NewPureStrategyProfile(void* game) { return gspptr(gtablerep(game)->NewPureStrategyProfile()); }

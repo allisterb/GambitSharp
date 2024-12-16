@@ -1,3 +1,5 @@
+using Microsoft.VisualBasic;
+
 namespace SharpGambit
 {
     public static class CollectionExtensions
@@ -13,10 +15,60 @@ namespace SharpGambit
                 stack.Pop();
             }
         }
-    }
+        public static int[] GetDims(this Array array)
+        {
+            if (array.Rank == 0)
+            {
+                return [];
+            }
+            int[] dims = new int[array.Rank];   
+            for (int i = 0; i < array.Rank; i++)
+            {
+                dims[i] = array.GetLength(i);   
+            }
+            return dims;
+        }
+        
+        public static int[] GetStrides(this Array array)
+        {
+            if (array.Rank == 0)
+            {
+                return [];
+            }
+            var dimensions = array.GetDims();   
+            if (dimensions.Length == 0)
+            {
+                return Array.Empty<int>();
+            }
+            int[] strides = new int[dimensions.Length];
+            int stride = 1;            
+            for (int i = strides.Length - 1; i >= 0; i--)
+            {
+                strides[i] = stride;
+                stride *= dimensions[i];
+            }
+            return strides;
+        }
 
-    public static class CollectionUtils
-    {
+        public static int[] GetIndices(this Array array, int index)
+        {
+            if (array.Rank == 0)
+            {
+                return [];
+            }
+            int[] indices = new int[array.Rank];
+            var strides = array.GetStrides();
+            int remainder = index;
+            for (int i = 0; i < strides.Length; i++)
+            {
+                var stride = strides[i];
+                indices[i] = remainder / stride;
+                remainder %= stride;
+            }
+            return indices;
+        }
+
+ 
         public static string JoinWith(this IEnumerable<string> s, string j)
         {
             if (s.Count() == 0)

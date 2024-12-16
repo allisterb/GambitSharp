@@ -12,5 +12,5 @@ global using System.Text.RegularExpressions;
 global using System.Threading;
 global using System.Threading.Tasks;
 
-global using static SharpGambit.CollectionUtils;
+global using static SharpGambit.CollectionExtensions;
 

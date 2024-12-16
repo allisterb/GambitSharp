@@ -44,11 +44,24 @@ static Array<T> FromCArray(int arrc, const T arr[])
 }
 
 template <class T>
-static T* ToCArray(const Array<GameObjectPtr<T>> arr)
+static const T* ToCArray(const Array<GameObjectPtr<T>> arr)
 {
-	return (T*)arr[1];
+	return (const T*)arr[1];
 }
 
+template <class T>
+static intptr_t* ToCPtrArray(const Array<GameObjectPtr<T>> arr, int& size)
+{
+	T* ptr = ToCArray(arr);
+	size = arr.Length();
+	intptr_t* ptrs = new intptr_t[size];
+	for (int i = 0; i < size; i++)
+	{
+		ptrs[i] = (intptr_t) ptr + i;
+	}
+	return ptrs;
+
+}
 static void NumDen(Number n, CS_OUT long& num, CS_OUT long& den) {
 	auto r = (Rational)n;
 	num = r.numerator().as_long();

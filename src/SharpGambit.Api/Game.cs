@@ -18,22 +18,14 @@ public class Game : GameObject
 
     public int PlayerCount => game.NumPlayers(ptr); 
 
-    public Player[] Players
+    public IEnumerable<Player> Players
     {
         get
         {
-            List<Player> list = new List<Player>(); 
-            unsafe
+            for (int i = 0; i < PlayerCount; i++)
             {
-                var pptr = game.GetPlayers(ptr, out var size);
-                //Player[] players = new Player[size];
-                for (int i = 0; i < size; i++)
-                {
-                    list.Add(new Player(this, new IntPtr(pptr[i])));
-                }
-                return list.ToArray();
+                yield return new Player(this, game.GetPlayer(ptr, i + 1));
             }
-            
         }
     }
 

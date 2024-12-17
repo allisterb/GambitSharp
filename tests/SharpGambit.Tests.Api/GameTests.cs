@@ -7,8 +7,9 @@ namespace SharpGambit.Tests.Api
         {
             var g =new NormalFormGame("test", ["A",  "B"], [["Snitch", "Mute"], ["Snitch", "Mute"]]);
             Assert.Equal("test", g.Title);
-            Assert.Equal("A", g.Players[0].Label);
-            Assert.Equal("B", g.Players[1].Label);
+            
+            Assert.Equal("A", g.Players.First().Label);
+            Assert.Equal("B", g.Players.Last().Label);
         }
     }
 }

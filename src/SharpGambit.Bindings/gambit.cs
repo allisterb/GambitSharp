@@ -70,12 +70,6 @@ namespace gambit
             return ___ret;
         }
 
-        public static string GetTitle(__IntPtr game)
-        {
-            var ___ret = __Internal.GetTitle(game);
-            return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
-        }
-
         public static __IntPtr NewPlayer(__IntPtr game)
         {
             var ___ret = __Internal.NewPlayer(game);

@@ -2,7 +2,7 @@ namespace SharpGambit.Tests.Bindings;
 
 using gambit;
 
-public class GameTests
+public unsafe class GameTests
 {
     [Fact]
     public void CanConstructNormalFormGame()
@@ -13,7 +13,7 @@ public class GameTests
         player.SetPlayerLabel(p, "foo");
         Assert.Equal("foo", player.GetPlayerLabel(p));
         var s = player.NewPlayerStrategy(p);
-        var n = player.GetPlayerStrategies(p);
+        //var n = player.GetPlayerStrategies(p, var ref size);
 
         Assert.Equal(2, player.GetPlayerNumStrategies(p));
 
@@ -23,6 +23,16 @@ public class GameTests
 
     }
 
+    [Fact]
+    public void CanGetPlayers()
+    {
+        var g = game.NewNormalFormGame("test game", 3, ["A", "B", "C"], [4, 5, 6]);
+        var players = game.GetPlayers(g, out var size);
+        for (int i =0; i < size; i++)
+        {
+            Assert.Equal(game.GetPlayer(g, i + 1), players[i]); 
+        }
+    }
     [Fact]
     public void CanGetSetOutcomrd()
     {

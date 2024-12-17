@@ -44,28 +44,28 @@ static Array<T> FromCArray(int arrc, const T arr[])
 }
 
 template <class T>
-static const T* ToCArray(const Array<GameObjectPtr<T>> arr)
+static const T* ToCArray(const Array<GameObjectPtr<T>>& arr)
 {
-	return (const T*)arr[1];
+	return arr[1];
 }
 
 
 template <class T>
-static const T* ToCArrayAndSize(const Array<GameObjectPtr<T>> arr, int& size)
+static const T* ToCArrayAndSize(const Array<GameObjectPtr<T>>& arr, int& size)
 {
 	size = arr.Length;
-	return (const T*)arr[1];
+	return arr[1];
 }
 
 template <class T>
-static const intptr_t* ToCPtrArray(const Array<GameObjectPtr<T>> arr, int& size)
+static const intptr_t* ToCPtrArray(const Array<GameObjectPtr<T>>& arr, int& size)
 {
 	const T* ptr = ToCArray(arr);
 	size = arr.Length();
 	intptr_t* ptrs = new intptr_t[size];
 	for (int i = 0; i < size; i++)
 	{
-		ptrs[i] = (intptr_t) ptr + i;
+		ptrs[i] = (intptr_t) (ptr + i);
 	}
 	return ptrs;
 

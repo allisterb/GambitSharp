@@ -10,23 +10,30 @@ public class Game : GameObject
 {
     protected Game(nint ptr) : base(ptr) {}
     
+    public string Title
+    {
+        get => game.GetTitle(ptr);
+        set => game.SetTitle(value, ptr);
+    }
+
     public int PlayerCount => game.NumPlayers(ptr); 
 
     public Player[] Players
     {
         get
         {
-            List<Player> players = new List<Player>();
+            List<Player> list = new List<Player>(); 
             unsafe
             {
-                var p = game.GetPlayers(ptr, out var size);
+                var pptr = game.GetPlayers(ptr, out var size);
+                //Player[] players = new Player[size];
                 for (int i = 0; i < size; i++)
                 {
-                    players.Add(new Player(this, (nint)(p + i)));
-                    //yield return (new Player(this, (nint)(p + i)));
+                    list.Add(new Player(this, new IntPtr(pptr[i])));
                 }
+                return list.ToArray();
             }
-            return players.ToArray();
+            
         }
     }
 
@@ -40,7 +47,7 @@ public class NormalFormGame : Game
     {
         for (int i = 0; i < players.Length; i++)
         {
-            var p = game.GetPlayer(ptr, i + 1);
+            var p = game.GetPlayer(ptr, i + 1); 
             for (int j = 0; j < strategies[i].Length; j++)
             {
                 var s = player.GetPlayerStrategy(p, j + 1);

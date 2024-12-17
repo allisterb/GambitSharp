@@ -24,6 +24,12 @@ namespace gambit
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewExtensiveFormGame", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewExtensiveFormGame();
 
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetTitle", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr SetTitle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string title, __IntPtr game);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetTitle", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr GetTitle(__IntPtr game);
+
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewPlayer", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewPlayer(__IntPtr game);
 
@@ -56,6 +62,18 @@ namespace gambit
         {
             var ___ret = __Internal.NewExtensiveFormGame();
             return ___ret;
+        }
+
+        public static __IntPtr SetTitle(string title, __IntPtr game)
+        {
+            var ___ret = __Internal.SetTitle(title, game);
+            return ___ret;
+        }
+
+        public static string GetTitle(__IntPtr game)
+        {
+            var ___ret = __Internal.GetTitle(game);
+            return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
         public static __IntPtr NewPlayer(__IntPtr game)
@@ -128,7 +146,7 @@ namespace gambit
             internal static extern __IntPtr GetPlayerStrategy(__IntPtr player, int st);
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPlayerStrategies", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr GetPlayerStrategies(__IntPtr player);
+            internal static extern long* GetPlayerStrategies(__IntPtr player, int* size);
         }
 
         public static string GetPlayerLabel(__IntPtr player)
@@ -167,10 +185,14 @@ namespace gambit
             return ___ret;
         }
 
-        public static __IntPtr GetPlayerStrategies(__IntPtr player)
+        public static long* GetPlayerStrategies(__IntPtr player, ref int size)
         {
-            var ___ret = __Internal.GetPlayerStrategies(player);
-            return ___ret;
+            fixed (int* __size1 = &size)
+            {
+                var __arg1 = __size1;
+                var ___ret = __Internal.GetPlayerStrategies(player, __arg1);
+                return ___ret;
+            }
         }
     }
 

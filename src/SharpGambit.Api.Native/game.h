@@ -19,6 +19,10 @@ API void* NewNormalFormGame(const char* title, int pc, const char* players[], co
 
 API void* NewExtensiveFormGame() { auto g = Gambit::NewTree(); g->IncRef();  return gptr(g); }
 
+API void* SetTitle(const char* title, void* game) { auto g = grep(game); g->SetTitle(title); return g; }
+
+API const char* GetTitle(void* game) { return grep(game)->GetTitle().c_str(); }
+
 API void* NewPlayer(void* game) { return gpptr(grep(game)->NewPlayer()); }
 
 API void* GetPlayer(void* game, int pi) { return gpptr(grep(game)->GetPlayer(pi)); }

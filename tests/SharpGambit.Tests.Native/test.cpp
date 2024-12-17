@@ -6,7 +6,7 @@ namespace SharpGambit::Native::Tests
 	TEST(GameApiTest, CanCreateGame) {
 		const char* pn[] = { "bar", "baz" };
 		int s[] = { 3, 4 };
-		auto gp = NewStrategicFormGame("foo", 2, pn, s);
+		auto gp = NewNormalFormGame("foo", 2, pn, s);
 
 		ASSERT_FALSE(gp == nullptr);
 		auto gr = grep(gp);

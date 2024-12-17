@@ -41,7 +41,7 @@ public class NormalFormGame : Game
         for (int i = 0; i < players.Length; i++)
         {
             var p = game.GetPlayer(ptr, i + 1);
-            for (int j = 0; j < strategies[i].Length; i++)
+            for (int j = 0; j < strategies[i].Length; j++)
             {
                 var s = player.GetPlayerStrategy(p, j + 1);
                 strategy.SetStrategyLabel(s, strategies[i][j]);

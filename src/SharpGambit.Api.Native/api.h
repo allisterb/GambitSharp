@@ -28,6 +28,11 @@ static PureStrategyProfileRep* gsprep(void* profile) { return reinterpret_cast<P
 static void* goptr(GameOutcome outcome) { return (GameOutcomeRep*)(outcome); }
 static GameOutcomeRep* gorep(void* outcome) { return reinterpret_cast<GameOutcomeRep*>(outcome); }
 
+template <class T>
+static void* ptr(GameObjectPtr<T> p) { return (T*) p; }
+
+template <class T>
+static T* rep(void* p) { return reinterpret_cast<T*>(ptr); }
 
 //static void* gspptr(TablePureStrategyProfileRep profile) { return (TablePureStrategyProfileRep*)(profile); }
 //static PureStrategyProfileRep* gsprep(void* profile) { return reinterpret_cast<PureStrategyProfileRep*>(profile); }

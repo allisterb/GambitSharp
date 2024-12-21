@@ -3,8 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using gambit;
 
@@ -21,6 +19,7 @@ public struct PureStrategyProfile : IStrategyProfile
     Game IStrategyProfile.Game => game;
 
     Outcome IStrategyProfile.Outcome => new Outcome(this.game, strategyprofile.PSP_GetOutcome(this.ptr));
+    
     public int Length => game.PlayerCount;
 
     public int Index => strategyprofile.PSP_GetIndex(ptr);
@@ -43,7 +42,7 @@ public struct PureStrategyProfile : IStrategyProfile
         }
     }
     
-    
+    public void SetStrategy(Strategy s) => strategyprofile.PSP_SetStrategy(ptr, s.ptr);
     internal Game game;
     internal nint ptr;
 }

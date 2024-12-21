@@ -19,6 +19,7 @@ public class Game : GameObject
 
     public int PlayerCount => game.NumPlayers(ptr); 
 
+
     public Player GetPlayer(int player) => new Player(this, game.GetPlayer(ptr, FailIfPlayerIndexTooLarge(player) + 1));
 
     public IEnumerable<Player> Players
@@ -48,7 +49,7 @@ public class NormalFormGame : Game
     public NormalFormGame(string title, string[] players, string[][] strategies) :
         base(game.NewNormalFormGame(title, players.Length, players, strategies.Select(s => s.Length).ToArray()))
     {
-        if (strategies.Rank != players.Length) throw new ArgumentException("The rank of the strategies array must equal the number of players.");
+        if (strategies.Length != players.Length) throw new ArgumentException("The rank of the strategies array must equal the number of players.");
         for (int i = 0; i < players.Length; i++)
         {
             var p = game.GetPlayer(ptr, i + 1); 
@@ -62,15 +63,21 @@ public class NormalFormGame : Game
 
     public int[] StrategyCounts => Players.Select(p => p.StrategyCount).ToArray();
     
-    public Outcome this[params Strategy[] strategies]
+    
+    public PureStrategyProfile this[params Strategy[] strategies]
     {
         get
         {
             if (strategies.Length != PlayerCount) throw new ArgumentException("The number of strategies specified must equal the the number of players.");
-            var indices = strategies.Select(s => s.Index).ToArray();
-            var oindex = StrategyCounts.GetIndex(indices);
-            return new Outcome(this, game.GetOutcome(ptr, oindex));
+            var psp  = new PureStrategyProfile(this, strategyprofile.PSP_New(this.ptr));
+            foreach (var strategy in strategies)
+            {
+                psp.SetStrategy(strategy);
+            }
+            return psp;
         }
     }
+
+    public PureStrategyProfile this[params string[] strategies] => this[strategies.Select((s,i) => this[i][s]).ToArray()];
     
 }

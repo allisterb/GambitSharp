@@ -42,14 +42,17 @@ namespace gambit
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NumPlayers", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int NumPlayers(__IntPtr game);
 
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "StrategyCounts", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern int* StrategyCounts(__IntPtr game);
+
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewOutcome", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewOutcome(__IntPtr game);
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetOutcome", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetOutcome(__IntPtr game, int index);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewPureStrategyProfile", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr NewPureStrategyProfile(__IntPtr game);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewTablePureStrategyProfile", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr NewTablePureStrategyProfile(__IntPtr game);
         }
 
         public static __IntPtr NewNormalFormGame(string title, int pc, string[] players, int[] strategies)
@@ -104,6 +107,12 @@ namespace gambit
             return ___ret;
         }
 
+        public static int* StrategyCounts(__IntPtr game)
+        {
+            var ___ret = __Internal.StrategyCounts(game);
+            return ___ret;
+        }
+
         public static __IntPtr NewOutcome(__IntPtr game)
         {
             var ___ret = __Internal.NewOutcome(game);
@@ -116,9 +125,9 @@ namespace gambit
             return ___ret;
         }
 
-        public static __IntPtr NewPureStrategyProfile(__IntPtr game)
+        public static __IntPtr NewTablePureStrategyProfile(__IntPtr game)
         {
-            var ___ret = __Internal.NewPureStrategyProfile(game);
+            var ___ret = __Internal.NewTablePureStrategyProfile(game);
             return ___ret;
         }
     }
@@ -205,6 +214,9 @@ namespace gambit
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetStrategyLabel", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr SetStrategyLabel(__IntPtr strategy, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string label);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetStrategyIndex", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern int GetStrategyIndex(__IntPtr strategy);
         }
 
         public static string GetStrategyLabel(__IntPtr strategy)
@@ -218,31 +230,34 @@ namespace gambit
             var ___ret = __Internal.SetStrategyLabel(strategy, label);
             return ___ret;
         }
+
+        public static int GetStrategyIndex(__IntPtr strategy)
+        {
+            var ___ret = __Internal.GetStrategyIndex(strategy);
+            return ___ret;
+        }
     }
 
     public unsafe partial class outcome
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetIntegerPayoff", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SetIntegerPayoff(__IntPtr outcome, int pl, int payoff);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetOutcomeIndex", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern int GetOutcomeIndex(__IntPtr outcome);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern void GetPayoff(__IntPtr outcome, int pl, int* num, int* den);
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetRationalPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr SetRationalPayoff(__IntPtr outcome, int pl, int num, int den);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetPayoff", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void GetPayoff(__IntPtr outcome, int pl, int* num, int* den);
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "SetIntegerPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr SetIntegerPayoff(__IntPtr outcome, int pl, int payoff);
         }
 
-        public static __IntPtr SetIntegerPayoff(__IntPtr outcome, int pl, int payoff)
+        public static int GetOutcomeIndex(__IntPtr outcome)
         {
-            var ___ret = __Internal.SetIntegerPayoff(outcome, pl, payoff);
-            return ___ret;
-        }
-
-        public static __IntPtr SetRationalPayoff(__IntPtr outcome, int pl, int num, int den)
-        {
-            var ___ret = __Internal.SetRationalPayoff(outcome, pl, num, den);
+            var ___ret = __Internal.GetOutcomeIndex(outcome);
             return ___ret;
         }
 
@@ -257,6 +272,69 @@ namespace gambit
                     __Internal.GetPayoff(outcome, pl, __arg2, __arg3);
                 }
             }
+        }
+
+        public static __IntPtr SetRationalPayoff(__IntPtr outcome, int pl, int num, int den)
+        {
+            var ___ret = __Internal.SetRationalPayoff(outcome, pl, num, den);
+            return ___ret;
+        }
+
+        public static __IntPtr SetIntegerPayoff(__IntPtr outcome, int pl, int payoff)
+        {
+            var ___ret = __Internal.SetIntegerPayoff(outcome, pl, payoff);
+            return ___ret;
+        }
+    }
+
+    public unsafe partial class strategyprofile
+    {
+        public partial struct __Internal
+        {
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "PSP_New", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr PSP_New(__IntPtr game);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "PSP_GetIndex", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern int PSP_GetIndex(__IntPtr profile);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "PSP_GetStrategy", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr PSP_GetStrategy(__IntPtr profile, int pl);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "PSP_SetStrategy", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr PSP_SetStrategy(__IntPtr profile, __IntPtr s);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "PSP_GetOutcome", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr PSP_GetOutcome(__IntPtr profile);
+        }
+
+        public static __IntPtr PSP_New(__IntPtr game)
+        {
+            var ___ret = __Internal.PSP_New(game);
+            return ___ret;
+        }
+
+        public static int PSP_GetIndex(__IntPtr profile)
+        {
+            var ___ret = __Internal.PSP_GetIndex(profile);
+            return ___ret;
+        }
+
+        public static __IntPtr PSP_GetStrategy(__IntPtr profile, int pl)
+        {
+            var ___ret = __Internal.PSP_GetStrategy(profile, pl);
+            return ___ret;
+        }
+
+        public static __IntPtr PSP_SetStrategy(__IntPtr profile, __IntPtr s)
+        {
+            var ___ret = __Internal.PSP_SetStrategy(profile, s);
+            return ___ret;
+        }
+
+        public static __IntPtr PSP_GetOutcome(__IntPtr profile)
+        {
+            var ___ret = __Internal.PSP_GetOutcome(profile);
+            return ___ret;
         }
     }
 }

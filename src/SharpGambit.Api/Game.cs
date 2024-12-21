@@ -3,6 +3,7 @@
 using gambit;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -18,6 +19,8 @@ public class Game : GameObject
 
     public int PlayerCount => game.NumPlayers(ptr); 
 
+    public Player GetPlayer(int player) => new Player(this, game.GetPlayer(ptr, FailIfPlayerIndexTooLarge(player) + 1));
+
     public IEnumerable<Player> Players
     {
         get
@@ -29,7 +32,15 @@ public class Game : GameObject
         }
     }
 
+    public Player this[int pl] => GetPlayer(pl);
+
+    public Player this[string label] => Players.SingleOrFailure(pl => pl.Label == label, $"No player has the label {label}.");
+
+
     public Player NewPlayer() => new Player(this);
+
+    //public 
+    protected int FailIfPlayerIndexTooLarge(int pl) => pl >= PlayerCount ? throw new ArgumentException($"This game has {PlayerCount} players.") : pl;  
 }
 
 public class NormalFormGame : Game
@@ -37,6 +48,7 @@ public class NormalFormGame : Game
     public NormalFormGame(string title, string[] players, string[][] strategies) :
         base(game.NewNormalFormGame(title, players.Length, players, strategies.Select(s => s.Length).ToArray()))
     {
+        if (strategies.Rank != players.Length) throw new ArgumentException("The rank of the strategies array must equal the number of players.");
         for (int i = 0; i < players.Length; i++)
         {
             var p = game.GetPlayer(ptr, i + 1); 
@@ -47,4 +59,18 @@ public class NormalFormGame : Game
             }
         }
     }
+
+    public int[] StrategyCounts => Players.Select(p => p.StrategyCount).ToArray();
+    
+    public Outcome this[params Strategy[] strategies]
+    {
+        get
+        {
+            if (strategies.Length != PlayerCount) throw new ArgumentException("The number of strategies specified must equal the the number of players.");
+            var indices = strategies.Select(s => s.Index).ToArray();
+            var oindex = StrategyCounts.GetIndex(indices);
+            return new Outcome(this, game.GetOutcome(ptr, oindex));
+        }
+    }
+    
 }

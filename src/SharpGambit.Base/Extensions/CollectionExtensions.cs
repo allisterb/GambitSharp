@@ -1,4 +1,4 @@
-using Microsoft.VisualBasic;
+using System.Data;
 
 namespace SharpGambit
 {
@@ -67,8 +67,22 @@ namespace SharpGambit
             }
             return indices;
         }
+        public static int GetIndex(this int[] array, int[] indices)
+        {
+            var strides = array.GetStrides();
+            if (strides.Length == 0)
+            {
+                return 0;
+            }
+            int index = 0;
+            for (int i = 0; i < indices.Length; i++)
+            {
+                index += strides[i] * indices[i];
+            }
+            return index;
+        }
 
- 
+
         public static string JoinWith(this IEnumerable<string> s, string j)
         {
             if (s.Count() == 0)
@@ -116,6 +130,9 @@ namespace SharpGambit
             }
         }
 
-        
+        public static T SingleOrFailure<T>(this IEnumerable<T> collection, Func<T, bool> p, string failureMessage = "No element in the collection satisfies the condition.") => 
+            collection.SingleOrDefault(p) ?? throw new ArgumentException(failureMessage);
+            
+             
     }
 }

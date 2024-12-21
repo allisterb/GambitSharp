@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using gambit;
 
-public class Outcome : GameObject
+public struct Outcome
 {
-    public Outcome(Game game, nint ptr) : base(ptr)
+    public Outcome(Game game, nint ptr)
     {
         this.game = game;
+        this.ptr = ptr;
     }
 
     public Outcome(Game game) : this(game, gambit.game.NewOutcome(game.ptr)) {}
@@ -23,6 +25,17 @@ public class Outcome : GameObject
         
     }
 
-    protected Game game;
+    public int Length => game.PlayerCount;
+
+    public int Index => outcome.GetOutcomeIndex(ptr);
+
+    public Rational Payoff(int pl)
+    {
+        outcome.GetPayoff(ptr, pl + 1, out var n, out var d);
+        return new Rational(n, d);
+    }
+    
+    public Game game;
+    internal nint ptr;
 }
 

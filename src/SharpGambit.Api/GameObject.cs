@@ -9,3 +9,14 @@ public abstract class GameObject
 
     internal nint ptr;
 }
+
+interface IStrategyProfile
+{
+    Game Game { get; }
+
+    int Index { get; }
+
+    int Length => Game.PlayerCount;
+
+    Outcome Outcome { get; }    
+}

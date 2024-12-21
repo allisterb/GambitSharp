@@ -35,11 +35,22 @@ API const intptr_t* GetPlayers(void* game, CS_OUT int& size)
 
 API int NumPlayers(void* game) { return grep(game)->NumPlayers(); }
 
+API const int* StrategyCounts(void* game) 
+{ 
+	auto arr =  gerep(game)->NumStrategies();
+	int* a = new int[arr.Length()];
+	for (int i = 0; i < arr.Length(); i++)
+	{
+		a[i] = arr[i + 1];
+	}
+	return a;
+}
+
 API void* NewOutcome(void* game) { return goptr(gerep(game)->NewOutcome()); }
 
 API void* GetOutcome(void* game, int index) { return goptr(gerep(game)->GetOutcome(index)); }
 
-API void* NewPureStrategyProfile(void* game) { return gspptr(gtablerep(game)->NewPureStrategyProfile()); }
+API void* NewTablePureStrategyProfile(void* game) { return pspptr(gtablerep(game)->NewPureStrategyProfile()); }
 
 
 	

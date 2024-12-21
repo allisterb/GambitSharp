@@ -2,22 +2,29 @@
 
 using gambit;
 
-public class Strategy : GameObject
+public struct Strategy 
 {
-    internal Strategy(Player player, nint ptr) : base(ptr)
+    internal Strategy(Player player, nint ptr)
     {
-        this.player = player;
+        this.Player = player;
+        this.ptr = ptr;
     }
 
     public Strategy(Player player) : this(player, gambit.player.NewPlayerStrategy(player.ptr)) { }
 
+    
     public string Label
     {
         get => strategy.GetStrategyLabel(ptr);
         set => strategy.SetStrategyLabel(ptr, value);
     }
 
+    public int Index => strategy.GetIndex(ptr) - 1;
 
-    public Player player;
+    public override string? ToString() => string.IsNullOrEmpty(Label) ? base.ToString() : Label;
+
+    public Player Player;
+
+    internal nint ptr;
 }
 

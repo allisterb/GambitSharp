@@ -69,11 +69,7 @@ public class NormalFormGame : Game
         get
         {
             if (strategies.Length != PlayerCount) throw new ArgumentException("The number of strategies specified must equal the the number of players.");
-            var psp  = new PureStrategyProfile(this, strategyprofile.PSP_New(this.ptr));
-            foreach (var strategy in strategies)
-            {
-                psp.SetStrategy(strategy);
-            }
+            var psp  = new PureStrategyProfile(this, strategies);
             return psp;
         }
     }

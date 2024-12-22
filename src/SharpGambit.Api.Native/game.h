@@ -50,7 +50,7 @@ API void* NewOutcome(void* game) { return goptr(gerep(game)->NewOutcome()); }
 
 API void* GetOutcome(void* game, int index) { return goptr(gerep(game)->GetOutcome(index)); }
 
-API void* NewTablePureStrategyProfile(void* game) { return pspptr(gtablerep(game)->NewPureStrategyProfile()); }
+API void* NewTablePureStrategyProfile(void* game) { return new PureStrategyProfile(gtablerep(game)->NewPureStrategyProfile()); }
 
 
 	

@@ -24,17 +24,12 @@ static GamePlayerRep* gprep(void* player) { return reinterpret_cast<GamePlayerRe
 static void* gsptr(GameStrategy strategy) { return (GameStrategyRep*)(strategy); }
 static GameStrategyRep* gsrep(void* strategy) { return reinterpret_cast<GameStrategyRep*>(strategy); }
 
-static void* pspptr(PureStrategyProfile profile) { return (PureStrategyProfileRep*)(profile); }
-static PureStrategyProfileRep* psprep(void* profile) { return reinterpret_cast<PureStrategyProfileRep*>(profile); }
+static void* pspptr(PureStrategyProfile& profile) { return &profile; }
+static PureStrategyProfile psprep(void* profile) { return *reinterpret_cast<PureStrategyProfile*>(profile); }
 
 static void* goptr(GameOutcome outcome) { return (GameOutcomeRep*)(outcome); }
 static GameOutcomeRep* gorep(void* outcome) { return reinterpret_cast<GameOutcomeRep*>(outcome); }
 
-template <class T>
-static void* ptr(GameObjectPtr<T> p) { return (T*) p; }
-
-template <class T>
-static T* rep(void* p) { return reinterpret_cast<T*>(ptr); }
 
 template <class T>
 static Array<T> FromCArray(int arrc, const T arr[])

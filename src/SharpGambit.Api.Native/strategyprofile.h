@@ -4,7 +4,7 @@
 
 using namespace Gambit;
 
-API void* PSP_New(void* game) {return pspptr(gtablerep(game)->NewPureStrategyProfile()); }
+API void* PSP_New(void* game) {return new PureStrategyProfile(grep(game)->NewPureStrategyProfile()); }
 
 API int PSP_GetIndex(void* profile) { return psprep(profile)->GetIndex(); }
 

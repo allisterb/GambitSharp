@@ -8,13 +8,16 @@ using gambit;
 
 public struct PureStrategyProfile : IStrategyProfile
 {
-    public PureStrategyProfile(Game game, nint ptr)
+    public PureStrategyProfile(Game game, params Strategy[] strategies)
     {
+        if (strategies.Length != game.PlayerCount) throw new ArgumentException("The length of the strategies array must equal the number of players.");
         this.game = game;
-        this.ptr = ptr;
+        this.ptr = strategyprofile.PSP_New(game.ptr);
+        foreach (var strategy in strategies)
+        {
+            strategyprofile.PSP_SetStrategy(ptr, strategy.ptr); 
+        }
     }
-
-    public PureStrategyProfile(Game game) : this(game, gambit.game.NewTablePureStrategyProfile(game.ptr)) {}
 
     Game IStrategyProfile.Game => game;
 

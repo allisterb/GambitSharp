@@ -41,7 +41,7 @@ public class Game : GameObject
     public Player NewPlayer() => new Player(this);
 
     //public 
-    protected int FailIfPlayerIndexTooLarge(int pl) => pl >= PlayerCount ? throw new ArgumentException($"This game has {PlayerCount} players.") : pl;  
+    internal int FailIfPlayerIndexTooLarge(int pl) => pl >= PlayerCount ? throw new ArgumentException($"This game has {PlayerCount} players.") : pl;  
 }
 
 public class NormalFormGame : Game

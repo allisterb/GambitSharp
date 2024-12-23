@@ -17,8 +17,10 @@ namespace SharpGambit.Tests.Api
             Assert.Equal("Snitch", g[1][0].Label);
             Assert.Equal("Foo", g[1][2].Label);
 
-            var sp = g["Snitch", "Foo"];
-            Assert.Equal("Snitch", sp[0].Label);
+            var sp = g["Mute", "Foo"];
+            Assert.Equal("Mute", sp.GetStrategy(0).Label);
+            Assert.Equal("Foo", sp.GetStrategy(1).Label);
+            sp = g["Mute", "Foo"];
         }
     }
 }

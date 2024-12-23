@@ -26,7 +26,7 @@ public struct Strategy
 
     public int Index => strategy.GetStrategyIndex(ptr) - 1;
 
-    public override string? ToString() => string.IsNullOrEmpty(Label) ? base.ToString() : Label;
+    //public override string? ToString() => string.IsNullOrEmpty(Label) ? base.ToString() : Label;
 
     public Player Player;
 

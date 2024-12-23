@@ -31,10 +31,13 @@ public struct Outcome
 
     public Rational Payoff(int pl)
     {
-        outcome.GetPayoff(ptr, pl + 1, out var n, out var d);
+        
+        outcome.GetPayoff(ptr, game.FailIfPlayerIndexTooLarge(pl) + 1, out var n, out var d);
         return new Rational(n, d);
     }
     
+    public Rational this[int pl] => Payoff(pl);
+
     public Game game;
     internal nint ptr;
 }

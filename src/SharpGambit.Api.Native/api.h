@@ -1,9 +1,7 @@
 #pragma once
 
 #include "pch.h"
-#include "games/gametable.h"
-#include "games/gametree.h"
-#include "games/stratpure.h"
+
 #define	API extern "C" __declspec(dllexport) 
 
 #define CS_OUT 

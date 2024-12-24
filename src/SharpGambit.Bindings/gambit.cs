@@ -305,6 +305,9 @@ namespace gambit
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "PSP_GetOutcome", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr PSP_GetOutcome(__IntPtr profile);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "PSP_SetOutcome", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr PSP_SetOutcome(__IntPtr profile, __IntPtr o);
         }
 
         public static __IntPtr PSP_New(__IntPtr game)
@@ -334,6 +337,12 @@ namespace gambit
         public static __IntPtr PSP_GetOutcome(__IntPtr profile)
         {
             var ___ret = __Internal.PSP_GetOutcome(profile);
+            return ___ret;
+        }
+
+        public static __IntPtr PSP_SetOutcome(__IntPtr profile, __IntPtr o)
+        {
+            var ___ret = __Internal.PSP_SetOutcome(profile, o);
             return ___ret;
         }
     }

@@ -46,7 +46,7 @@ public class Game : GameObject
 
 public class NormalFormGame : Game
 {
-    public NormalFormGame(string title, string[] players, string[][] strategies) :
+    public NormalFormGame(string title, string[] players, string[][] strategies, Array? payoffs = null) :
         base(game.NewNormalFormGame(title, players.Length, players, strategies.Select(s => s.Length).ToArray()))
     {
         if (strategies.Length != players.Length) throw new ArgumentException("The rank of the strategies array must equal the number of players.");
@@ -57,6 +57,35 @@ public class NormalFormGame : Game
             {
                 var s = player.GetPlayerStrategy(p, j + 1);
                 strategy.SetStrategyLabel(s, strategies[i][j]);
+            }
+        }
+        if (payoffs is not null && payoffs.Length > 0)
+        {
+            var sdims = strategies.Select(s => s.Length).ToArray(); 
+            if (!(payoffs.GetType().GetElementType()?.IsAssignableTo(typeof(ITuple)) ?? false))
+            {
+                throw new ArgumentException("The outcomes array must have a tuple element type.");
+            }
+            if (payoffs.Rank != PlayerCount) throw new ArgumentException("The rank of the payoffs array must equal the number of players.", nameof(payoffs));
+            for(int i = 0; i < strategies.Length; i++)
+            {
+                if (payoffs.GetLength(i) != sdims[i])
+                {
+                    throw new ArgumentException($"Dimension {i} of the payoffs array has length {payoffs.GetLength(i)}, not {sdims[i]}.");
+                }
+            }
+            var p = (ITuple) payoffs.GetValue(payoffs.GetIndices(0))!;
+            if (p.Length != PlayerCount)
+            {
+                throw new ArgumentException("Each element of the payoffs array must have length equal to the number of players.");
+            }
+
+            for (int i = 0; i < payoffs.Length; i++)
+            {
+                var indices = payoffs.GetIndices(i);
+                var profile = new PureStrategyProfile(this, indices);
+                p = (ITuple) payoffs.GetValue(indices)!;
+                profile.Outcome = new Outcome(this, p);    
             }
         }
     }
@@ -74,6 +103,5 @@ public class NormalFormGame : Game
         }
     }
 
-    public PureStrategyProfile this[params string[] strategies] => this[strategies.Select((s,i) => this[i][s]).ToArray()];
-    
+    public PureStrategyProfile this[params string[] strategies] => this[strategies.Select((s,i) => this[i][s]).ToArray()];  
 }

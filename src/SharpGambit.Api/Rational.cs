@@ -64,8 +64,8 @@ namespace SharpGambit {
         }
         private const int DoubleMaxScale = 308;
         private static readonly BigInteger s_bnDoublePrecision = BigInteger.Pow(10, DoubleMaxScale);
-        private static readonly BigInteger s_bnDoubleMaxValue = (BigInteger) Double.MaxValue;
-        private static readonly BigInteger s_bnDoubleMinValue = (BigInteger) Double.MinValue;
+        private static readonly BigInteger s_bnDoubleMaxValue = (BigInteger)Double.MaxValue;
+        private static readonly BigInteger s_bnDoubleMinValue = (BigInteger)Double.MinValue;
 
         [StructLayout(LayoutKind.Explicit)]
         internal struct DecimalUInt32 {
@@ -78,8 +78,8 @@ namespace SharpGambit {
         private const int DecimalSignMask = unchecked((int)0x80000000);
         private const int DecimalMaxScale = 28;
         private static readonly BigInteger s_bnDecimalPrecision = BigInteger.Pow(10, DecimalMaxScale);
-        private static readonly BigInteger s_bnDecimalMaxValue = (BigInteger) Decimal.MaxValue;
-        private static readonly BigInteger s_bnDecimalMinValue = (BigInteger) Decimal.MinValue;
+        private static readonly BigInteger s_bnDecimalMaxValue = (BigInteger)Decimal.MaxValue;
+        private static readonly BigInteger s_bnDecimalMinValue = (BigInteger)Decimal.MinValue;
 
         private const String c_solidus = @"/";
         #endregion Members for Internal Support
@@ -111,10 +111,10 @@ namespace SharpGambit {
         }
 
         public BigInteger Numerator {
-            get { 
+            get {
                 return m_numerator;
             }
-        }	
+        }
 
         public BigInteger Denominator {
             get {
@@ -216,17 +216,17 @@ namespace SharpGambit {
             int exponent;
             ulong significand;
             SplitDoubleIntoParts(value, out sign, out exponent, out significand, out isFinite);
-         
+
             if (significand == 0) {
                 this = Rational.Zero;
                 return;
             }
-            
+
             m_numerator = significand;
             m_denominator = 1 << 52;
 
             if (exponent > 0) {
-                m_numerator = BigInteger.Pow(m_numerator, exponent);            
+                m_numerator = BigInteger.Pow(m_numerator, exponent);
             }
             else if (exponent < 0) {
                 m_denominator = BigInteger.Pow(m_denominator, -exponent);
@@ -275,7 +275,7 @@ namespace SharpGambit {
             }
             else if (numerator.Sign == 0) {
                 // 0/m -> 0/1
-                m_numerator   = BigInteger.Zero;
+                m_numerator = BigInteger.Zero;
                 m_denominator = BigInteger.One;
             }
             else if (denominator.Sign < 0) {
@@ -286,7 +286,7 @@ namespace SharpGambit {
                 m_numerator = numerator;
                 m_denominator = denominator;
             }
-            Simplify();           
+            Simplify();
         }
 
         public Rational(BigInteger whole, BigInteger numerator, BigInteger denominator) {
@@ -305,7 +305,7 @@ namespace SharpGambit {
                 m_denominator = denominator;
                 m_numerator = (whole * denominator) + numerator;
             }
-            Simplify(); 
+            Simplify();
         }
         #endregion Constructors
 
@@ -356,7 +356,7 @@ namespace SharpGambit {
 
             remainder = new Rational(ad % bc, bd);
             return new Rational(ad, bc);
-        }    
+        }
 
 
         public static Rational Pow(Rational baseValue, BigInteger exponent) {
@@ -371,7 +371,7 @@ namespace SharpGambit {
                 }
                 // n^(-e) -> (1/n)^e
                 baseValue = Rational.Invert(baseValue);
-                exponent  = BigInteger.Negate(exponent);
+                exponent = BigInteger.Negate(exponent);
             }
 
             Rational result = baseValue;
@@ -382,6 +382,16 @@ namespace SharpGambit {
 
             return result;
         }
+
+        public static Rational Convert(object obj) => obj switch
+        {
+            int i => new Rational((BigInteger) i),
+            BigInteger bi => new Rational(bi),
+            double d => new Rational(d),
+            decimal d => new Rational(d),   
+            Rational r => r,
+            _ => throw new ArgumentException($"Cannot convert {obj} to a Rational value.")
+        };
 
         // Least Common Denominator (LCD)
         //

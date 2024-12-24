@@ -130,8 +130,12 @@ namespace SharpGambit
             }
         }
 
-        public static T SingleOrFailure<T>(this IEnumerable<T> collection, Func<T, bool> p, string failureMessage = "No element in the collection satisfies the condition.") => 
-            collection.SingleOrDefault(p) ?? throw new ArgumentException(failureMessage);
+        public static T SingleOrFailure<T>(this IEnumerable<T> collection, Func<T, bool> p, string failureMessage = "No element in the collection satisfies the condition.")
+        {
+            var e = collection.SingleOrDefault(p); 
+            if (e is null || e.Equals(default(T))) throw new ArgumentException(failureMessage);
+            return e;
+        }
             
              
     }

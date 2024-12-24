@@ -13,3 +13,5 @@ API void* PSP_GetStrategy(void* profile, int pl) { return gsptr((*psprep(profile
 API void* PSP_SetStrategy(void* profile, void* s) { (*psprep(profile))->SetStrategy(gsrep(s)); return profile; }
 
 API void* PSP_GetOutcome(void* profile) { return goptr((*psprep(profile))->GetOutcome()); }
+
+API void* PSP_SetOutcome(void* profile, void* o) { (*psprep(profile))->SetOutcome(gorep(o)); return profile; }

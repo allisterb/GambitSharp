@@ -18,11 +18,14 @@ public struct Outcome
 
     public Outcome(Game game) : this(game, gambit.game.NewOutcome(game.ptr)) {}
 
-    public Outcome(Game game, Array payoffs) :this(game)
+    public Outcome(Game game, ITuple payoffs) :this(game)
     {
-        if (!(payoffs.GetType().GetElementType()?.IsAssignableTo(typeof(ITuple)) ?? false)) throw new ArgumentException("The elements of the payoffs array must be tuples.", nameof(payoffs));  
-        if (payoffs.Rank != game.PlayerCount) throw new ArgumentException("The rank of the payoffs array must equal the number of players.", nameof(payoffs));
-        
+        if (payoffs.Length != game.PlayerCount) throw new ArgumentException("The number of items in the payoff tuple must equal the number of players.", nameof(payoffs));
+        for (int i = 0; i < payoffs.Length; i++)
+        {
+            var r = Rational.Convert(payoffs[i]!);
+            outcome.SetRationalPayoff(this.ptr, i + 1, (int) r.Numerator, (int) r.Denominator);
+        }        
     }
 
     public int Length => game.PlayerCount;

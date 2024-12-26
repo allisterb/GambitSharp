@@ -1,4 +1,4 @@
-using System.Data;
+using System.Linq;
 
 namespace SharpGambit
 {
@@ -137,6 +137,35 @@ namespace SharpGambit
             return e;
         }
             
-             
+        public static T[,] To2D<T>(this T[][] arr )
+        {
+            if (!arr.All(a => a.Length == arr[0].Length)) throw new ArgumentException("Cannot convert a jagged array with different lengths to a 2D array.");
+            T[,] results = new T[arr.GetLength(0), arr[0].Length]; 
+            for(int i = 0; i < arr.Length; i++)
+            {
+                for (int j = 0; j < arr[0].Length; j++)
+                {
+                    results[i, j] = arr[i][j];
+                }
+            }
+            return results;
+        }
+
+        public static ITuple Permute<T>(this ITuple r) => r.Length switch
+        {
+            2 => Tuple.Create((T)r[1]!, (T)r[0]!),
+            3 => Tuple.Create((T)r[2]!, (T)r[1]!, (T)r[0]!),
+            4 => Tuple.Create((T)r[3]!, (T)r[2]!, (T)r[1]!, (T)r[0]!),
+            5 => Tuple.Create((T)r[4]!, (T)r[3]!, (T)r[2]!, (T)r[1]!, (T)r[0]!),
+            6 => Tuple.Create((T)r[5]!, (T)r[4]!, (T)r[3]!, (T)r[2]!, (T)r[1]!, (T)r[0]!),
+            7 => Tuple.Create((T)r[6]!, (T)r[5]!, (T)r[4]!, (T)r[3]!, (T)r[2]!, (T)r[1]!, (T)r[0]!),
+            8 => Tuple.Create((T)r[7]!, (T)r[6]!, (T)r[5]!, (T)r[4]!, (T)r[3]!, (T)r[2]!, (T)r[1]!, (T)r[0]!),
+            var l => throw new ArgumentOutOfRangeException($"Unsupported tuple length: {l}.")
+        };
+
+        
+        public static ITuple[] Permute<T>(this ITuple[] r) => r.Reverse().Select(t => t.Permute<T>()).ToArray();
+
+
     }
 }

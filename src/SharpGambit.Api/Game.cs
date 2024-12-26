@@ -52,7 +52,7 @@ public class NormalFormGame : Game
         if (strategies.Length != players.Length) throw new ArgumentException("The rank of the strategies array must equal the number of players.");
         for (int i = 0; i < players.Length; i++)
         {
-            var p = game.GetPlayer(ptr, i + 1); 
+            var p = game.GetPlayer(ptr, i + 1);
             for (int j = 0; j < strategies[i].Length; j++)
             {
                 var s = player.GetPlayerStrategy(p, j + 1);
@@ -61,20 +61,20 @@ public class NormalFormGame : Game
         }
         if (payoffs is not null && payoffs.Length > 0)
         {
-            var sdims = strategies.Select(s => s.Length).ToArray(); 
+            var sdims = strategies.Select(s => s.Length).ToArray();
             if (!(payoffs.GetType().GetElementType()?.IsAssignableTo(typeof(ITuple)) ?? false))
             {
                 throw new ArgumentException("The outcomes array must have a tuple element type.");
             }
             if (payoffs.Rank != PlayerCount) throw new ArgumentException("The rank of the payoffs array must equal the number of players.", nameof(payoffs));
-            for(int i = 0; i < strategies.Length; i++)
+            for (int i = 0; i < strategies.Length; i++)
             {
                 if (payoffs.GetLength(i) != sdims[i])
                 {
                     throw new ArgumentException($"Dimension {i} of the payoffs array has length {payoffs.GetLength(i)}, not {sdims[i]}.");
                 }
             }
-            var p = (ITuple) payoffs.GetValue(payoffs.GetIndices(0))!;
+            var p = (ITuple)payoffs.GetValue(payoffs.GetIndices(0))!;
             if (p.Length != PlayerCount)
             {
                 throw new ArgumentException("Each element of the payoffs array must have length equal to the number of players.");
@@ -84,24 +84,32 @@ public class NormalFormGame : Game
             {
                 var indices = payoffs.GetIndices(i);
                 var profile = new PureStrategyProfile(this, indices);
-                p = (ITuple) payoffs.GetValue(indices)!;
-                profile.Outcome = new Outcome(this, p);    
+                p = (ITuple)payoffs.GetValue(indices)!;
+                profile.Outcome = new Outcome(this, p);
             }
         }
     }
 
     public int[] StrategyCounts => Players.Select(p => p.StrategyCount).ToArray();
-    
-    
+
+
     public PureStrategyProfile this[params Strategy[] strategies]
     {
         get
         {
             if (strategies.Length != PlayerCount) throw new ArgumentException("The number of strategies specified must equal the the number of players.");
-            var psp  = new PureStrategyProfile(this, strategies);
+            var psp = new PureStrategyProfile(this, strategies);
             return psp;
         }
     }
 
-    public PureStrategyProfile this[params string[] strategies] => this[strategies.Select((s,i) => this[i][s]).ToArray()];  
+    public PureStrategyProfile this[params string[] strategies] => this[strategies.Select((s, i) => this[i][s]).ToArray()];
+
+    public static NormalFormGame TwoPlayerGame(string title, string player1, string player2, string[][] strategies, ITuple[][] payoffs) =>
+        new NormalFormGame(title, [player1, player2], strategies, payoffs.To2D());
+
+    //public static NormalFormGame SymmetricTwoPlayerGame(string title, string player1, string player2, string[] strategies, ITuple[] payoffs) =>
+    //    NormalFormGame.TwoPlayerGame(title, player1, player2, [strategies, strategies], [payoffs, payoffs.Permute<Rational>()]);
+
+
 }

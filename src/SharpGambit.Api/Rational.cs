@@ -36,6 +36,7 @@ namespace SharpGambit {
     using System.Diagnostics;
     using System.Globalization;
     using System.Numerics;
+    using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Runtime.Serialization;
     using System.Security.Permissions;
@@ -385,14 +386,25 @@ namespace SharpGambit {
 
         public static Rational Convert(object obj) => obj switch
         {
-            int i => new Rational((BigInteger) i),
+            int i => new Rational((BigInteger)i),
             BigInteger bi => new Rational(bi),
             double d => new Rational(d),
-            decimal d => new Rational(d),   
+            decimal d => new Rational(d),
             Rational r => r,
             _ => throw new ArgumentException($"Cannot convert {obj} to a Rational value.")
         };
 
+        public static ITuple ToTuple(ITuple r) => r.Length switch
+        {
+            2 => ValueTuple.Create((Rational)r[0]!, (Rational)r[1]!),
+            3 => ValueTuple.Create((Rational)r[0]!, (Rational)r[1]!, (Rational)r[2]!),
+            4 => ValueTuple.Create((Rational)r[0]!, (Rational)r[1]!, (Rational)r[2]!, (Rational)r[3]!),
+            5 => ValueTuple.Create((Rational)r[0]!, (Rational)r[1]!, (Rational)r[2]!, (Rational)r[3]!, (Rational)r[4]!),
+            6 => Tuple.Create((Rational)r[0]!, (Rational)r[1]!, (Rational)r[2]!, (Rational)r[3]!, (Rational)r[4]!, (Rational)r[5]!),
+            7 => Tuple.Create((Rational)r[0]!, (Rational)r[1]!, (Rational)r[2]!, (Rational)r[3]!, (Rational)r[4]!, (Rational)r[5]!, (Rational)r[6]!),
+            8 => Tuple.Create((Rational)r[0]!, (Rational)r[1]!, (Rational)r[2]!, (Rational)r[3]!, (Rational)r[4]!, (Rational)r[5]!, (Rational)r[6]!, (Rational)r[7]!),
+            var l => throw new ArgumentOutOfRangeException($"Unsupported tuple length: {l}.")
+        };
         // Least Common Denominator (LCD)
         //
         // The LCD is the least common multiple of the two denominators.  For instance, the LCD of
@@ -439,7 +451,7 @@ namespace SharpGambit {
         public static bool operator >=(Rational x, Rational y) {
             return Compare(x, y) >= 0;
         }
- 
+
         public static Rational operator +(Rational r) {
             return r;
         }
@@ -448,14 +460,14 @@ namespace SharpGambit {
             return new Rational(-r.m_numerator, r.Denominator);
         }
 
-        public static Rational operator ++ (Rational r) {
+        public static Rational operator ++(Rational r) {
             return r + Rational.One;
         }
 
-        public static Rational operator -- (Rational r) {
+        public static Rational operator --(Rational r) {
             return r - Rational.One;
         }
-        
+
         public static Rational operator +(Rational r1, Rational r2) {
             // a/b + c/d  == (ad + bc)/bd
             return new Rational((r1.m_numerator * r2.Denominator) + (r1.Denominator * r2.m_numerator), (r1.Denominator * r2.Denominator));
@@ -524,19 +536,19 @@ namespace SharpGambit {
             return BigInteger.Divide(value.m_numerator, value.m_denominator);
         }
 
-        public static explicit operator Single(Rational value) {   
+        public static explicit operator Single(Rational value) {
             // The Single value type represents a single-precision 32-bit number with
             // values ranging from negative 3.402823e38 to positive 3.402823e38      
             // values that do not fit into this range are returned as Infinity
             return (Single)((Double)value);
         }
 
-        public static explicit operator Double(Rational value) {           
+        public static explicit operator Double(Rational value) {
             // The Double value type represents a double-precision 64-bit number with
             // values ranging from -1.79769313486232e308 to +1.79769313486232e308
             // values that do not fit into this range are returned as +/-Infinity
             if (SafeCastToDouble(value.m_numerator) && SafeCastToDouble(value.m_denominator)) {
-                return (Double) value.m_numerator / (Double) value.m_denominator;
+                return (Double)value.m_numerator / (Double)value.m_denominator;
             }
 
             // scale the numerator to preseve the fraction part through the integer division
@@ -551,7 +563,7 @@ namespace SharpGambit {
             while (scale > 0) {
                 if (!isDouble) {
                     if (SafeCastToDouble(denormalized)) {
-                        result = (Double) denormalized;
+                        result = (Double)denormalized;
                         isDouble = true;
                     }
                     else {
@@ -573,7 +585,7 @@ namespace SharpGambit {
             // from +79,228,162,514,264,337,593,543,950,335 to -79,228,162,514,264,337,593,543,950,335
             // the binary representation of a Decimal value is of the form, ((-2^96 to 2^96) / 10^(0 to 28))
             if (SafeCastToDecimal(value.m_numerator) && SafeCastToDecimal(value.m_denominator)) {
-                return (Decimal) value.m_numerator / (Decimal) value.m_denominator;
+                return (Decimal)value.m_numerator / (Decimal)value.m_denominator;
             }
 
             // scale the numerator to preseve the fraction part through the integer division
@@ -587,7 +599,7 @@ namespace SharpGambit {
                 }
                 else {
                     DecimalUInt32 dec = new DecimalUInt32();
-                    dec.dec = (Decimal) denormalized;
+                    dec.dec = (Decimal)denormalized;
                     dec.flags = (dec.flags & ~DecimalScaleMask) | (scale << 16);
                     return dec.dec;
                 }
@@ -600,58 +612,61 @@ namespace SharpGambit {
         #region implicit conversions to BigRational
 
         //[CLSCompliant(false)]
-        public static implicit operator Rational(SByte value) {           
+        public static implicit operator Rational(SByte value) {
             return new Rational((BigInteger)value);
         }
 
         //[CLSCompliant(false)]
-        public static implicit operator Rational(UInt16 value) {           
+        public static implicit operator Rational(UInt16 value) {
             return new Rational((BigInteger)value);
         }
 
         //[CLSCompliant(false)]
-        public static implicit operator Rational(UInt32 value) {           
+        public static implicit operator Rational(UInt32 value) {
             return new Rational((BigInteger)value);
         }
 
         //[CLSCompliant(false)]
-        public static implicit operator Rational(UInt64 value) {           
+        public static implicit operator Rational(UInt64 value) {
             return new Rational((BigInteger)value);
         }
 
-        public static implicit operator Rational(Byte value) {           
+        public static implicit operator Rational(Byte value) {
             return new Rational((BigInteger)value);
         }
 
-        public static implicit operator Rational(Int16 value) {           
+        public static implicit operator Rational(Int16 value) {
             return new Rational((BigInteger)value);
         }
 
-        public static implicit operator Rational(Int32 value) {           
+        public static implicit operator Rational(Int32 value) {
             return new Rational((BigInteger)value);
         }
 
-        public static implicit operator Rational(Int64 value) {           
+        public static implicit operator Rational(Int64 value) {
             return new Rational((BigInteger)value);
         }
 
-        public static implicit operator Rational(BigInteger value) {           
+        public static implicit operator Rational(BigInteger value) {
             return new Rational(value);
         }
 
-        public static implicit operator Rational(Single value) { 
+        public static implicit operator Rational(Single value) {
             return new Rational((Double)value);
         }
 
-        public static implicit operator Rational(Double value) {      
+        public static implicit operator Rational(Double value) {
             return new Rational(value);
         }
 
-        public static implicit operator Rational(Decimal value) {      
+        public static implicit operator Rational(Decimal value) {
             return new Rational(value);
         }
 
+      
         #endregion implicit conversions to BigRational
+
+        
 
         // ----- SECTION: private serialization instance methods  ----------------*
         #region serialization

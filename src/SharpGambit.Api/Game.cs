@@ -20,8 +20,6 @@ public class Game : GameObject
     public int PlayerCount => game.NumPlayers(ptr); 
 
 
-    public Player GetPlayer(int player) => new Player(this, game.GetPlayer(ptr, FailIfPlayerIndexTooLarge(player) + 1));
-
     public IEnumerable<Player> Players
     {
         get
@@ -33,14 +31,27 @@ public class Game : GameObject
         }
     }
 
+    public IEnumerable<Strategy[]> Strategies
+    {
+        get
+        {
+            for (int i = 0; i < PlayerCount; i++)
+            {
+                yield return new Player(this, game.GetPlayer(ptr, i + 1)).Strategies.ToArray();
+            }
+        }
+    }
+
+    public Player GetPlayer(int player) => new Player(this, game.GetPlayer(ptr, FailIfPlayerIndexTooLarge(player) + 1));
+
+    public Player GetPlayer(string label) => Players.SingleOrFailure(p => p.Label == label, $"The player with label {label} does not exist in the game.");
+
     public Player this[int pl] => GetPlayer(pl);
 
-    public Player this[string label] => Players.SingleOrFailure(pl => pl.Label == label, $"No player has the label {label}.");
+    public Player this[string label] => GetPlayer(label);
 
+    public Player AddPlayer() => new Player(this);
 
-    public Player NewPlayer() => new Player(this);
-
-    //public 
     internal int FailIfPlayerIndexTooLarge(int pl) => pl >= PlayerCount ? throw new ArgumentException($"This game has {PlayerCount} players.") : pl;  
 }
 
@@ -105,8 +116,8 @@ public class NormalFormGame : Game
 
     public PureStrategyProfile this[params string[] strategies] => this[strategies.Select((s, i) => this[i][s]).ToArray()];
 
-    public static NormalFormGame TwoPlayerGame(string title, string player1, string player2, string[][] strategies, ITuple[][] payoffs) =>
-        new NormalFormGame(title, [player1, player2], strategies, payoffs.To2D());
+    public static NormalFormGame TwoPlayerGame(string title, string player1, string player2, string[] strategies1, string[] strategies2, ITuple[][] payoffs) =>
+        new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs.To2D());
 
     //public static NormalFormGame SymmetricTwoPlayerGame(string title, string player1, string player2, string[] strategies, ITuple[] payoffs) =>
     //    NormalFormGame.TwoPlayerGame(title, player1, player2, [strategies, strategies], [payoffs, payoffs.Permute<Rational>()]);

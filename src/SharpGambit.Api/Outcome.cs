@@ -41,6 +41,8 @@ public struct Outcome
     
     public Rational this[int pl] => Payoff(pl);
 
+    public Rational this[string pl] => Payoff(game.GetPlayer(pl).Index);
+
     public Game game;
     internal nint ptr;
 }

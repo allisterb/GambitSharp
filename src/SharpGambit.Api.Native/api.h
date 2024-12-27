@@ -25,6 +25,9 @@ static GameStrategyRep* gsrep(void* strategy) { return reinterpret_cast<GameStra
 static void* pspptr(PureStrategyProfile& profile) { return &profile; }
 static PureStrategyProfile* psprep(void* profile) { return reinterpret_cast<PureStrategyProfile*>(profile); }
 
+static void* mspptr(MixedStrategyProfile<double>& profile) { return &profile; }
+static MixedStrategyProfile<double>* msprep(void* profile) { return reinterpret_cast<MixedStrategyProfile<double>*>(profile); }
+
 static void* goptr(GameOutcome outcome) { return (GameOutcomeRep*)(outcome); }
 static GameOutcomeRep* gorep(void* outcome) { return reinterpret_cast<GameOutcomeRep*>(outcome); }
 

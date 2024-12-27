@@ -14,5 +14,6 @@
 #include "games/gametable.h"
 #include "games/gametree.h"
 #include "games/stratpure.h"
+#include "games/stratmixed.h"
 
 #endif //PCH_H

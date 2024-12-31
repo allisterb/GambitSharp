@@ -21,3 +21,9 @@ API void* MSP_New(void* game) { return new MixedStrategyProfile<double>(grep(gam
 API double MSP_GetStrategyProbability(void* profile, void* s) { return msprep(profile)->operator[](gsrep(s)); }
 
 API void* MSP_SetStrategyProbability(void* profile, void* s, double p) { msprep(profile)->operator[](gsrep(s)) = p; return profile; }
+
+API double MSP_GetPlayerPayoff(void* profile, void* player) { return msprep(profile)->GetPayoff(gprep(player)); }
+
+API double MSP_GetStrategyPayoff(void* profile, void* strategy) { return msprep(profile)->GetPayoff(gsrep(strategy)); }
+
+API double MSP_GetPlayerNumPayoff(void* profile, int player) { return msprep(profile)->GetPayoff(player); }

@@ -31,7 +31,7 @@ public class Game : GameObject
         }
     }
 
-    public IEnumerable<Strategy[]> Strategies
+    public IEnumerable<PureStrategy[]> Strategies
     {
         get
         {
@@ -104,7 +104,7 @@ public class NormalFormGame : Game
     public int[] StrategyCounts => Players.Select(p => p.StrategyCount).ToArray();
 
 
-    public PureStrategyProfile this[params Strategy[] strategies]
+    public PureStrategyProfile this[params PureStrategy[] strategies]
     {
         get
         {
@@ -116,8 +116,10 @@ public class NormalFormGame : Game
 
     public PureStrategyProfile this[params string[] strategies] => this[strategies.Select((s, i) => this[i][s]).ToArray()];
 
-    public static NormalFormGame TwoPlayerGame(string title, string player1, string player2, string[] strategies1, string[] strategies2, ITuple[][] payoffs) =>
-        new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs.To2D());
+    public MixedStrategyProfile NewMixedStrategyProfile() => new MixedStrategyProfile(this);
+
+    public static NormalFormGame TwoPlayerGame(string title, string player1, string player2, string[] strategies1, string[] strategies2, ITuple[][]? payoffs = null) =>
+        new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs?.To2D());
 
     //public static NormalFormGame SymmetricTwoPlayerGame(string title, string player1, string player2, string[] strategies, ITuple[] payoffs) =>
     //    NormalFormGame.TwoPlayerGame(title, player1, player2, [strategies, strategies], [payoffs, payoffs.Permute<Rational>()]);

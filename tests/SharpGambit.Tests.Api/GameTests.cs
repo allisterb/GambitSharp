@@ -50,13 +50,22 @@ namespace SharpGambit.Tests.Api
         [Fact]
         public void CanConstructTwoPlayerNormalFormGame()
         {
-            var g = NormalFormGame.TwoPlayerGame("Prisoner's Dilemna", "Player 1", "Player 2", [["Fink", "Cheat"], ["Fink", "Cheat"]],
+            var g = NormalFormGame.TwoPlayerGame("Prisoner's Dilemna", "Player 1", "Player 2", ["Fink", "Cheat"], ["Fink", "Cheat"],
                 [[(0, 1), (2, 3)], [(4, 5), (6, 7)]]);
             Assert.Equal("Player 2", g[1].Label);
             Assert.Equal(7, g["Cheat", "Cheat"][1]);
 
-            g = NormalFormGame.SymmetricTwoPlayerGame("Prisoner's Dilemna", "Player 1", "Player2", ["Finck Cheat"], [(0, 1), (2, 3)]);
-            Assert.Equal(3, g["Cheat", "Finck"][0]);
+            //g = NormalFormGame.SymmetricTwoPlayerGame("Prisoner's Dilemna", "Player 1", "Player2", ["Finck Cheat"], [(0, 1), (2, 3)]);
+            //Assert.Equal(3, g["Cheat", "Finck"][0]);
+        }
+
+        [Fact]
+        public void CanConstructMixedStrategyProfile()
+        {
+            var g = NormalFormGame.TwoPlayerGame("Prisoner's Dilemna", "Player 1", "Player 2", ["Fink", "Cheat"], ["Fink", "Cheat"],
+                [[(0, 1), (2, 3)], [(4, 5), (6, 7)]]);
+            var mp = g.NewMixedStrategyProfile();
+            Assert.Equal(0.5, mp[0]["Fink"]);
         }
     }
 }

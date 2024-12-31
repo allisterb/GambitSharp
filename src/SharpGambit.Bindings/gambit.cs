@@ -308,6 +308,24 @@ namespace gambit
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "PSP_SetOutcome", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr PSP_SetOutcome(__IntPtr profile, __IntPtr o);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "MSP_New", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr MSP_New(__IntPtr game);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "MSP_GetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern double MSP_GetStrategyProbability(__IntPtr profile, __IntPtr s);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "MSP_SetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr MSP_SetStrategyProbability(__IntPtr profile, __IntPtr s, double p);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "MSP_GetPlayerPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern double MSP_GetPlayerPayoff(__IntPtr profile, __IntPtr player);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "MSP_GetStrategyPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern double MSP_GetStrategyPayoff(__IntPtr profile, __IntPtr strategy);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "MSP_GetPlayerNumPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern double MSP_GetPlayerNumPayoff(__IntPtr profile, int player);
         }
 
         public static __IntPtr PSP_New(__IntPtr game)
@@ -343,6 +361,42 @@ namespace gambit
         public static __IntPtr PSP_SetOutcome(__IntPtr profile, __IntPtr o)
         {
             var ___ret = __Internal.PSP_SetOutcome(profile, o);
+            return ___ret;
+        }
+
+        public static __IntPtr MSP_New(__IntPtr game)
+        {
+            var ___ret = __Internal.MSP_New(game);
+            return ___ret;
+        }
+
+        public static double MSP_GetStrategyProbability(__IntPtr profile, __IntPtr s)
+        {
+            var ___ret = __Internal.MSP_GetStrategyProbability(profile, s);
+            return ___ret;
+        }
+
+        public static __IntPtr MSP_SetStrategyProbability(__IntPtr profile, __IntPtr s, double p)
+        {
+            var ___ret = __Internal.MSP_SetStrategyProbability(profile, s, p);
+            return ___ret;
+        }
+
+        public static double MSP_GetPlayerPayoff(__IntPtr profile, __IntPtr player)
+        {
+            var ___ret = __Internal.MSP_GetPlayerPayoff(profile, player);
+            return ___ret;
+        }
+
+        public static double MSP_GetStrategyPayoff(__IntPtr profile, __IntPtr strategy)
+        {
+            var ___ret = __Internal.MSP_GetStrategyPayoff(profile, strategy);
+            return ___ret;
+        }
+
+        public static double MSP_GetPlayerNumPayoff(__IntPtr profile, int player)
+        {
+            var ___ret = __Internal.MSP_GetPlayerNumPayoff(profile, player);
             return ___ret;
         }
     }

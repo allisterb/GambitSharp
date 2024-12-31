@@ -1,10 +1,12 @@
 ﻿namespace SharpGambit;
 
+using System;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 using gambit;
-
-public struct Strategy 
+public struct PureStrategy 
 {
-    internal Strategy(Player player, nint ptr, string? label= null)
+    internal PureStrategy(Player player, nint ptr, string? label= null)
     {
         this.Player = player;
         this.ptr = ptr;
@@ -14,10 +16,8 @@ public struct Strategy
         }
     }
 
-    public Strategy(Player player, string? label = null) : this(player, gambit.player.NewPlayerStrategy(player.ptr), label) { }
+    public PureStrategy(Player player, string? label = null) : this(player, gambit.player.NewPlayerStrategy(player.ptr), label) { }
 
-    //public S
-    
     public string Label
     {
         get => strategy.GetStrategyLabel(ptr);
@@ -33,3 +33,24 @@ public struct Strategy
     internal nint ptr;
 }
 
+public struct MixedStrategy
+{
+    public MixedStrategy(MixedStrategyProfile msp, Player player)
+    {
+        this.msp = msp;
+        this.player = player;
+    }
+
+    public IEnumerable<PureStrategy> Strategies => player.Strategies;
+
+    public double this[PureStrategy s]
+    {
+        get => s.Player.ptr == this.player.ptr ? this.msp.GetStrategyProbability(s) : throw new ArgumentException($"The strategy {s.Label} does not belong to the player {player.Label}.");
+        set => this.msp.SetStrategyProbability(s, (s.Player.ptr == this.player.ptr) ? value : throw new ArgumentException($"The strategy {s.Label} does not belong to the player {player.Label}.")); 
+    }
+
+    public double this[string s] => this[this.player[s]];
+
+    public MixedStrategyProfile msp;
+    public Player player;
+}

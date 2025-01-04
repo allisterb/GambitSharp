@@ -49,7 +49,11 @@ public struct MixedStrategy
         set => this.msp.SetStrategyProbability(s, (s.Player.ptr == this.player.ptr) ? value : throw new ArgumentException($"The strategy {s.Label} does not belong to the player {player.Label}.")); 
     }
 
-    public double this[string s] => this[this.player[s]];
+    public double this[string s]
+    {
+        get => this[this.player[s]];
+        set => this[this.player[s]] = value;
+    }
 
     public MixedStrategyProfile msp;
     public Player player;

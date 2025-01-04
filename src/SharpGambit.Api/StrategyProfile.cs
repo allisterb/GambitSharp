@@ -66,10 +66,15 @@ public struct MixedStrategyProfile
 
     public void SetStrategyProbability(PureStrategy s, double prob) => strategyprofile.MSP_SetStrategyProbability(ptr, s.ptr, prob);
 
-    public double this[PureStrategy s]
-    {
-        get => strategyprofile.MSP_GetStrategyPayoff(ptr, s.ptr);   
-    }
+    public double GetPlayerPayoff(int pl) => strategyprofile.MSP_GetPlayerNumPayoff(ptr, pl + 1);
+
+    public double GetPlayerPayoff(Player pl) => strategyprofile.MSP_GetPlayerPayoff(ptr, pl.ptr);
+
+    public double GetStrategyPayoff(PureStrategy s) => strategyprofile.MSP_GetStrategyPayoff(ptr, s.ptr);
+
+    public double this[PureStrategy s] => GetStrategyPayoff(s);
+
+    public double this[Player p] => GetPlayerPayoff(p);
 
     public double this[int player, string strategy]
     {
@@ -78,7 +83,7 @@ public struct MixedStrategyProfile
     }
 
     public MixedStrategy this[int player] => new MixedStrategy(this, game[player]);
-
+        
     internal nint ptr;
     public Game game;
     public Player player;

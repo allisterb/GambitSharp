@@ -118,7 +118,7 @@ public class NormalFormGame : Game
 
     public MixedStrategyProfile NewMixedStrategyProfile() => new MixedStrategyProfile(this);
 
-    public static NormalFormGame TwoPlayerGame(string title, string player1, string player2, string[] strategies1, string[] strategies2, ITuple[][]? payoffs = null) =>
+    public static NormalFormGame TwoPlayerGame(string title, string[] strategies1, string[] strategies2, ITuple[][]? payoffs = null, string player1 = "Player 1", string player2 = "Player 2") =>
         new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs?.To2D());
 
     //public static NormalFormGame SymmetricTwoPlayerGame(string title, string player1, string player2, string[] strategies, ITuple[] payoffs) =>

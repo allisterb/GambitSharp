@@ -166,6 +166,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="sharpgambit.h" />
+    <ClInclude Include="solvers.h" />
     <ClInclude Include="strategy.h" />
     <ClInclude Include="strategyprofile.h" />
   </ItemGroup>

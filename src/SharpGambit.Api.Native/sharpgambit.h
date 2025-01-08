@@ -5,3 +5,4 @@
 #include "strategy.h"
 #include "outcome.h"
 #include "strategyprofile.h"
+#include "solvers.h"

@@ -70,6 +70,21 @@ static const intptr_t* ToCPtrArray(const Array<GameObjectPtr<T>>& arr, int& size
 	return ptrs;
 
 }
+
+template <class T>
+static const intptr_t* ListToCPtrArray(const List<T> list)
+{
+	T* ptr = &list[1];
+	auto size = list.size();
+	intptr_t* ptrs = new intptr_t[size];
+	for (int i = 0; i < size; i++)
+	{
+		ptrs[i] = (intptr_t)(ptr + i);
+	}
+	return ptrs;
+
+}
+
 static void NumDen(Number n, CS_OUT long& num, CS_OUT long& den) {
 	auto r = (Rational)n;
 	num = r.numerator().as_long();

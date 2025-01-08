@@ -12,6 +12,7 @@
 #include "games/gametable.h"
 #include "games/gametree.h"
 #include "games/stratpure.h"
+#include "solvers/enumpure/enumpure.h"
 
 #include "gtest/gtest.h"
 #endif

@@ -400,4 +400,23 @@ namespace gambit
             return ___ret;
         }
     }
+
+    public unsafe partial class solvers
+    {
+        public partial struct __Internal
+        {
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "EnumPureStrategy_Solve", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr EnumPureStrategySolve(__IntPtr game, int* size);
+        }
+
+        public static __IntPtr EnumPureStrategySolve(__IntPtr game, out int size)
+        {
+            fixed (int* __size1 = &size)
+            {
+                var __arg1 = __size1;
+                var ___ret = __Internal.EnumPureStrategySolve(game, __arg1);
+                return ___ret;
+            }
+        }
+    }
 }

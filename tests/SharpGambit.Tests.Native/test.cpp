@@ -66,7 +66,15 @@ namespace SharpGambit::Native::Tests
 		//auto str = (*psprep(psp))->GetStrategy(grep(gp)->GetPlayer(2));
 		//ASSERT_EQ("bar", str_->GetLabel());
 		//ASSERT_EQ("bar", str->GetLabel());
+	}
 
-
+	TEST(GameApiTest, CanSolverPureStrategyProfile) {
+		const char* pn[] = { "Player 1", "Player 2" };
+		int s[] = { 2, 2 };
+		auto gp = NewNormalFormGame("Prisoner's Dilemna", 2, pn, s);
+		ASSERT_FALSE(gp == nullptr);
+		auto psp = grep(gp)->NewPureStrategyProfile();
+		auto go = grep(gp)->NewOutcome();
+		//psp->SetOutcome()
 	}
 }

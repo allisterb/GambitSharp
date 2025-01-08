@@ -56,11 +56,13 @@ public struct PureStrategyProfile : IStrategyProfile
 
 public struct MixedStrategyProfile
 {
-    public MixedStrategyProfile(Game game)
+    public MixedStrategyProfile(Game game, nint ptr)
     {
-        ptr = strategyprofile.MSP_New(game.ptr);
         this.game = game;
+        this.ptr = ptr;
     }
+
+    public MixedStrategyProfile(Game game) : this(game, strategyprofile.MSP_New(game.ptr)) {}
 
     public double GetStrategyProbability(PureStrategy s) => strategyprofile.MSP_GetStrategyProbability(ptr, s.ptr);
 

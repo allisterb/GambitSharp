@@ -77,7 +77,7 @@ namespace SharpGambit.Tests.Api
                 [[(0, 1), (2, 3), (2, 3)], [(4, 5), (6, 7), (2, 3)], [(4, 5), (6, 7), (2, 3)]]);
             mp = g.NewMixedStrategyProfile();
             Assert.Equal(0.333, mp[0]["A"], 0.001);
-            mp[0]["A"] = 0.5;
+            mp[0,"A"] = 0.5;
             Assert.Equal(2, mp[g[0]]);
         }
     }

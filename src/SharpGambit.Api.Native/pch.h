@@ -15,5 +15,5 @@
 #include "games/gametree.h"
 #include "games/stratpure.h"
 #include "games/stratmixed.h"
-
+#include "solvers/enumpure/enumpure.h"
 #endif //PCH_H

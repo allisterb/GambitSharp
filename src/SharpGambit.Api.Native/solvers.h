@@ -5,7 +5,7 @@
 using namespace Gambit;
 using namespace Nash;
 
-API void* EnumPureStrategy_Solve(void* game, CS_OUT int& size) 
+API const intptr_t* EnumPureStrategy_Solve(void* game, CS_OUT int& size) 
 {
 	auto s = EnumPureStrategySolve(grep(game));
 	size = s.size();

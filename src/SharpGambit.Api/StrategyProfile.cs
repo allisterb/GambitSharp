@@ -62,17 +62,17 @@ public struct MixedStrategyProfile
         this.ptr = ptr;
     }
 
-    public MixedStrategyProfile(Game game) : this(game, strategyprofile.MSP_New(game.ptr)) {}
+    public MixedStrategyProfile(Game game) : this(game, strategyprofile.MSP_RationalNew(game.ptr)) {}
 
-    public double GetStrategyProbability(PureStrategy s) => strategyprofile.MSP_GetStrategyProbability(ptr, s.ptr);
+    public double GetStrategyProbability(PureStrategy s) => strategyprofile.MSP_RationalGetStrategyProbability(ptr, s.ptr);
 
-    public void SetStrategyProbability(PureStrategy s, double prob) => strategyprofile.MSP_SetStrategyProbability(ptr, s.ptr, prob);
+    public void SetStrategyProbability(PureStrategy s, double prob) => strategyprofile.MSP_RationalSetStrategyProbability(ptr, s.ptr, prob);
 
-    public double GetPlayerPayoff(int pl) => strategyprofile.MSP_GetPlayerNumPayoff(ptr, pl + 1);
+    public double GetPlayerPayoff(int pl) => strategyprofile.MSP_RationalGetPlayerNumPayoff(ptr, pl + 1);
 
-    public double GetPlayerPayoff(Player pl) => strategyprofile.MSP_GetPlayerPayoff(ptr, pl.ptr);
+    public double GetPlayerPayoff(Player pl) => strategyprofile.MSP_RationalGetPlayerPayoff(ptr, pl.ptr);
 
-    public double GetStrategyPayoff(PureStrategy s) => strategyprofile.MSP_GetStrategyPayoff(ptr, s.ptr);
+    public double GetStrategyPayoff(PureStrategy s) => strategyprofile.MSP_RationalGetStrategyPayoff(ptr, s.ptr);
 
     public double this[PureStrategy s] => GetStrategyPayoff(s);
 
@@ -88,7 +88,6 @@ public struct MixedStrategyProfile
         
     internal nint ptr;
     public Game game;
-    public Player player;
 }
 
 

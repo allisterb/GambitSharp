@@ -13,12 +13,13 @@ public class Solvers
 {
     public unsafe static MixedStrategyProfile[] EnumPureStrategySolve(Game g)
     {
-        var ptr = (long*) solvers.EnumPureStrategySolve(g.ptr, out var size);
+        var ptr = solvers.EnumPureStrategySolve(g.ptr, out var size);
         var sol = new MixedStrategyProfile[size];
         for(int i = 0; i < size; i++)
         {
 
-            sol[i] = new MixedStrategyProfile(g, new IntPtr(ptr[i]));
+            var x = ptr[i];
+            sol[i] = new MixedStrategyProfile(g, (nint) ptr[i]);
         }
         return sol;
     }

@@ -169,6 +169,6 @@ namespace SharpGambit
         
         public static ITuple[] Permute<T>(this ITuple[] r) => r.Reverse().Select(t => t.Permute<T>()).ToArray();
 
-
+        public static int Product(this int[] a) => a.Aggregate((l, r) => l * r);
     }
 }

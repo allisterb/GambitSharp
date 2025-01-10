@@ -83,14 +83,14 @@ namespace SharpGambit.Tests.Api
 
 
         [Fact]
-        public void CanGetLatex()
+        public void CanGetHtml()
         {
             var g = NormalFormGame.TwoPlayerGame("Prisoner's Dilemna", ["Fink", "Cheat"], ["Fink", "Cheat"],
                 [
                     [(3, 3), (2, 2)],
                     [(4, 5), (6, 7)]
                 ]);
-            var l = g.Latex;
+            var l = g.Html;
             Assert.NotNull(l);  
         }
     }

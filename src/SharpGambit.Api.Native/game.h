@@ -59,7 +59,9 @@ API const char* GetLatex(void* game)
 	
 API const char* GetHtml(void* game)
 {
-	return (new std::string(HTMLGameWriter().Write(grep(game)).c_str()))->c_str();
+	auto s = HTMLGameWriter().Write(grep(game));
+	std::string tag = std::string("<table class='nfg_$p'>").replace(18, 1, std::to_string(grep(game)->NumPlayers()));
+	return (new std::string(s.replace(s.find("<table>"), 7, tag)))->c_str();
 }
 
 

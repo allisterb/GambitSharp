@@ -19,7 +19,6 @@ public class Game : GameObject
 
     public int PlayerCount => game.NumPlayers(ptr); 
 
-
     public IEnumerable<Player> Players
     {
         get
@@ -42,19 +41,19 @@ public class Game : GameObject
         }
     }
 
-    public Player GetPlayer(int player) => new Player(this, game.GetPlayer(ptr, FailIfPlayerIndexTooLarge(player) + 1));
+    public string Latex => game.GetLatex(ptr);
 
-    public Player GetPlayer(string label) => Players.SingleOrFailure(p => p.Label == label, $"The player with label {label} does not exist in the game.");
+    public string Html => game.GetHtml(ptr);
 
     public Player this[int pl] => GetPlayer(pl);
 
     public Player this[string label] => GetPlayer(label);
 
+    public Player GetPlayer(int player) => new Player(this, game.GetPlayer(ptr, FailIfPlayerIndexTooLarge(player) + 1));
+
+    public Player GetPlayer(string label) => Players.SingleOrFailure(p => p.Label == label, $"The player with label {label} does not exist in the game.");
+
     public Player AddPlayer() => new Player(this);
-
-    public string Latex => game.GetLatex(ptr);
-
-    public string Html => game.GetHtml(ptr);
 
     internal int FailIfPlayerIndexTooLarge(int pl) => pl >= PlayerCount ? throw new ArgumentException($"This game has {PlayerCount} players.") : pl;  
 }
@@ -81,12 +80,22 @@ public class NormalFormGame : Game
             {
                 throw new ArgumentException("The outcomes array must have a tuple element type.");
             }
-            if (payoffs.Rank != PlayerCount) throw new ArgumentException("The rank of the payoffs array must equal the number of players.", nameof(payoffs));
-            for (int i = 0; i < strategies.Length; i++)
+            if (payoffs.Rank == 1 && payoffs.Length != sdims.Product())
             {
-                if (payoffs.GetLength(i) != sdims[i])
+                throw new ArgumentException("The length of a 1-dimensional payoffs array must equal the total number of strategy combinations.");
+            }
+            else if (payoffs.Rank != PlayerCount)
+            {
+                throw new ArgumentException("The rank of the payoffs array must equal the number of players.", nameof(payoffs));
+            }
+            else
+            {
+                for (int i = 0; i < strategies.Length; i++)
                 {
-                    throw new ArgumentException($"Dimension {i} of the payoffs array has length {payoffs.GetLength(i)}, not {sdims[i]}.");
+                    if (payoffs.GetLength(i) != sdims[i])
+                    {
+                        throw new ArgumentException($"Dimension {i} of the payoffs array has length {payoffs.GetLength(i)}, not {sdims[i]}.");
+                    }
                 }
             }
             var p = (ITuple)payoffs.GetValue(payoffs.GetIndices(0))!;

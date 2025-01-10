@@ -52,6 +52,8 @@ public class Game : GameObject
 
     public Player AddPlayer() => new Player(this);
 
+    public string Latex => game.GetLatex(ptr);
+
     internal int FailIfPlayerIndexTooLarge(int pl) => pl >= PlayerCount ? throw new ArgumentException($"This game has {PlayerCount} players.") : pl;  
 }
 

@@ -64,21 +64,34 @@ namespace SharpGambit.Tests.Api
         {
             var g = NormalFormGame.TwoPlayerGame("Prisoner's Dilemna", ["Fink", "Cheat"], ["Fink", "Cheat"],
                 [
-                    [(3, 3), (2, 2)], 
+                    [(3, 3), (2, 2)],
                     [(4, 5), (6, 7)]
                 ]);
             var mp = g.NewMixedStrategyProfile();
             Assert.Equal(0.5, mp[0]["Fink"]);
 
-            mp[0,"Fink"] = 0.4;
+            mp[0, "Fink"] = 0.4;
             Assert.Equal(0.4, mp[0]["Fink"]);
             Assert.Equal(2, mp[g[0]]);
             g = NormalFormGame.TwoPlayerGame("Prisoner's Dilemna", ["A", "B", "C"], ["D", "E", "F"],
                 [[(0, 1), (2, 3), (2, 3)], [(4, 5), (6, 7), (2, 3)], [(4, 5), (6, 7), (2, 3)]]);
             mp = g.NewMixedStrategyProfile();
             Assert.Equal(0.333, mp[0]["A"], 0.001);
-            mp[0,"A"] = 0.5;
+            mp[0, "A"] = 0.5;
             Assert.Equal(2, mp[g[0]]);
+        }
+
+
+        [Fact]
+        public void CanGetLatex()
+        {
+            var g = NormalFormGame.TwoPlayerGame("Prisoner's Dilemna", ["Fink", "Cheat"], ["Fink", "Cheat"],
+                [
+                    [(3, 3), (2, 2)],
+                    [(4, 5), (6, 7)]
+                ]);
+            var l = g.Latex;
+            Assert.NotNull(l);  
         }
     }
 }

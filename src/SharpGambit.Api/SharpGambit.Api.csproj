@@ -7,7 +7,6 @@
     <Nullable>enable</Nullable>
     <AssemblyName>SharpGambit.Api</AssemblyName>
     <RootNamespace>SharpGambit</RootNamespace>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>

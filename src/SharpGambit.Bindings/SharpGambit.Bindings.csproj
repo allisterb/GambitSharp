@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>annotations</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <NoWarn>CS8981</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

@@ -52,7 +52,11 @@ API void* GetOutcome(void* game, int index) { return goptr(gerep(game)->GetOutco
 
 API void* NewTablePureStrategyProfile(void* game) { return new PureStrategyProfile(gtablerep(game)->NewPureStrategyProfile()); }
 
-
+API const char* GetLatex(void* game)
+{
+	auto w = new LaTeXGameWriter();
+	return w->Write(grep(game)).c_str();
+}
 	
 
 

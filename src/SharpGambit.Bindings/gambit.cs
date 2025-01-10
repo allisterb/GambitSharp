@@ -53,6 +53,9 @@ namespace gambit
 
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "NewTablePureStrategyProfile", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewTablePureStrategyProfile(__IntPtr game);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "GetLatex", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern __IntPtr GetLatex(__IntPtr game);
         }
 
         public static __IntPtr NewNormalFormGame(string title, int pc, string[] players, int[] strategies)
@@ -129,6 +132,12 @@ namespace gambit
         {
             var ___ret = __Internal.NewTablePureStrategyProfile(game);
             return ___ret;
+        }
+
+        public static string GetLatex(__IntPtr game)
+        {
+            var ___ret = __Internal.GetLatex(game);
+            return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
     }
 

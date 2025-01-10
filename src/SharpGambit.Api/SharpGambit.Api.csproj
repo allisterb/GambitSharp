@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharpGambit.Base\SharpGambit.Base.csproj" />
     <ProjectReference Include="..\SharpGambit.Bindings\SharpGambit.Bindings.csproj" />
   </ItemGroup>
 

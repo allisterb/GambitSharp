@@ -13,4 +13,8 @@
     <ProjectReference Include="..\SharpGambit.Bindings\SharpGambit.Bindings.csproj" />
   </ItemGroup>
 
+  <Target Name="CopyDefs" AfterTargets="Build">
+    <Copy SourceFiles="$(SolutionDir)\SharpGambit.Api.Native\bin\x64\Debug\sharpgambit.dll" DestinationFolder="C:\Python\VEnv\sylvester\Scripts" />
+  </Target>
+
 </Project>

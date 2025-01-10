@@ -54,9 +54,12 @@ API void* NewTablePureStrategyProfile(void* game) { return new PureStrategyProfi
 
 API const char* GetLatex(void* game)
 {
-	auto w = new LaTeXGameWriter();
-	return (new std::string(w->Write(grep(game)).c_str()))->c_str();
+	return (new std::string(LaTeXGameWriter().Write(grep(game)).c_str()))->c_str();
 }
 	
+API const char* GetHtml(void* game)
+{
+	return (new std::string(HTMLGameWriter().Write(grep(game)).c_str()))->c_str();
+}
 
 

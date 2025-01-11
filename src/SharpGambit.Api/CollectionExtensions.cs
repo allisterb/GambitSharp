@@ -32,13 +32,13 @@ namespace SharpGambit
             return dims;
         }
         
-        public static int[] GetStrides(this Array array)
+        public static int[] GetStrides(this Array array, int[]? dimensions = null)
         {
             if (array.Rank == 0)
             {
                 return [];
             }
-            var dimensions = array.GetDims();   
+            dimensions = dimensions ?? array.GetDims();   
             if (dimensions.Length == 0)
             {
                 return Array.Empty<int>();
@@ -53,14 +53,14 @@ namespace SharpGambit
             return strides;
         }
 
-        public static int[] GetIndices(this Array array, int index)
+        public static int[] GetIndices(this Array array, int index, int[]? dimensions = null)
         {
             if (array.Rank == 0)
             {
                 return [];
             }
-            int[] indices = new int[array.Rank];
-            var strides = array.GetStrides();
+            int[] indices = new int[dimensions?.Length ?? array.Rank];
+            var strides = array.GetStrides(dimensions);
             int remainder = index;
             for (int i = 0; i < strides.Length; i++)
             {
@@ -70,6 +70,7 @@ namespace SharpGambit
             }
             return indices;
         }
+
         public static int GetIndex(this int[] array, int[] indices)
         {
             var strides = array.GetStrides();

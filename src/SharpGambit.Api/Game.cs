@@ -80,9 +80,9 @@ public class NormalFormGame : Game
             {
                 throw new ArgumentException("The outcomes array must have a tuple element type.");
             }
-            if (payoffs.Rank == 1 && payoffs.Length != sdims.Product())
+            if (payoffs.Rank == 1)
             {
-                throw new ArgumentException("The length of a 1-dimensional payoffs array must equal the total number of strategy combinations.");
+                if (payoffs.Length != sdims.Product()) throw new ArgumentException("The length of a 1-dimensional payoffs array must equal the total number of strategy combinations.");
             }
             else if (payoffs.Rank != PlayerCount)
             {
@@ -104,12 +104,25 @@ public class NormalFormGame : Game
                 throw new ArgumentException("Each element of the payoffs array must have length equal to the number of players.");
             }
 
-            for (int i = 0; i < payoffs.Length; i++)
+            if (payoffs.Rank == PlayerCount)
             {
-                var indices = payoffs.GetIndices(i);
-                var profile = new PureStrategyProfile(this, indices);
-                p = (ITuple)payoffs.GetValue(indices)!;
-                profile.Outcome = new Outcome(this, p);
+                for (int i = 0; i < payoffs.Length; i++)
+                {
+                    var indices = payoffs.GetIndices(i);
+                    var profile = new PureStrategyProfile(this, indices);
+                    p = (ITuple)payoffs.GetValue(indices)!;
+                    profile.Outcome = new Outcome(this, p);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < payoffs.Length; i++)
+                {
+                    var indices = payoffs.GetIndices(i, sdims);
+                    var profile = new PureStrategyProfile(this, indices);
+                    p = (ITuple)payoffs.GetValue(i)!;
+                    profile.Outcome = new Outcome(this, p);
+                }
             }
         }
     }
@@ -134,6 +147,8 @@ public class NormalFormGame : Game
     public static NormalFormGame TwoPlayerGame(string title, string[] strategies1, string[] strategies2, ITuple[][]? payoffs = null, string player1 = "Player 1", string player2 = "Player 2") =>
         new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs?.To2D());
 
+    public static NormalFormGame TwoPlayerGame(string title, string[] strategies1, string[] strategies2, ITuple[] payoffs, string player1 = "Player 1", string player2 = "Player 2") =>
+        new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs);
     //public static NormalFormGame SymmetricTwoPlayerGame(string title, string player1, string player2, string[] strategies, ITuple[] payoffs) =>
     //    NormalFormGame.TwoPlayerGame(title, player1, player2, [strategies, strategies], [payoffs, payoffs.Permute<Rational>()]);
 

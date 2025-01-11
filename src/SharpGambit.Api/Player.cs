@@ -17,22 +17,6 @@ public struct Player
 
     public Player(Game game) : this(game, gambit.game.NewPlayer(game.ptr)) { }
 
-
-    public override bool Equals([NotNullWhen(true)] object? obj)
-    {
-        if (obj is Player p)
-        {
-            return p.ptr == this.ptr;   
-        }
-        else
-        {
-            return false;
-        }
-
-    }
-
-    public override int GetHashCode() => this.ptr.GetHashCode();
-
     public int Index => player.GetPlayerNumber(ptr) - 1;
 
     public string Label
@@ -60,8 +44,22 @@ public struct Player
 
     public PureStrategy AddStrategy() => new PureStrategy(this);
 
-    public Game game;
+    public override bool Equals([NotNullWhen(true)] object? obj)
+    {
+        if (obj is Player p)
+        {
+            return p.ptr == this.ptr;
+        }
+        else
+        {
+            return false;
+        }
 
+    }
+
+    public override int GetHashCode() => this.ptr.GetHashCode();
+
+    public Game game;
     internal nint ptr;  
 }
 

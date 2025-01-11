@@ -524,7 +524,7 @@ namespace SharpGambit {
             return (Int16)(BigInteger.Divide(value.m_numerator, value.m_denominator));
         }
 
-        public static explicit operator Int32(Rational value) {
+        public static implicit operator Int32(Rational value) {
             return (Int32)(BigInteger.Divide(value.m_numerator, value.m_denominator));
         }
 

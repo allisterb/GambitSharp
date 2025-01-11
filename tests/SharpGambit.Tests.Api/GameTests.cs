@@ -45,6 +45,9 @@ namespace SharpGambit.Tests.Api
             Assert.Equal(4, sp[0]);
             Assert.Equal(5, sp[1]);
             Assert.Equal(5, g["Mute", "Snitch"][1]);
+
+            var h = new NormalFormGame("test", ["A", "B"], [["Snitch", "Mute"], ["Snitch", "Mute"]], new[,] { { (4, 5), (7, 8) }, { (4, 5), (7, 8) } });
+
         }
 
         [Fact]

@@ -34,6 +34,8 @@ public struct PureStrategyProfile : IStrategyProfile
         }
     }
 
+    public int[] StrategyCounts => game.Strategies.Select(t => t.Length).ToArray();
+
     public PureStrategy GetStrategy(int pl) => new PureStrategy(game.GetPlayer(pl), strategyprofile.PSP_GetStrategy(ptr, pl + 1));
 
     public Outcome Outcome
@@ -64,6 +66,32 @@ public struct MixedStrategyProfile
 
     public MixedStrategyProfile(Game game) : this(game, strategyprofile.MSP_RationalNew(game.ptr)) {}
 
+    public MixedStrategyProfile(Game game, (string, double)[][] probs) : this(game)
+    {
+        if (probs.Length != game.PlayerCount) throw new ArgumentException();
+        for (int i = 0; i < probs.Length; i++)
+        {
+            if (probs[i].Length != game[i].StrategyCount) throw new ArgumentException();
+            for (int j = 0; j < probs[i].Length; j++)
+            {
+                var p = probs[i][j];
+                SetStrategyProbability(game[i][p.Item1], p.Item2);
+            }
+        }
+        
+    }
+
+    public MixedStrategyProfile(Game game, (string, double)[] probs) : this(game)
+    {
+        if (probs.Length != game.Strategies.Select(t => t.Length).ToArray().Product()) throw new ArgumentException();
+        for (int i = 0; i < probs.Length; i++)
+        {
+            var indices = probs.GetIndices(i, game.StrategyCounts);
+            var p = probs[i];
+            SetStrategyProbability(game[indices[0]][p.Item1], p.Item2);
+        }
+
+    }
     public double GetStrategyProbability(PureStrategy s) => strategyprofile.MSP_RationalGetStrategyProbability(ptr, s.ptr);
 
     public void SetStrategyProbability(PureStrategy s, double prob) => strategyprofile.MSP_RationalSetStrategyProbability(ptr, s.ptr, prob);

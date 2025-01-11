@@ -2,8 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
+using System.Diagnostics.CodeAnalysis;
+
 using gambit;
+
 public struct PureStrategy 
 {
     internal PureStrategy(Player player, nint ptr, string? label= null)
@@ -28,8 +30,21 @@ public struct PureStrategy
 
     //public override string? ToString() => string.IsNullOrEmpty(Label) ? base.ToString() : Label;
 
-    public Player Player;
+    public override bool Equals([NotNullWhen(true)] object? obj)
+    {
+        if (obj is PureStrategy s)
+        {
+            return s.ptr == this.ptr;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
+    public override int GetHashCode() => this.ptr.GetHashCode();
+
+    public Player Player;
     internal nint ptr;
 }
 

@@ -41,6 +41,8 @@ public class Game : GameObject
         }
     }
 
+    public int[] StrategyCounts => Players.Select(p => p.StrategyCount).ToArray();
+
     public string Latex => game.GetLatex(ptr);
 
     public string Html => game.GetHtml(ptr);
@@ -127,7 +129,7 @@ public class NormalFormGame : Game
         }
     }
 
-    public int[] StrategyCounts => Players.Select(p => p.StrategyCount).ToArray();
+    
 
 
     public PureStrategyProfile this[params PureStrategy[] strategies]
@@ -143,6 +145,10 @@ public class NormalFormGame : Game
     public PureStrategyProfile this[params string[] strategies] => this[strategies.Select((s, i) => this[i][s]).ToArray()];
 
     public MixedStrategyProfile NewMixedStrategyProfile() => new MixedStrategyProfile(this);
+
+    public MixedStrategyProfile NewMixedStrategyProfile((string, double)[][] probs) => new MixedStrategyProfile(this, probs);
+
+    public MixedStrategyProfile NewMixedStrategyProfile((string, double)[] probs) => new MixedStrategyProfile(this, probs);
 
     public static NormalFormGame TwoPlayerGame(string title, string[] strategies1, string[] strategies2, ITuple[][]? payoffs = null, string player1 = "Player 1", string player2 = "Player 2") =>
         new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs?.To2D());

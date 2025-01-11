@@ -5,7 +5,6 @@ module NormalFormTests =
     open Xunit
 
     open SharpGambit
-    open NormalFormGame
 
     [<Fact>]
     let ``Can create normal-form game`` () =
@@ -17,3 +16,12 @@ module NormalFormTests =
         Assert.Equal(3, g1["Quiet", "Quiet"][0])
         Assert.Equal(2, g1["Fink", "Fink"][1])
         Assert.Equal(3, g1["Quiet", "Quiet"][1])
+
+        let s = solve_enum_pure g1
+        Assert.Equal(g1[0]["Fink"], s.solutions[0][0])
+
+        let msp = g1 |> mixed_strategy_profile [
+            ("Fink", 0.5); ("Quiet", 0.5)
+            ("Fink", 0.5); ("Quiet", 0.5)
+        ] 
+        let x = msp[0, "Quiet"]

@@ -18,10 +18,11 @@ module NormalFormTests =
         Assert.Equal(3, g1["Quiet", "Quiet"][1])
 
         let s = solve_enum_pure g1
-        Assert.Equal(g1[0]["Fink"], s.solutions[0][0])
+        Assert.Equal(g1[0]["Quiet"], s.solutions[0][0])
 
-        let msp = g1 |> mixed_strategy_profile [
-            ("Fink", 0.5); ("Quiet", 0.5)
-            ("Fink", 0.5); ("Quiet", 0.5)
-        ] 
+        let msp = mixed_strategy_profile g1 [
+                ("Fink", 0.4); ("Quiet", 0.6)
+                ("Fink", 0.4); ("Quiet", 0.6)
+            ] 
         let x = msp[0, "Quiet"]
+        Assert.Equal(0.6, x)

@@ -129,9 +129,6 @@ public class NormalFormGame : Game
         }
     }
 
-    
-
-
     public PureStrategyProfile this[params PureStrategy[] strategies]
     {
         get
@@ -141,6 +138,8 @@ public class NormalFormGame : Game
             return psp;
         }
     }
+
+    public MixedStrategyProfile this[params (string, double)[] probs] => this.NewMixedStrategyProfile(probs);
 
     public PureStrategyProfile this[params string[] strategies] => this[strategies.Select((s, i) => this[i][s]).ToArray()];
 

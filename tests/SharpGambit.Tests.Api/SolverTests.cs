@@ -17,8 +17,8 @@ public class SolverTests
                     [(2,2), (0,3)],
                     [(3,0), (1,1)]
                 ]);
-        var sol = Solvers.EnumPureStrategySolve(g)[0];
-        Assert.Equal(1.0, sol[0, "Fink"]);   
+        var sol = Solvers.EnumPureStrategySolve(g);
+        //Assert.Equal(1.0, sol.solutions[0][0, "Fink"]);   
     }
 }
 

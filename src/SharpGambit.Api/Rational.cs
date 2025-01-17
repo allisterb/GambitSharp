@@ -175,6 +175,10 @@ namespace SharpGambit {
 
         // Object.ToString
         public override String ToString() {
+            if (m_denominator == 1)
+            {
+                return m_numerator.ToString("R", CultureInfo.InvariantCulture);
+            }
             StringBuilder ret = new StringBuilder();
             ret.Append(m_numerator.ToString("R", CultureInfo.InvariantCulture));
             ret.Append(c_solidus);

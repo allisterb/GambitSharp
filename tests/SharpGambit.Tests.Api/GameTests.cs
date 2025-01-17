@@ -42,9 +42,10 @@ namespace SharpGambit.Tests.Api
             Assert.Equal("Mute", sp.GetStrategy(0).Label);
             Assert.Equal("Snitch", sp.GetStrategy(1).Label);
             sp = g["Mute", "Snitch"];
-            Assert.Equal(4, sp[0]);
-            Assert.Equal(5, sp[1]);
-            Assert.Equal(5, g["Mute", "Snitch"][1]);
+            var x = sp[0];
+            Assert.Equal(4, (int) x);
+            Assert.Equal(5, (int) sp[1]);
+            Assert.Equal(5, (int) g["Mute", "Snitch"][1]);
 
             var h = new NormalFormGame("test", ["A", "B"], [["Snitch", "Mute"], ["Snitch", "Mute"]], new[,] { { (4, 5), (7, 8) }, { (4, 5), (7, 8) } });
 
@@ -56,7 +57,7 @@ namespace SharpGambit.Tests.Api
             var g = NormalFormGame.TwoPlayerGame("Prisoner's Dilemna", ["Fink", "Cheat"], ["Fink", "Cheat"],
                 [[(0, 1), (2, 3)], [(4, 5), (6, 7)]]);
             Assert.Equal("Player 2", g[1].Label);
-            Assert.Equal(7, g["Cheat", "Cheat"][1]);
+            Assert.Equal(7, (int) g["Cheat", "Cheat"][1]);
 
             //g = NormalFormGame.SymmetricTwoPlayerGame("Prisoner's Dilemna", "Player 1", "Player2", ["Finck Cheat"], [(0, 1), (2, 3)]);
             //Assert.Equal(3, g["Cheat", "Finck"][0]);

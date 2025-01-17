@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 public class Game : GameObject
 {
@@ -45,7 +46,7 @@ public class Game : GameObject
 
     public string Latex => game.GetLatex(ptr);
 
-    public string Html => game.GetHtml(ptr);
+    public virtual string Html => game.GetHtml(ptr);
 
     public Player this[int pl] => GetPlayer(pl);
 
@@ -149,6 +150,45 @@ public class NormalFormGame : Game
 
     public MixedStrategyProfile NewMixedStrategyProfile((string, double)[] probs) => new MixedStrategyProfile(this, probs);
 
+    public override string Html
+    {
+        get
+        {
+            if (PlayerCount != 2) return base.Html;
+
+            int p = PlayerCount;
+            StringBuilder html = new StringBuilder();
+            html.AppendLine($"<div class=\"nfg_{p}p\">");
+            html.AppendLine($"<div class=\"title\">{Title}</div>");
+            html.AppendLine("<table>");
+            html.AppendLine("<tbody>");
+            html.AppendLine("<tr>");
+            html.AppendLine("<td></td>");
+            for (int j = 0; j < this[1].StrategyCount; j++)
+            {
+                html.AppendLine($"<td align=\"center\"><b>{this[1][j].Label}</b></td>");
+            }
+            html.AppendLine("</tr>");
+           
+            for (int i = 0; i < this[0].StrategyCount; i++)
+            {
+                html.AppendLine("<tr>");
+                var s1 = this[0][i].Label;
+                html.AppendLine($"<td align=\"center\"><b>{s1}</b></td>");
+                for (int j = 0; j < this[1].StrategyCount; j++)
+                {
+                    var s2 = this[1][j].Label;
+                    var pr = this[s1, s2];
+                    html.Append($"<td align=\"center\">({pr[0]},{pr[1]})</td>");
+                }
+                html.AppendLine("</tr>");
+            }
+            html.AppendLine("</tbody>");
+            html.AppendLine("</table>");
+            html.AppendLine("</div>");
+            return html.ToString();
+        }
+    }
     public static NormalFormGame TwoPlayerGame(string title, string[] strategies1, string[] strategies2, ITuple[][]? payoffs = null, string player1 = "Player 1", string player2 = "Player 2") =>
         new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs?.To2D());
 

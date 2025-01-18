@@ -159,14 +159,16 @@ public class NormalFormGame : Game
             int p = PlayerCount;
             StringBuilder html = new StringBuilder();
             html.AppendLine($"<div class=\"nfg_{p}p\">");
-            html.AppendLine($"<div class=\"title\">{Title}</div>");
+            html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{Title}</div>");
+            html.AppendLine($"<div style=\"float:left;margin-top:35pt;margin-right:15pt\"><b>{this[0].Label}</b></div>");
+            html.AppendLine($"<div style=\"margin-left:75pt\"><b>{this[1].Label}</b></div>");
             html.AppendLine("<table>");
             html.AppendLine("<tbody>");
             html.AppendLine("<tr>");
             html.AppendLine("<td></td>");
             for (int j = 0; j < this[1].StrategyCount; j++)
             {
-                html.AppendLine($"<td align=\"center\"><b>{this[1][j].Label}</b></td>");
+                html.AppendLine($"<td><tt>{this[1][j].Label}</tt></td>");
             }
             html.AppendLine("</tr>");
            
@@ -174,7 +176,7 @@ public class NormalFormGame : Game
             {
                 html.AppendLine("<tr>");
                 var s1 = this[0][i].Label;
-                html.AppendLine($"<td align=\"center\"><b>{s1}</b></td>");
+                html.AppendLine($"<td><tt>{s1}</tt></td>");
                 for (int j = 0; j < this[1].StrategyCount; j++)
                 {
                     var s2 = this[1][j].Label;

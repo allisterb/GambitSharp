@@ -42,6 +42,8 @@ public class Game : GameObject
         }
     }
 
+    public static bool HtmlLatexMode { get; set; }  = false;
+
     public int[] StrategyCounts => Players.Select(p => p.StrategyCount).ToArray();
 
     public string Latex => game.GetLatex(ptr);
@@ -155,20 +157,21 @@ public class NormalFormGame : Game
         get
         {
             if (PlayerCount != 2) return base.Html;
-
             int p = PlayerCount;
+            string sstag = HtmlLatexMode ? "$$" : "<tt>";
+            string setag = HtmlLatexMode ? "$$" : "</tt>";
             StringBuilder html = new StringBuilder();
             html.AppendLine($"<div class=\"nfg_{p}p\">");
             html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{Title}</div>");
             html.AppendLine($"<div style=\"float:left;margin-top:35pt;margin-right:15pt\"><b>{this[0].Label}</b></div>");
             html.AppendLine($"<div style=\"margin-left:75pt\"><b>{this[1].Label}</b></div>");
-            html.AppendLine("<table>");
+            html.AppendLine("<table style=\"border: 1px solid black; border-collapse: collapse;\">");
             html.AppendLine("<tbody>");
             html.AppendLine("<tr>");
             html.AppendLine("<td></td>");
             for (int j = 0; j < this[1].StrategyCount; j++)
             {
-                html.AppendLine($"<td><tt>{this[1][j].Label}</tt></td>");
+                html.AppendLine($"<td>{sstag}{this[1][j].Label}{setag}</td>");
             }
             html.AppendLine("</tr>");
            
@@ -176,7 +179,7 @@ public class NormalFormGame : Game
             {
                 html.AppendLine("<tr>");
                 var s1 = this[0][i].Label;
-                html.AppendLine($"<td><tt>{s1}</tt></td>");
+                html.AppendLine($"<td>{sstag}{s1}{setag}</td>");
                 for (int j = 0; j < this[1].StrategyCount; j++)
                 {
                     var s2 = this[1][j].Label;

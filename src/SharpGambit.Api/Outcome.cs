@@ -24,7 +24,9 @@ public struct Outcome
         for (int i = 0; i < payoffs.Length; i++)
         {
             var r = Rational.Convert(payoffs[i]!);
+            //var num = r.Numerator < Integ
             outcome.SetRationalPayoff(this.ptr, i + 1, (int) r.Numerator, (int) r.Denominator);
+            //outcome.se
         }        
     }
 

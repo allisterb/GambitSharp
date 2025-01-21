@@ -390,11 +390,15 @@ namespace SharpGambit {
 
         public static Rational Convert(object obj) => obj switch
         {
+            Rational r => r,
             int i => new Rational((BigInteger)i),
             BigInteger bi => new Rational(bi),
+            float f when f == Math.Floor(f + 0.00001) => new Rational((BigInteger) System.Convert.ToInt32(f)),
+            float f => new Rational(f),
+            double d when d == Math.Floor(d + 0.00001) => new Rational((BigInteger)System.Convert.ToInt32(d)),
             double d => new Rational(d),
             decimal d => new Rational(d),
-            Rational r => r,
+            
             _ => throw new ArgumentException($"Cannot convert {obj} to a Rational value.")
         };
 

@@ -160,6 +160,7 @@ public class NormalFormGame : Game
             int p = PlayerCount;
             string sstag = HtmlLatexMode ? "$$" : "<tt>";
             string setag = HtmlLatexMode ? "$$" : "</tt>";
+            string borderstyle = "style =\"border: 1px solid black; border-collapse: collapse;\"";
             StringBuilder html = new StringBuilder();
             html.AppendLine($"<div class=\"nfg_{p}p\">");
             html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{Title}</div>");
@@ -171,7 +172,7 @@ public class NormalFormGame : Game
             html.AppendLine("<td></td>");
             for (int j = 0; j < this[1].StrategyCount; j++)
             {
-                html.AppendLine($"<td>{sstag}{this[1][j].Label}{setag}</td>");
+                html.AppendLine($"<td {borderstyle}>{sstag}{this[1][j].Label}{setag}</td>");
             }
             html.AppendLine("</tr>");
            
@@ -179,12 +180,12 @@ public class NormalFormGame : Game
             {
                 html.AppendLine("<tr>");
                 var s1 = this[0][i].Label;
-                html.AppendLine($"<td>{sstag}{s1}{setag}</td>");
+                html.AppendLine($"<td {borderstyle}>{sstag}{s1}{setag}</td>");
                 for (int j = 0; j < this[1].StrategyCount; j++)
                 {
                     var s2 = this[1][j].Label;
                     var pr = this[s1, s2];
-                    html.Append($"<td align=\"center\">({pr[0]},{pr[1]})</td>");
+                    html.Append($"<td {borderstyle} align=\"center\">({pr[0]},{pr[1]})</td>");
                 }
                 html.AppendLine("</tr>");
             }
@@ -199,8 +200,8 @@ public class NormalFormGame : Game
 
     public static NormalFormGame TwoPlayerGame(string title, string[] strategies1, string[] strategies2, ITuple[] payoffs, string player1 = "Player 1", string player2 = "Player 2") =>
         new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs);
-    //public static NormalFormGame SymmetricTwoPlayerGame(string title, string player1, string player2, string[] strategies, ITuple[] payoffs) =>
-    //    NormalFormGame.TwoPlayerGame(title, player1, player2, [strategies, strategies], [payoffs, payoffs.Permute<Rational>()]);
 
-
+    public static NormalFormGame TwoPlayerZeroSumGame(string title, string[] strategies1, string[] strategies2, object[] payoffs, string player1 = "Player 1", string player2 = "Player 2") =>
+        new NormalFormGame(title, [player1, player2], [strategies1, strategies2], payoffs.Select(p => ((Convert.ToSingle(p)), -(Convert.ToSingle(p)))).ToArray());
+    
 }

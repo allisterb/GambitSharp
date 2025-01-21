@@ -33,7 +33,7 @@ public struct PureStrategySolution
                     string sstag = Game.HtmlLatexMode ? "$$" : "<tt>";
                     string setag = Game.HtmlLatexMode ? "$$" : "</tt>";
                     string borderstyle = "style =\"border: 1px solid black; border-collapse: collapse;\"";
-                    string solborderstyle = "style =\"border: 1px solid black; border-collapse: collapse;background-color:blue;foreground-color:white\"";
+                    string solborderstyle = "style =\"border: 1px solid black; border-collapse: collapse;background-color:blue;color:white\"";
                     html.AppendLine($"<div class=\"nfg_{p}p\">");
                     html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{nfg.Title} solutions</div>");
                     html.AppendLine($"<div style=\"float:left;margin-top:35pt;margin-right:15pt\"><b>{nfg[0].Label}</b></div>");
@@ -62,7 +62,7 @@ public struct PureStrategySolution
                             {
                                 if (i == solutions[k1][0].Index && j == solutions[k1][1].Index)
                                 {
-                                    html.Append($"<td  align=\"center\" {solborderstyle}>({pr[0]},{pr[1]})</td>");
+                                    html.Append($"<td align=\"center\" {solborderstyle}>({pr[0]},{pr[1]})</td>");
                                     issol = true;
                                     break;
                                 }

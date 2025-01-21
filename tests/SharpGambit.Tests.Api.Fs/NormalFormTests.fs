@@ -7,7 +7,7 @@ module NormalFormTests =
     open SharpGambit
 
     [<Fact>]
-    let ``Can create normal-form game`` () =
+    let ``Can create normal-form 2p game`` () =
         let g1 = nfg_2p "Prisoner's Dilemna" ["Quiet"; "Fink"] ["Quiet"; "Fink"] [
             (3,3); (4,0)
             (0,4); (2,2)
@@ -26,3 +26,12 @@ module NormalFormTests =
             ] 
         let x = msp[0, "Quiet"]
         Assert.Equal(0.6, x)
+
+    [<Fact>]
+    let ``Can create normal-form 2p zero-sum game`` () =
+        let g1 = nfg_2p_zs "Rock Paper Scissors" ["Rock"; "Paper"; "Scissors"] ["Rock"; "Paper"; "Scissors"] [
+            1; 1; 1
+            1; 1; 1
+            1; 1; 1
+        ]
+        Assert.NotNull g1

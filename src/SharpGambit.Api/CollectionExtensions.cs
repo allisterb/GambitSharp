@@ -7,17 +7,6 @@ namespace SharpGambit
 {
     public static class CollectionExtensions
     {
-        public static T? PeekIfNotEmpty<T>(this Stack<T> q) => q.Count > 0 ? q.Peek() : default(T);
-
-        public static T? PopIfNotEmpty<T>(this Stack<T> q) => q.Count > 0 ? q.Pop() : default(T);
-
-        public static void Pop<T>(this Stack<T> stack, int n)
-        {
-            for (int i = 1; i <= n; i++)
-            {
-                stack.Pop();
-            }
-        }
         public static int[] GetDims(this Array array)
         {
             if (array.Rank == 0)
@@ -171,5 +160,13 @@ namespace SharpGambit
         public static ITuple[] Permute<T>(this ITuple[] r) => r.Reverse().Select(t => t.Permute<T>()).ToArray();
 
         public static int Product(this int[] a) => a.Aggregate((l, r) => l * r);
+
+        public static string ToLatex(this double d)
+        {
+            var r = Rational.Convert(d);
+            return (r.Numerator <= 100 && r.Denominator <= 100) ? $"\\\\frac{{{r.Numerator}}}{{{r.Denominator}}}" : d.ToString();
+        }
+
+        public static string ToLatex(this Rational r) => $"\\\\frac{{{r.Numerator}}}{{{r.Denominator}}}";
     }
 }

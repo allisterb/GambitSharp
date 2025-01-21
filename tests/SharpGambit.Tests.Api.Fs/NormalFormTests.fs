@@ -30,8 +30,10 @@ module NormalFormTests =
     [<Fact>]
     let ``Can create normal-form 2p zero-sum game`` () =
         let g1 = nfg_2p_zs "Rock Paper Scissors" ["Rock"; "Paper"; "Scissors"] ["Rock"; "Paper"; "Scissors"] [
-            1; 1; 1
-            1; 1; 1
-            1; 1; 1
+            0; -1; 1
+            1; 0; -1
+            -1; 1; 0
         ]
         Assert.NotNull g1
+        let s1 = solve_enum_mixed g1
+        Assert.NotNull s1

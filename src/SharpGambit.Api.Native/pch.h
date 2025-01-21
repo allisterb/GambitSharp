@@ -17,5 +17,5 @@
 #include "games/stratmixed.h"
 #include "games/writer.h"
 #include "solvers/enumpure/enumpure.h"
-
+#include "solvers/enummixed/enummixed.h"
 #endif //PCH_H

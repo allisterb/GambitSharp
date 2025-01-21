@@ -479,6 +479,9 @@ namespace gambit
         {
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "EnumPureStrategy_Solve", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern long* EnumPureStrategySolve(__IntPtr game, int* size);
+
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "EnumMixedStrategy_Solve", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern long* EnumMixedStrategySolve(__IntPtr game, int* size);
         }
 
         public static long* EnumPureStrategySolve(__IntPtr game, out int size)
@@ -487,6 +490,16 @@ namespace gambit
             {
                 var __arg1 = __size1;
                 var ___ret = __Internal.EnumPureStrategySolve(game, __arg1);
+                return ___ret;
+            }
+        }
+
+        public static long* EnumMixedStrategySolve(__IntPtr game, out int size)
+        {
+            fixed (int* __size1 = &size)
+            {
+                var __arg1 = __size1;
+                var ___ret = __Internal.EnumMixedStrategySolve(game, __arg1);
                 return ___ret;
             }
         }

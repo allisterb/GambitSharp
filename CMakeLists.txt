@@ -45,6 +45,23 @@ set (GAMBIT_SRC
     ${GAMBIT_DIR}/src/games/agg/agg.cc
     ${GAMBIT_DIR}/src/games/agg/bagg.cc
     ${GAMBIT_DIR}/src/games/agg/trie_map.cc
+    ${GAMBIT_DIR}/src/solvers/enummixed/enummixed.cc
+    ${GAMBIT_DIR}/src/solvers/enummixed/clique.cc
+    ${GAMBIT_DIR}/src/solvers/enummixed/lrsenum.cc
+    
+    ${GAMBIT_DIR}/src/solvers/linalg/basis.cc
+    ${GAMBIT_DIR}/src/solvers/linalg/btableau.cc
+    ${GAMBIT_DIR}/src/solvers/linalg/basis.cc
+    ${GAMBIT_DIR}/src/solvers/linalg/lemketab.cc
+    ${GAMBIT_DIR}/src/solvers/linalg/lhtab.cc
+    ${GAMBIT_DIR}/src/solvers/linalg/lpsolve.cc
+    ${GAMBIT_DIR}/src/solvers/linalg/lptab.cc
+    ${GAMBIT_DIR}/src/solvers/linalg/ludecomp.cc
+    ${GAMBIT_DIR}/src/solvers/linalg/tableau.cc
+
+    ${GAMBIT_DIR}/src/solvers/lrs/lrslib.c
+    ${GAMBIT_DIR}/src/solvers/lrs/lrsmp.c
+    ${GAMBIT_DIR}/src/solvers/lrs/lrsnashlib.c
 )
 
 # this is the "object library" target: compiles the sources only once

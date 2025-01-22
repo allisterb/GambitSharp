@@ -94,6 +94,12 @@ public struct MixedStrategyProfile
     }
     public double GetStrategyProbability(PureStrategy s) => strategyprofile.MSP_RationalGetStrategyProbability(ptr, s.ptr);
 
+    public Rational GetStrategyProbabilityRational(PureStrategy s)
+    {
+        strategyprofile.MSP_RationalGetStrategyProbabilityRational(ptr, s.ptr, out var num, out var den);
+        return new Rational(num, den);
+    }
+
     public void SetStrategyProbability(PureStrategy s, double prob) => strategyprofile.MSP_RationalSetStrategyProbability(ptr, s.ptr, prob);
 
     public double GetPlayerPayoff(int pl) => strategyprofile.MSP_RationalGetPlayerNumPayoff(ptr, pl + 1);

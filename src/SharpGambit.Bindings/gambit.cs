@@ -351,6 +351,9 @@ namespace gambit
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "MSP_Rational_GetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern double MSP_RationalGetStrategyProbability(__IntPtr profile, __IntPtr s);
 
+            [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "MSP_Rational_GetStrategyProbabilityRational", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern void MSP_RationalGetStrategyProbabilityRational(__IntPtr profile, __IntPtr s, int* num, int* den);
+
             [SuppressUnmanagedCodeSecurity, DllImport("sharpgambit", EntryPoint = "MSP_Rational_SetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr MSP_RationalSetStrategyProbability(__IntPtr profile, __IntPtr s, double p);
 
@@ -446,6 +449,19 @@ namespace gambit
         {
             var ___ret = __Internal.MSP_RationalGetStrategyProbability(profile, s);
             return ___ret;
+        }
+
+        public static void MSP_RationalGetStrategyProbabilityRational(__IntPtr profile, __IntPtr s, out int num, out int den)
+        {
+            fixed (int* __num2 = &num)
+            {
+                var __arg2 = __num2;
+                fixed (int* __den3 = &den)
+                {
+                    var __arg3 = __den3;
+                    __Internal.MSP_RationalGetStrategyProbabilityRational(profile, s, __arg2, __arg3);
+                }
+            }
         }
 
         public static __IntPtr MSP_RationalSetStrategyProbability(__IntPtr profile, __IntPtr s, double p)

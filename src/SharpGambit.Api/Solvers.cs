@@ -34,7 +34,6 @@ public struct PureStrategySolution
                     string sstag = Game.HtmlLatexMode ? "$$" : "<tt>";
                     string setag = Game.HtmlLatexMode ? "$$" : "</tt>";
                     string borderstyle = "style =\"border: 1px solid black; border-collapse: collapse;\"";
-                    string solborderstyle = "style =\"border: 1px solid black; border-collapse: collapse;background-color:blue;color:white\"";
                     html.AppendLine($"<div class=\"nfg_{p}p\">");
                     html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{nfg.Title} solutions</div>");
                     html.AppendLine($"<div style=\"float:left;margin-top:35pt;margin-right:15pt\"><b>{nfg[0].Label}</b></div>");
@@ -63,7 +62,7 @@ public struct PureStrategySolution
                             {
                                 if (i == solutions[k1][0].Index && j == solutions[k1][1].Index)
                                 {
-                                    html.Append($"<td align=\"center\" {solborderstyle}>({pr[0]},{pr[1]})</td>");
+                                    html.Append($"<td align=\"center\" {borderstyle}>(<u>{pr[0]}</u>,<u>{pr[1]}</u>)</td>");
                                     issol = true;
                                     break;
                                 }
@@ -97,7 +96,7 @@ public struct MixedStrategySolution
         this.profiles = profiles;
         solutions = profiles
             .Select(p => p.game.Strategies
-            .Select(ss => ss.Select(s => (s,p.GetStrategyProbability(s))).ToArray()).ToArray()).ToArray();
+            .Select(ss => ss.Select(s => (s,p.GetStrategyProbabilityRational(s))).ToArray()).ToArray()).ToArray();
     }
 
     public string Html
@@ -109,11 +108,12 @@ public struct MixedStrategySolution
                 case NormalFormGame nfg:
                     int p = nfg.PlayerCount;
                     if (p != 2) throw new NotImplementedException();
+                    var p1 = solutions[0][0];
+                    var p2 = solutions[0][1];  
                     StringBuilder html = new StringBuilder();
                     string sstag = Game.HtmlLatexMode ? "$$" : "<tt>";
                     string setag = Game.HtmlLatexMode ? "$$" : "</tt>";
                     string borderstyle = "style =\"border: 1px solid black; border-collapse: collapse;\"";
-                    string solborderstyle = "style =\"border: 1px solid black; border-collapse: collapse;background-color:blue;color:white\"";
                     html.AppendLine($"<div class=\"nfg_{p}p\">");
                     html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{nfg.Title} solutions</div>");
                     html.AppendLine($"<div style=\"float:left;margin-top:35pt;margin-right:15pt\"><b>{nfg[0].Label}</b></div>");
@@ -124,7 +124,7 @@ public struct MixedStrategySolution
                     html.AppendLine($"<td {borderstyle}></td>");
                     for (int j = 0; j < nfg[1].StrategyCount; j++)
                     {
-                        html.AppendLine($"<td {borderstyle}>{sstag}{nfg[1][j].Label}{setag}</td>");
+                        html.AppendLine($"<td {borderstyle}>{sstag}{nfg[1][j].Label}{setag}<sup>{p2[j].Item2.ToLatex()}</sup></td>");
                     }
                     html.AppendLine("</tr>");
 
@@ -132,25 +132,15 @@ public struct MixedStrategySolution
                     {
                         html.AppendLine("<tr>");
                         var s1 = nfg[0][i].Label;
-                        html.AppendLine($"<td {borderstyle}>{sstag}{s1}{setag}</td>");
+                        html.AppendLine($"<td {borderstyle}>{sstag}{s1}{setag}<sup>{p1[i].Item2.ToLatex()}</sup></td>");
                         for (int j = 0; j < nfg[1].StrategyCount; j++)
                         {
                             var s2 = nfg[1][j].Label;
                             var pr = nfg[s1, s2];
-                            bool issol = false;
-                            for (int k1 = 0; k1 < solutions.Length; k1++)
-                            {
-                                if (i == solutions[k1][0].Item1.Index && j == solutions[k1][1].Item1.Index)
-                                {
-                                    html.Append($"<td align=\"center\" {solborderstyle}>({pr[0]},{pr[1]})</td>");
-                                    issol = true;
-                                    break;
-                                }
-                            }
-                            if (!issol)
-                            {
-                                html.Append($"<td {borderstyle} align=\"center\">({pr[0]},{pr[1]})</td>");
-                            }
+                            var e1 = p1[i].Item2 * pr[0];
+                            var e2 = p1[j].Item2 * pr[1];
+                            
+                            html.Append($"<td align=\"center\" {borderstyle}>({pr[0]},{pr[1]}) (<u>{e1.ToLatex()}</u>,<u>{e2.ToLatex()}</u>)</td>");
                         }
                         html.AppendLine("</tr>");
                     }
@@ -165,7 +155,7 @@ public struct MixedStrategySolution
     }
     internal MixedStrategyProfile[] profiles;
     internal Game game;
-    public (PureStrategy, double)[][][] solutions;
+    public (PureStrategy, Rational)[][][] solutions;
 }
 public class Solvers
 {

@@ -30,12 +30,14 @@ public struct PureStrategySolution
                 case NormalFormGame nfg:
                     int p = nfg.PlayerCount;
                     if (p != 2) throw new NotImplementedException();
+                    if (solutions.Length == 0) return $"{game.Title} has no pure strategy solutions.";
                     StringBuilder html = new StringBuilder();
                     string sstag = Game.HtmlLatexMode ? "$$" : "<tt>";
                     string setag = Game.HtmlLatexMode ? "$$" : "</tt>";
                     string borderstyle = "style =\"border: 1px solid black; border-collapse: collapse;\"";
+                    string solborderstyle = "style =\"border: 1px solid black; border-collapse: collapse;background-color:lightblue\"";
                     html.AppendLine($"<div class=\"nfg_{p}p\">");
-                    html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{nfg.Title} solutions</div>");
+                    html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{nfg.Title} - {solutions.Length} pure strategy solution(s)</div>");
                     html.AppendLine($"<div style=\"float:left;margin-top:35pt;margin-right:15pt\"><b>{nfg[0].Label}</b></div>");
                     html.AppendLine($"<div style=\"margin-left:75pt\"><b>{nfg[1].Label}</b></div>");
                     html.AppendLine($"<table>");
@@ -62,7 +64,7 @@ public struct PureStrategySolution
                             {
                                 if (i == solutions[k1][0].Index && j == solutions[k1][1].Index)
                                 {
-                                    html.Append($"<td align=\"center\" {borderstyle}>(<u>{pr[0]}</u>,<u>{pr[1]}</u>)</td>");
+                                    html.Append($"<td align=\"center\" {solborderstyle}>(<u>{pr[0]}</u>,<u>{pr[1]}</u>)</td>");
                                     issol = true;
                                     break;
                                 }
@@ -108,6 +110,7 @@ public struct MixedStrategySolution
                 case NormalFormGame nfg:
                     int p = nfg.PlayerCount;
                     if (p != 2) throw new NotImplementedException();
+                    if (solutions.Length == 0) return $"{game.Title} has no mixed strategy solutions.";
                     var p1 = solutions[0][0];
                     var p2 = solutions[0][1];  
                     StringBuilder html = new StringBuilder();
@@ -115,7 +118,7 @@ public struct MixedStrategySolution
                     string setag = Game.HtmlLatexMode ? "$$" : "</tt>";
                     string borderstyle = "style =\"border: 1px solid black; border-collapse: collapse;\"";
                     html.AppendLine($"<div class=\"nfg_{p}p\">");
-                    html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{nfg.Title} solutions</div>");
+                    html.AppendLine($"<div class=\"title\" style=\"text-align:center\">{nfg.Title} - {solutions.Length} mixed strategy solution(s)</div>");
                     html.AppendLine($"<div style=\"float:left;margin-top:35pt;margin-right:15pt\"><b>{nfg[0].Label}</b></div>");
                     html.AppendLine($"<div style=\"margin-left:75pt\"><b>{nfg[1].Label}</b></div>");
                     html.AppendLine($"<table>");
@@ -157,6 +160,7 @@ public struct MixedStrategySolution
     internal Game game;
     public (PureStrategy, Rational)[][][] solutions;
 }
+
 public class Solvers
 {
     public static PureStrategySolution EnumPureStrategySolve(Game g) => 

@@ -167,6 +167,8 @@ namespace SharpGambit
             return (r.Numerator <= 100 && r.Denominator <= 100) ? $"\\\\frac{{{r.Numerator}}}{{{r.Denominator}}}" : d.ToString();
         }
 
-        public static string ToLatex(this Rational r) => r.Numerator == 0 ? "0" : $"$$\\\\frac{{{r.Numerator}}}{{{r.Denominator}}}$$";
+        //public static string ToLatex(this Rational r) => r.Numerator == 0 ? "0" : $"$$\\\\frac{{{r.Numerator}}}{{{r.Denominator}}}$$";
+
+        public static string ToLatex(this Rational r) => r.Numerator == 0 ? "0" : r.ToString();
     }
 }

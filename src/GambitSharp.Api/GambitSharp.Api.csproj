@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>GambitSharp.Api</AssemblyName>
+    <RootNamespace>GambitSharp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GambitSharp.Bindings\GambitSharp.Bindings.csproj" />
+  </ItemGroup>
+
+  <Target Name="CopyDefs" AfterTargets="Build">
+    <Copy SourceFiles="$(SolutionDir)\GambitSharp.Api.Native\bin\x64\Debug\GambitSharp.dll" DestinationFolder="C:\Python\VEnv\sylvester\Scripts" />
+  </Target>
+
+</Project>

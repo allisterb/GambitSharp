@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "sharpgambit.h"
+#include "gambitsharp.h"
 
 namespace SharpGambit::Native::Tests
 { 
@@ -47,15 +47,15 @@ namespace SharpGambit::Native::Tests
 		gprep(GetPlayer(gp, 2))->GetStrategy(3)->SetLabel("bar");
 		ASSERT_FALSE(gp == nullptr);
 		auto msp_ = grep(gp)->NewMixedStrategyProfile(0.0);
-		auto mpsp = MSP_New(gp);
+		auto mpsp = MSP_Double_New(gp);
 		//auto s1 = grep(gp)->GetPlayer(2)->GetStrategy(3);
 		auto s1 = GetPlayerStrategy(GetPlayer(gp, 2), 3);
 		ASSERT_EQ(0.25, msp_[gsrep(s1)]) ;
 		msp_[gsrep(s1)] = 0.3;
 		ASSERT_EQ(0.3, msp_[gsrep(s1)]);
 		//ASSERT_EQ(0.3, msp_[gsrep(GetPlayerStrategy(GetPlayer(gp, 2), 4))]);
-		MSP_SetStrategyProbability(mpsp, s1, 0.3);
-		ASSERT_EQ(0.3, MSP_GetStrategyProbability(mpsp, s1));
+		MSP_Double_SetStrategyProbability(mpsp, s1, 0.3);
+		ASSERT_EQ(0.3, MSP_Double_GetStrategyProbability(mpsp, s1));
 		//msp_.
 		//auto x = gsrep(gsptr(s1));
 		//auto y = psprep(pspptr(tt));

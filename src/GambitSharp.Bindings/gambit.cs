@@ -18,46 +18,46 @@ namespace gambit
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "NewNormalFormGame", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "NewNormalFormGame", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewNormalFormGame([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string title, int pc, [MarshalAs(UnmanagedType.LPArray)] string[] players, int[] strategies);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "NewExtensiveFormGame", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "NewExtensiveFormGame", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewExtensiveFormGame();
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "SetTitle", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "SetTitle", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr SetTitle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string title, __IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetTitle", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetTitle", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetTitle(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "NewPlayer", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "NewPlayer", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewPlayer(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetPlayer", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetPlayer", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetPlayer(__IntPtr game, int pi);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetPlayers", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetPlayers", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern long* GetPlayers(__IntPtr game, int* size);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "NumPlayers", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "NumPlayers", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int NumPlayers(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "StrategyCounts", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "StrategyCounts", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int* StrategyCounts(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "NewOutcome", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "NewOutcome", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewOutcome(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetOutcome", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetOutcome", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetOutcome(__IntPtr game, int index);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "NewTablePureStrategyProfile", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "NewTablePureStrategyProfile", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewTablePureStrategyProfile(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetLatex", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetLatex", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetLatex(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetHtml", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetHtml", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetHtml(__IntPtr game);
         }
 
@@ -154,25 +154,25 @@ namespace gambit
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetPlayerLabel", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetPlayerLabel", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetPlayerLabel(__IntPtr player);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "SetPlayerLabel", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "SetPlayerLabel", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr SetPlayerLabel(__IntPtr player, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string label);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetPlayerNumber", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetPlayerNumber", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int GetPlayerNumber(__IntPtr player);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "NewPlayerStrategy", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "NewPlayerStrategy", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr NewPlayerStrategy(__IntPtr player);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetPlayerNumStrategies", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetPlayerNumStrategies", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int GetPlayerNumStrategies(__IntPtr player);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetPlayerStrategy", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetPlayerStrategy", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetPlayerStrategy(__IntPtr player, int st);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetPlayerStrategies", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetPlayerStrategies", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern long* GetPlayerStrategies(__IntPtr player, int* size);
         }
 
@@ -227,13 +227,13 @@ namespace gambit
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetStrategyLabel", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetStrategyLabel", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetStrategyLabel(__IntPtr strategy);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "SetStrategyLabel", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "SetStrategyLabel", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr SetStrategyLabel(__IntPtr strategy, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string label);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetStrategyIndex", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetStrategyIndex", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int GetStrategyIndex(__IntPtr strategy);
         }
 
@@ -260,16 +260,16 @@ namespace gambit
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetOutcomeIndex", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetOutcomeIndex", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int GetOutcomeIndex(__IntPtr outcome);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "GetPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "GetPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern void GetPayoff(__IntPtr outcome, int pl, int* num, int* den);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "SetRationalPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "SetRationalPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr SetRationalPayoff(__IntPtr outcome, int pl, int num, int den);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "SetIntegerPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "SetIntegerPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr SetIntegerPayoff(__IntPtr outcome, int pl, int payoff);
         }
 
@@ -309,61 +309,61 @@ namespace gambit
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "PSP_New", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "PSP_New", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr PSP_New(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "PSP_GetIndex", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "PSP_GetIndex", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int PSP_GetIndex(__IntPtr profile);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "PSP_GetStrategy", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "PSP_GetStrategy", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr PSP_GetStrategy(__IntPtr profile, int pl);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "PSP_SetStrategy", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "PSP_SetStrategy", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr PSP_SetStrategy(__IntPtr profile, __IntPtr s);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "PSP_GetOutcome", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "PSP_GetOutcome", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr PSP_GetOutcome(__IntPtr profile);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "PSP_SetOutcome", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "PSP_SetOutcome", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr PSP_SetOutcome(__IntPtr profile, __IntPtr o);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Double_New", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Double_New", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr MSP_DoubleNew(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Double_GetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Double_GetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern double MSP_DoubleGetStrategyProbability(__IntPtr profile, __IntPtr s);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Double_SetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Double_SetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr MSP_DoubleSetStrategyProbability(__IntPtr profile, __IntPtr s, double p);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Double_GetPlayerPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Double_GetPlayerPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern double MSP_DoubleGetPlayerPayoff(__IntPtr profile, __IntPtr player);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Double_GetStrategyPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Double_GetStrategyPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern double MSP_DoubleGetStrategyPayoff(__IntPtr profile, __IntPtr strategy);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Double_GetPlayerNumPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Double_GetPlayerNumPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern double MSP_DoubleGetPlayerNumPayoff(__IntPtr profile, int player);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Rational_New", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Rational_New", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr MSP_RationalNew(__IntPtr game);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Rational_GetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Rational_GetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern double MSP_RationalGetStrategyProbability(__IntPtr profile, __IntPtr s);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Rational_GetStrategyProbabilityRational", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Rational_GetStrategyProbabilityRational", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern void MSP_RationalGetStrategyProbabilityRational(__IntPtr profile, __IntPtr s, int* num, int* den);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Rational_SetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Rational_SetStrategyProbability", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr MSP_RationalSetStrategyProbability(__IntPtr profile, __IntPtr s, double p);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Rational_GetPlayerPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Rational_GetPlayerPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern double MSP_RationalGetPlayerPayoff(__IntPtr profile, __IntPtr player);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Rational_GetStrategyPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Rational_GetStrategyPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern double MSP_RationalGetStrategyPayoff(__IntPtr profile, __IntPtr strategy);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "MSP_Rational_GetPlayerNumPayoff", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "MSP_Rational_GetPlayerNumPayoff", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern double MSP_RationalGetPlayerNumPayoff(__IntPtr profile, int player);
         }
 
@@ -493,10 +493,10 @@ namespace gambit
     {
         public partial struct __Internal
         {
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "EnumPureStrategy_Solve", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "EnumPureStrategy_Solve", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern long* EnumPureStrategySolve(__IntPtr game, int* size);
 
-            [SuppressUnmanagedCodeSecurity, DllImport("GambitSharp", EntryPoint = "EnumMixedStrategy_Solve", CallingConvention = __CallingConvention.Cdecl)]
+            [SuppressUnmanagedCodeSecurity, DllImport("gambitsharp", EntryPoint = "EnumMixedStrategy_Solve", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern long* EnumMixedStrategySolve(__IntPtr game, int* size);
         }
 

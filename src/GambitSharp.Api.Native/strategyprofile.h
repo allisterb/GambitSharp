@@ -32,10 +32,7 @@ API void* MSP_Rational_New(void* game) { return new MixedStrategyProfile<Rationa
 
 API double MSP_Rational_GetStrategyProbability(void* profile, void* s) { return msprrep(profile)->operator[](gsrep(s)); }
 
-API void MSP_Rational_GetStrategyProbabilityRational(void* profile, void* s, CS_OUT long& num, CS_OUT long& den)
-{ 
-	NumDen(Number(msprrep(profile)->operator[](gsrep(s))), num, den);
-}
+API void MSP_Rational_GetStrategyProbabilityRational(void* profile, void* s, CS_OUT long& num, CS_OUT long& den) { NumDen(Number(msprrep(profile)->operator[](gsrep(s))), num, den); }
 
 API void* MSP_Rational_SetStrategyProbability(void* profile, void* s, double p) { msprrep(profile)->operator[](gsrep(s)) = Rational(p); return profile; }
 

@@ -77,20 +77,21 @@ public class Library : Runtime, ILibrary
         options.OutputDir = OutputDirName;
         options.GenerationOutputMode = GenerationOutputMode.FilePerModule;
         Module.IncludeDirs.Add(Path.Combine(R, "src"));
-        Module.LibraryDirs.Add(Path.Combine(R, "build", "Release"));
+        Module.LibraryDirs.Add(Path.Combine(R, "build", "Debug"));
         //Module.Headers.Add("gambit.h");
         Module.IncludeDirs.Add(Path.Combine(R, "..", "..", "src", "GambitSharp.Api.Native"));
         Module.Headers.Add("gambitsharp.h");
         Module.LibraryDirs.Add(Path.Combine(R, "..", "..", "src", "GambitSharp.Api.Native", "bin", "x64", "Debug"));
         driver.ParserOptions.AddArguments("-fcxx-exceptions");
         driver.ParserOptions.LanguageVersion = LanguageVersion.CPP17;
-        Module.SharedLibraryName = "GambitSharp";
+        Module.SharedLibraryName = "gambitsharp";
         //options.GenerateClassTemplates = true;  
         //options.GenerateObjectOverrides = true;
         //options.GenerateExternalDataFields = true;
         //driver.ParserOptions.SkipPrivateDeclarations = false;
         options.CheckSymbols = true;
         options.CompileCode = true; 
+        options.Verbose = true;
     }
 
     /// Setup your passes here.
@@ -103,7 +104,7 @@ public class Library : Runtime, ILibrary
     /// Do transformations that should happen before passes are processed.
     public void Preprocess(Driver driver, ASTContext ctx)
     {
-        foreach (var tu in ctx.TranslationUnits.Where(c => !c.FilePath.ToLower().Contains("GambitSharp.api.native")))
+        foreach (var tu in ctx.TranslationUnits.Where(c => !c.FilePath.ToLower().Contains("gambitsharp.api.native")))
         {
             tu.ExplicitlyIgnore();
         }

@@ -2,7 +2,7 @@
   "profiles": {
     "GambitSharp.Generator": {
       "commandName": "Project",
-      "commandLineArgs": "bind --libpath ext\\gambit"
+      "commandLineArgs": "bind --libpath ..\\..\\..\\..\\..\\ext\\gambit"
     }
   }
 }
